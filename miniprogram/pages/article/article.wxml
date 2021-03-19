@@ -1,0 +1,15 @@
+<!--miniprogram/pages/article/article.wxml-->
+<import src="../../components/towxml/entry.wxml"/>
+<van-toast id="van-toast" />
+<van-nav-bar
+custom-class="cu-navbar"
+  left-text="返回"
+  title="文章详情"
+  fixed="{{true}}"
+  bind:click-left="onClickLeft"
+  placeholder="{{true}}"
+/>
+
+<view style="user-select: text;">
+  <template is="entry" data="{{...articleDetail.content}}"/>
+</view>

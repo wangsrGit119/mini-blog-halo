@@ -1,0 +1,61 @@
+<!--miniprogram/pages/history/history.wxml-->
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+<van-nav-bar
+custom-class="cu-navbar"
+  title="所有文章"
+  fixed="{{true}}"
+  placeholder="{{true}}"
+/>
+<van-toast id="van-toast" />
+
+
+<van-search
+  clearable
+  bind:clear="onClear"	
+  value=""
+  bind:search="onSearch"	
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+
+ <!-- 文章总体卡片背景 -->
+ <view   style="background-color:rgba(237, 248, 248, 0.959)" wx:for="{{articleList}}" wx:key="index">
+      <!-- 单个文章卡片 -->
+      <view class="a-com" bindtap="toArticleDetail" data-article-item="{{item}}">
+        <view class="article-cover" style="background-image:url({{item.thumbnail}});margin:5px;transform: scale(0.9);">
+          <!-- <view class="article-tag" wx:if="{{item.topPriority==1}}">置顶</view> -->
+          <view class="article-tag" wx:if="{{index==0}}">置顶</view>
+          <text>
+            {{item.title}}
+          </text>
+        </view>
+        <!-- 封面底部 -->
+        <view class="article-footer">
+          <van-image
+            round
+              width="40"
+              height="40"
+              lazy-load
+              src="{{authorInfo.avatar}}"
+            />
+            <!-- 昵称和发表时间 -->
+            <view class="footer-nk-time">
+              <view class="footer-text nickname">suc</view>
+              <view class="footer-text time"> {{dateutils.dateTransfer(item.createTime)}}</view>
+            </view>
+            <!-- 阅读量 评论数量组件 -->
+            <view class="fonter-num-count">
+              总阅读 {{item.visits}}
+            </view>
+        </view>
+      </view>
+      
+    </view>
+
+
+
+
+
+
+

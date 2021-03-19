@@ -1,0 +1,101 @@
+/**index.wxss**/
+
+
+
+.container-outer{
+
+  margin: 25rpx;
+
+
+
+}
+
+/* 轮播 */
+.sw-top-article{
+  margin-bottom: 25rpx;
+}
+.sw-top-article .ws-top-article-item{
+  position: relative;
+  justify-content: center;
+  border-radius: 40rpx;
+}
+/* 热门icon */
+.sw-top-article .ws-top-article-item .article-hot-icon{
+  position: absolute;
+  height:25px;width:25px;
+  right: 0;
+  top:0;
+}
+/* title */
+.sw-top-article .ws-top-article-item text{
+  position: absolute;
+  color: white;
+  left: 20px;
+  font-size: 13px;
+  bottom:18px;
+}
+/* 中间最新字体 */
+.tab-new-tip{
+  font-family:'JHYBKS';
+
+}
+
+
+/* 简约版列表渲染 */
+.article-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* background-image: linear-gradient(to right, #F2F6F9, #EBF3EE); */
+  /* box-shadow: 4px 4px 3px #c0bbbb; */
+  margin-bottom: 15rpx;
+  border-bottom: 1px #dce7e0 dotted;
+  border-radius: 5px;
+  font-family:'JHYBKS';
+
+
+}
+
+.article-card .left image{
+  padding:5px;
+  width: 80px;
+  height: 70px;
+}
+.article-card .middle {
+  padding-top: 15px;
+  padding-bottom: 15px ;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.article-card .middle .title {
+  font-size: 26rpx;
+  font-weight: bolder;
+}
+.article-card .middle .art-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 24rpx;
+  font-weight: 400;
+}
+.article-card .middle .visits{
+  font-size: 24rpx;
+  font-weight: 320;
+}
+.article-card .middle .art-tags .art-tag-item{
+  margin-left: 5rpx;
+}
+
+.article-card .middle .time {
+  font-size: 24rpx;
+  font-weight: 300;
+  
+}
+.article-card .right {
+  display: flex;
+  flex-direction: column;
+
+}

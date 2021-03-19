@@ -1,0 +1,46 @@
+<!--miniprogram/pages/mine/mine.wxml-->
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+<van-nav-bar
+custom-class="cu-navbar"
+  title="作者主页"
+  fixed="{{true}}"
+  placeholder="{{true}}"
+/>
+
+<van-dialog id="van-dialog" />
+
+<view class="my-info">
+  <image src="{{authorInfo.avatar}}"></image>
+  <van-row>{{authorInfo.nickname}}</van-row>
+</view>
+
+<view class="other-me">
+  <van-cell
+  icon="records"
+  title="文章总数"
+  url="" 
+  is-link
+  value="{{statisticsInfo.postCount}}" />
+
+  <van-cell 
+  icon="chat-o"
+  title="评论总计"
+  is-link 
+  value="{{statisticsInfo.commentCount}}" />
+<van-cell 
+  icon="smile-comment-o"
+  title="最新通知" 
+  is-link
+  value="无" />
+  
+</view>
+
+
+  <van-field
+    value=""
+    disabled
+    left-icon="info-o"
+    label="简介"
+    icon="question-o"
+    bind:click-icon="showAbout"
+  />

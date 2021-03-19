@@ -1,0 +1,125 @@
+<!--index.wxml-->
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+
+<van-nav-bar
+custom-class="cu-navbar"
+  title="首页"
+  fixed="{{true}}"
+  placeholder="{{true}}"
+/>
+
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog"	 />
+
+
+<van-search
+  value="{{ value }}"
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+
+<!-- /* start */ -->
+<view class="container-outer">
+
+  
+<view class="sw-top-article">
+  <!--轮播图-->
+     <swiper indicator-dots='true' autoplay='true' interval='3000'  duration='500' circular='true'>
+       <block wx:for="{{articleTopList}}" wx:key="index">
+         <swiper-item class="ws-top-article-item" bindtap="toArticleDetail" data-article-item="{{item}}">
+           <view style="background-image:url({{item.thumbnail}});height:100vh">
+             <image  class="article-hot-icon" src="../../images/hot.png"></image>
+             <text>{{item.title}}</text>
+            </view>
+         </swiper-item>
+       </block>
+     </swiper>
+  </view>
+
+  <!-- tab for new -->
+
+  <view class="tab-new-tip">
+    最新
+  </view>
+
+
+  
+
+  <!-- 简约版列表渲染 -->
+
+  <view   wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">
+  <view class="article-card" bindtap="toArticleDetail" data-article-item="{{item}}">
+    <view class="left">
+      <image lazy-load src="{{item.thumbnail}}"></image>
+
+    </view>
+    <view class="middle">
+      <view class="title">{{item.title}}</view>
+      <view class="art-tags" >
+          <view class="art-tag-item" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+            <view wx:if="{{item.tags.length-1 !== index}}"> {{tag.name}}|</view>
+            <view wx:if="{{item.tags.length-1 === index}}"> {{tag.name}} </view>
+          </view>
+      </view>
+      <view class="visits" >
+        阅读量 {{item.visits}}
+      </view>
+      <view class="time">
+        {{dateutils.dateTransfer(item.createTime)}}
+      </view> 
+    </view>
+    <view class="right">
+       
+    </view>
+
+  </view>
+</view>
+
+
+<!-- /* end */ -->
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- 用户 openid -->
+  <!-- <view class="userinfo">
+    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
+      <view class="userinfo-block-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button 
+        wx:if="{{canIUseGetUserProfile}}" 
+        bindtap="getUserProfile"
+        class="userinfo-avatar"
+        style="background-image: url({{avatarUrl}})"
+        size="default"
+      ></button>
+      <button
+        wx:else
+        open-type="getUserInfo" 
+        bindgetuserinfo="onGetUserInfo"
+        class="userinfo-avatar"
+        style="background-image: url({{avatarUrl}})"
+        size="default"
+      ></button>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-block-avatar" src="{{avatarUrl}}" mode="cover"></image>
+    </block>
+    <view class="userinfo-nickname-wrapper">
+      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+    </view>
+  </view> -->

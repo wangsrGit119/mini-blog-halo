@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/history/history",
+    "pages/mine/mine",
+    "pages/article/article"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "wechat",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {
+    "van-icon": "components/vant/components/dist/icon/index",
+    "van-nav-bar": "components/vant/components/dist/nav-bar/index",
+    "van-row": "components/vant/components/dist/row/index",
+    "van-col": "components/vant/components/dist/col/index",
+    "van-field": "components/vant/components/dist/field/index",
+    "van-button": "components/vant/components/dist/button/index",
+    "van-loading": "components/vant/components/dist/loading/index",
+    "van-empty": "components/vant/components/dist/empty/index",
+    "van-divider": "components/vant/components/dist/divider/index",
+    "van-cell": "components/vant/components/dist/cell/index",
+    "van-cell-group": "components/vant/components/dist/cell-group/index",
+    "van-action-sheet": "components/vant/components/dist/action-sheet/index",
+    "van-overlay": "components/vant/components/dist/overlay/index",
+    "van-notify": "components/vant/components/dist/notify/index",
+    "van-toast": "components/vant/components/dist/toast/index",
+    "van-tag": "components/vant/components/dist/tag/index",
+    "van-card": "components/vant/components/dist/card/index",
+    "van-image": "components/vant/components/dist/image/index",
+    "van-dialog": "components/vant/components/dist/dialog/index",
+    "van-search": "components/vant/components/dist/search/index"
+
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "iconPath": "images/history_record.png",
+        "selectedIconPath": "images/history_record-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/footer-icon-04.png",
+        "selectedIconPath": "images/footer-icon-04-active.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+function dateTransfer (d) {
+  var da = getDate(d);
+  var Year = da.getFullYear(); //ie火狐下都可以
+  var Month = da.getMonth() + 1;
+  var Day = da.getDate();
+  var Hours = da.getHours();
+  var Minutes = da.getMinutes();
+  var Seconds = da.getSeconds();
+  var CurrentDate = "";
+  CurrentDate += Year + "-";
+  if (Month >= 10) {
+    CurrentDate += Month + "-";
+  }
+  else {
+    CurrentDate += "0" + Month + "-";
+  }
+  if (Day >= 10) {
+    CurrentDate += Day;
+  }
+  else {
+    CurrentDate += "0" + Day;
+  }
+  if (Hours < 10) {
+    Hours = "0" + Hours;
+  }
+  if (Minutes < 10) {
+    Minutes = "0" + Minutes;
+  }
+  if (Seconds < 10) {
+    Seconds = "0" + Seconds;
+  }
+  return CurrentDate + " " + Hours + ":" + Minutes + ":" + Seconds;
+  return result;
+}
+
+
+module.exports = {
+  dateTransfer: dateTransfer
+};

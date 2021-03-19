@@ -1,0 +1,80 @@
+/* miniprogram/pages/history/history.wxss */
+
+/* article list page */
+.a-com{
+  margin-left: 9rpx;
+  margin-right: 9rpx;
+  background-color: rgba(244, 250, 248, 0.644) ;
+  height: 170px;
+  margin:5px;
+  padding-top: 5rpx;
+  padding-bottom: 9rpx;
+  border-bottom: 1px #dce7e0 dotted;
+
+  /* 阴影效果 */
+  /* box-shadow: 7px 7px 3px #c0bbbb; */
+}
+.a-com .article-cover{
+  margin:7px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 120px;
+  position: relative;
+  /* opacity: 1; */
+}
+.a-com .article-cover text {
+  font-size:13px;
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  bottom: 5;
+  font-family:'JHYBKS';
+  color:white;
+}
+.a-com .article-cover .article-tag{
+ position: absolute;
+ padding-left: 3px ;
+ font-size: 12px;
+ border-top-left-radius: 15%;
+ border-bottom-left-radius: 15%;
+ color: white;
+ top:0px;
+ right: 0;
+ background-color: rgb(41, 138, 230);
+ z-index: 999;
+}
+.a-com .article-footer{
+  margin:5px;
+  display: flex;
+  flex-direction: row;
+}
+.a-com.article-footer .footer-nk-time{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.a-com .article-footer .footer-nk-time .footer-text{
+  font-family:'JHYBKS';
+  font-size: 12px;
+  margin:5px;
+}
+.a-com .article-footer .footer-nk-time .nickname{
+  color: rgb(113, 140, 163);
+}
+.a-com .article-footer .footer-nk-time .time{
+  color: grey;
+  font-weight: lighter;
+}
+.a-com .article-footer .fonter-num-count{
+  flex-grow: 1;
+  height:40px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 12px;
+  font-weight: lighter;
+
+}
