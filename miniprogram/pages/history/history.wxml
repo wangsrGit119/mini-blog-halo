@@ -25,7 +25,7 @@ custom-class="cu-navbar"
       <view class="a-com" bindtap="toArticleDetail" data-article-item="{{item}}">
         <view class="article-cover" style="background-image:url({{item.thumbnail}});margin:5px;transform: scale(0.9);">
           <!-- <view class="article-tag" wx:if="{{item.topPriority==1}}">置顶</view> -->
-          <view class="article-tag" wx:if="{{index==0}}">置顶</view>
+          <view class="article-tag cu-font-family" wx:if="{{index==0}}">置顶</view>
           <text>
             {{item.title}}
           </text>
@@ -35,18 +35,18 @@ custom-class="cu-navbar"
           <van-image
             round
               width="40"
-              height="40"
+              height="43"
               lazy-load
               src="{{authorInfo.avatar}}"
             />
             <!-- 昵称和发表时间 -->
-            <view class="footer-nk-time">
+            <view class="footer-nk-time cu-font-family">
               <view class="footer-text nickname">suc</view>
               <view class="footer-text time"> {{dateutils.dateTransfer(item.createTime)}}</view>
             </view>
             <!-- 阅读量 评论数量组件 -->
-            <view class="fonter-num-count">
-              总阅读 {{item.visits}}
+            <view class="fonter-num-count cu-font-family">
+              阅读 {{item.visits}}
             </view>
         </view>
       </view>

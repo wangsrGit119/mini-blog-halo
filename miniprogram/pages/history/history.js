@@ -21,8 +21,8 @@ Page({
     if (wx.canIUse('loadFontFace')) {
       console.log("支持自定义字体");
       wx.loadFontFace({
-        family: 'JHYBKS',
-        source: 'url("https://wangsrbus.cn/wangsr-font/JHYBKS.ttf")',
+        family: 'FZ_XKZJ',
+        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/jianghaoyingbikaishu.ttf?sign=662637c6a8e80bc4d528a4e6206ebc32&t=1616423398")',
         success: function(res) {
           console.log(res)
           console.log("字体加载成功") //  loaded
@@ -43,7 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.loadFont()
+    this.loadFont()
   },
 
   /**

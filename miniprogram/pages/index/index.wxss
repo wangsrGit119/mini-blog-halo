@@ -1,12 +1,20 @@
 /**index.wxss**/
 
+/*自定义字体*/
+.cu-font-family{
+  font-family: 'FZ_XKZJ';
+  font-weight: bolder;
+}
 
+page{
+  background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg);
+  background-attachment: fixed;
+  background-size: cover; 
+ }
 
 .container-outer{
 
   margin: 25rpx;
-
-
 
 }
 
@@ -34,11 +42,7 @@
   font-size: 13px;
   bottom:18px;
 }
-/* 中间最新字体 */
-.tab-new-tip{
-  font-family:'JHYBKS';
 
-}
 
 
 /* 简约版列表渲染 */
@@ -51,8 +55,6 @@
   margin-bottom: 15rpx;
   border-bottom: 1px #dce7e0 dotted;
   border-radius: 5px;
-  font-family:'JHYBKS';
-
 
 }
 
@@ -78,12 +80,12 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  font-size: 24rpx;
+  font-size: 22rpx;
   font-weight: 400;
 }
 .article-card .middle .visits{
   font-size: 24rpx;
-  font-weight: 320;
+  font-weight: 380;
 }
 .article-card .middle .art-tags .art-tag-item{
   margin-left: 5rpx;
@@ -91,7 +93,7 @@
 
 .article-card .middle .time {
   font-size: 24rpx;
-  font-weight: 300;
+  font-weight: 380;
   
 }
 .article-card .right {

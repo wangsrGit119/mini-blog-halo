@@ -39,7 +39,7 @@ custom-class="cu-navbar"
 
   <!-- tab for new -->
 
-  <view class="tab-new-tip">
+  <view class="tab-new-tip cu-font-family">
     最新
   </view>
 
@@ -62,10 +62,10 @@ custom-class="cu-navbar"
             <view wx:if="{{item.tags.length-1 === index}}"> {{tag.name}} </view>
           </view>
       </view>
-      <view class="visits" >
+      <view class="visits cu-font-family" >
         阅读量 {{item.visits}}
       </view>
-      <view class="time">
+      <view class="time cu-font-family">
         {{dateutils.dateTransfer(item.createTime)}}
       </view> 
     </view>

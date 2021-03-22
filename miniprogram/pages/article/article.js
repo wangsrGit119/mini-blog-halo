@@ -39,7 +39,14 @@ Page({
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data))
           console.log(data)
-          data.content = app.towxml.toJson(data.originalContent, 'markdown'),
+          data.content = app.towxml.toJson(data.originalContent, 'markdown',{
+            theme:'light',                   // 主题，默认`light`
+            events:{                    // 为元素绑定的事件方法
+                tap:(e)=>{
+                    console.log('tap',e);
+                }
+            }
+          }),
           wx.hideNavigationBarLoading()
           wx.hideLoading()
           that.setData({

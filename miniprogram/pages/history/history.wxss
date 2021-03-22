@@ -1,5 +1,8 @@
 /* miniprogram/pages/history/history.wxss */
-
+/*自定义字体*/
+.cu-font-family{
+  font-family: 'FZ_XKZJ';
+}
 /* article list page */
 .a-com{
   margin-left: 9rpx;
@@ -28,7 +31,6 @@
   bottom: 10px;
   left: 5px;
   bottom: 5;
-  font-family:'JHYBKS';
   color:white;
 }
 .a-com .article-cover .article-tag{
@@ -45,6 +47,7 @@
 }
 .a-com .article-footer{
   margin:5px;
+  border: 1px red solid;
   display: flex;
   flex-direction: row;
 }
@@ -55,7 +58,6 @@
 }
 
 .a-com .article-footer .footer-nk-time .footer-text{
-  font-family:'JHYBKS';
   font-size: 12px;
   margin:5px;
 }

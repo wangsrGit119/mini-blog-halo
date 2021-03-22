@@ -24,8 +24,8 @@ Page({
     if (wx.canIUse('loadFontFace')) {
       console.log("支持自定义字体");
       wx.loadFontFace({
-        family: 'JHYBKS',
-        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/fangzhengziji(xingkaijianti).ttf?sign=7073de23c63f71a2e14833f2ed6e4437&t=1616121070")',
+        family: 'FZ_XKZJ',
+        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/fzzt_xkjt.ttf?sign=b2110dd72fba333f3148f67fd6c4de59&t=1616421936")',
         success: function(res) {
           console.log(res)
           console.log("字体加载成功") //  loaded
