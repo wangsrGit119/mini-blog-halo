@@ -7,10 +7,8 @@ custom-class="cu-navbar"
   fixed="{{true}}"
   placeholder="{{true}}"
 />
-
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"	 />
-
 
 <van-search
   value="{{ value }}"

@@ -12,7 +12,8 @@
     "navigationBarTitleText": "wechat",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
-  },
+    },
+
   "usingComponents": {
     "van-icon": "components/vant/components/dist/icon/index",
     "van-nav-bar": "components/vant/components/dist/nav-bar/index",
@@ -36,6 +37,9 @@
     "van-search": "components/vant/components/dist/search/index"
 
   },
+  "useExtendedLib": {
+    "weui": true
+    },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#000",
