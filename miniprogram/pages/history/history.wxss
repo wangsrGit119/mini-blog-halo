@@ -47,7 +47,6 @@
 }
 .a-com .article-footer{
   margin:5px;
-  border: 1px red solid;
   display: flex;
   flex-direction: row;
 }

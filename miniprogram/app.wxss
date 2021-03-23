@@ -4,6 +4,7 @@
   width: 0;
   height: 0;
   color: #ffffff;
+  color: #ad8080;
 }
 
 .cu-navbar{

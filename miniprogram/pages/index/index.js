@@ -15,7 +15,23 @@ Page({
     articleLastestList:[],//文章信息  最新
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
   },
-
+//增加分享屏幕
+onShareAppMessage: function (res) {
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  return {
+    title: 'suke的博客',
+    path: '/pages/index/index'
+  }
+},
+onShareTimeline(){
+  return {
+    title: 'suke的博客',
+    path: '/pages/index/index'
+  }
+},
   onShow: function(){
    this.loadTopArticles();
    this.loadLastestArticles();

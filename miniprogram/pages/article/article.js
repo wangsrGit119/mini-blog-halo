@@ -20,9 +20,10 @@ Page({
     const data = JSON.parse(decodeURIComponent(options.item));
     this.loadArticleDetail(data.id);   
   },
+  //返回首页
   onClickLeft(){
-    wx.navigateBack({
-      delta: 1
+    wx.navigateTo({
+      url: '/pages/index/index',
     })
   },
   // load details 
@@ -38,7 +39,7 @@ Page({
       success: function (res) {
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data))
-          console.log(data)
+          that.setData({articleDetail:data})
           data.content = app.towxml.toJson(data.originalContent, 'markdown',{
             theme:'light',                   // 主题，默认`light`
             events:{                    // 为元素绑定的事件方法
@@ -70,7 +71,17 @@ Page({
   onReady: function () {
 
   },
-
+//增加分享屏幕
+onShareAppMessage: function (res) {
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  return {
+    title: 'suke的博客',
+    path: '/pages/index/index'
+  }
+},
   /**
    * 生命周期函数--监听页面显示
    */
