@@ -37,11 +37,9 @@
     "van-search": "components/vant/components/dist/search/index"
 
   },
-  "useExtendedLib": {
-    "weui": true
-    },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
+    "custom": true,
     "color": "#000",
     "selectedColor": "#3cc51f",
     "borderStyle": "black",

@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+    "l-button":"../../lin-ui/dist/button/index",
+    "l-tab-bar":"../../lin-ui/dist/tab-bar/index",
+    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index"
   }
 }

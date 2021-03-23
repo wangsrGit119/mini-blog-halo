@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "l-tab-bar":"../../lin-ui/dist/tab-bar/index"
+  }
 }

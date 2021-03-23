@@ -9,6 +9,7 @@ Page({
   data: {
     authorInfo:{},
     statisticsInfo:{},
+    list:app.list,// 自定义tabbar
 
   },
 

@@ -14,7 +14,9 @@ Page({
     canIUseGetUserProfile: false,
     articleTopList:[],//文章信息 阅读量最高
     articleLastestList:[],//文章信息  最新
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
+    list:app.list,// 自定义tabbar
+    capsuleBarHeight:app.capsuleBarHeight,
   },
 //增加分享屏幕
 onShareAppMessage: function (res) {

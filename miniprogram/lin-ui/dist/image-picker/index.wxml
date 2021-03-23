@@ -1,0 +1,17 @@
+<view class="lin-image-picker__container l-class">
+  <block wx:for="{{value}}" wx:key="index">
+    <view class="lin-image-picker__item lin-image-picker__item--{{size}}" style="{{itemSizePercentage?'width:'+itemSizePercentage+'padding-bottom:'+itemSizePercentage:'xxx'}}">
+      <image mut-bind:tap="onTapImage" data-image-index="{{index}}" src="{{item}}" mode="{{mode}}" class="lin-image-picker__image"/>
+      <view mut-bind:tap="onTapRemove" class="lin-image-picker__remove" data-image-index="{{ index }}">
+        <l-icon name="close" color="#ffffff" size="18"/>
+      </view>
+    </view>
+  </block>
+  
+  <view wx:if="{{count-value.length>0}}" mut-bind:tap="onTapAdd" class="lin-image-picker__item lin-image-picker__item--add lin-image-picker__item--{{size}}" style="{{itemSizePercentage?'width:'+itemSizePercentage+'padding-bottom:'+itemSizePercentage:''}}">
+    <view class="lin-image-picker__item-slot-wrapper">
+      <slot/>
+    </view>
+    <image src="./image/add.png" class="lin-image-picker__image--add"/>
+  </view>
+</view>

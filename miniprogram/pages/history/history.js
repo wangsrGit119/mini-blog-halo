@@ -16,6 +16,7 @@ Page({
     page: 0,										//当前请求数据是第几页
     pageSize: 5,									//每页数据条数
     hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
+    list:app.list,// 自定义tabbar
   },
   loadFont(){
     if (wx.canIUse('loadFontFace')) {

@@ -1,16 +1,17 @@
 /**index.wxss**/
 
+
 /*自定义字体*/
 .cu-font-family{
   font-family: 'FZ_XKZJ';
   font-weight: bolder;
 }
 
-page{
+/* page{
   background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg);
   background-attachment: fixed;
   background-size: cover; 
- }
+ } */
 
 .container-outer{
 

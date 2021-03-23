@@ -1,9 +1,32 @@
 //app.js
 const Towxml = require('./components/towxml/main');     //引入towxml库
-
+import deviceUtil from "./lin-ui/dist/utils/device-util"
 App({
   //引入towxml库
   towxml: new Towxml(),
+  //自定义bar height
+  capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
+  // 自定义tabbar
+  list:[
+    {
+        pagePath:"/pages/index/index",
+        text:"首页",
+        iconPath:"/images/home.png",
+        selectedIconPath:"/images/home-active.png"
+    },
+    {
+      pagePath:"/pages/history/history",
+      text:"记录",
+      "iconPath": "/images/history_record.png",
+      "selectedIconPath": "/images/history_record-active.png"
+    },
+    {
+    pagePath:"/pages/mine/mine",
+    text:"我的",
+    "iconPath": "/images/footer-icon-04.png",
+    "selectedIconPath": "/images/footer-icon-04-active.png"
+    },
+  ],
   onLaunch: function () {
 
     if (!wx.cloud) {
@@ -22,6 +45,7 @@ App({
     this.globalData = {
       baseUrl: 'https://wangsrbus.cn/api',
       api_access_key:"wangjianlong",
+    
     }
   }
 })

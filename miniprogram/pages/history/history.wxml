@@ -6,6 +6,9 @@ custom-class="cu-navbar"
   fixed="{{true}}"
   placeholder="{{true}}"
 />
+<!-- 自定义tabbar -->
+<l-tab-bar list="{{list}}" />
+
 <van-toast id="van-toast" />
 
 

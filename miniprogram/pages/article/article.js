@@ -9,6 +9,8 @@ Page({
    */
   data: {
     articleDetail:{},
+    showSkeleton:true,
+    capsuleBarHeight:app.capsuleBarHeight,//顶部高度
 
   },
 
@@ -16,14 +18,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const that = this;
+    setTimeout(function(){
+      that.setData({
+        showSkeleton:false
+      })
+    },3000)
+   
     
     const data = JSON.parse(decodeURIComponent(options.item));
+    console.log(data)
     this.loadArticleDetail(data.id);   
   },
   //返回首页
   onClickLeft(){
-    wx.navigateTo({
-      url: '/pages/index/index',
+    wx.navigateBack({
+      delta: 1
     })
   },
   // load details 
@@ -38,8 +48,7 @@ Page({
       method: 'GET',
       success: function (res) {
         if(res.data.status == 200){
-          let data = JSON.parse(JSON.stringify(res.data.data))
-          that.setData({articleDetail:data})
+          let data = JSON.parse(JSON.stringify(res.data.data));
           data.content = app.towxml.toJson(data.originalContent, 'markdown',{
             theme:'light',                   // 主题，默认`light`
             events:{                    // 为元素绑定的事件方法
@@ -47,7 +56,7 @@ Page({
                     console.log('tap',e);
                 }
             }
-          }),
+          });
           wx.hideNavigationBarLoading()
           wx.hideLoading()
           that.setData({

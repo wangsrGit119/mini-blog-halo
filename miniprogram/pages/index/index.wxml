@@ -1,12 +1,21 @@
 <!--index.wxml-->
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
-
-<van-nav-bar
+<l-capsule-bar 
+hidden-capsule
+home-page="/pages/index/index"
+capsule-color="white" 
+bg-color="transparent">
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif" />
+</l-capsule-bar>
+<!-- <van-nav-bar
 custom-class="cu-navbar"
   title="首页"
   fixed="{{true}}"
   placeholder="{{true}}"
-/>
+/> -->
+<!-- 自定义tabbar -->
+<l-tab-bar list="{{list}}" />
+
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"	 />
 
@@ -16,7 +25,6 @@ custom-class="cu-navbar"
   background="white"
   placeholder="请输入搜索关键词"
 />
-
 <!-- /* start */ -->
 <view class="container-outer">
 

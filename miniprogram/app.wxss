@@ -3,18 +3,19 @@
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
-
   color: #ffffff;
 }
 
-.cu-navbar{
-  z-index: 999;
- /* background-image: linear-gradient(to right, #e6f5ff, #ffefce); */
- background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif);
- background-size: auto ;
- position: fixed;
- height: 400px;
- }
+/* 全局顶部栏css  linui组件 */
+.capsule-bar-bg {
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  opacity: 0.5;
+}
+
+
 
 
  /**基础风格样式**/

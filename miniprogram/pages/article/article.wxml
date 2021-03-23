@@ -1,15 +1,35 @@
 <!--miniprogram/pages/article/article.wxml-->
 <import src="../../components/towxml/entry.wxml"/>
 <van-toast id="van-toast" />
-<van-nav-bar
-custom-class="cu-navbar"
-  left-text="返回"
-  title="文章详情"
-  fixed="{{true}}"
-  bind:click-left="onClickLeft"
-  placeholder="{{true}}"
-/>
+<l-capsule-bar 
+bind:linlefttap="onClickLeft"
+home-page="/pages/index/index"
+capsule-color="white" 
+bg-color="transparent">
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif" />
+</l-capsule-bar>
 
-<view style="user-select: text;">
+
+<l-skeleton
+l-class="l-cu-outer-skeleton" 
+style="margin-top:300px;"
+  loading="{{showSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="32rpx"
+  avatar-shape="circle"
+  rows="13"
+  active="{{true}}"
+>
+  <!-- 插槽内容 -->
+
+  <view style="user-select: text;">
   <template is="entry" data="{{...articleDetail.content}}"/>
-</view>
+  </view>
+
+
+
+</l-skeleton>
+
+
