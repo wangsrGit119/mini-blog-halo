@@ -17,13 +17,15 @@ Page({
     pageSize: 5,									//每页数据条数
     hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
     list:app.list,// 自定义tabbar
+    capsuleBarHeight:app.capsuleBarHeight,
+    index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
   },
   loadFont(){
     if (wx.canIUse('loadFontFace')) {
       console.log("支持自定义字体");
       wx.loadFontFace({
-        family: 'FZ_XKZJ',
-        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/jianghaoyingbikaishu.ttf?sign=662637c6a8e80bc4d528a4e6206ebc32&t=1616423398")',
+        family: 'CUSTOM_FONT_T',
+        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/jianghaoyingbikaishu.ttf?sign=18c0f2ade1275538ab962a0f3d293847&t=1616584122")',
         success: function(res) {
           console.log(res)
           console.log("字体加载成功") //  loaded

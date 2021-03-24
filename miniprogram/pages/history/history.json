@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-tab": "../../components/vant/components/dist/tab/index",
   "van-tabs": "../../components/vant/components/dist/tabs/index",
+  "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
   "l-tab-bar":"../../lin-ui/dist/tab-bar/index"
   }
 }

@@ -1,18 +1,17 @@
 /* miniprogram/pages/history/history.wxss */
 /*自定义字体*/
-.cu-font-family{
-  font-family: 'FZ_XKZJ';
+.su-font-family{
+  font-family: 'CUSTOM_FONT_T';
 }
 /* article list page */
 .a-com{
   margin-left: 9rpx;
   margin-right: 9rpx;
-  background-color: rgba(244, 250, 248, 0.644) ;
+  background-color: rgb(252, 252, 252) ;
   height: 170px;
   margin:5px;
   padding-top: 5rpx;
   padding-bottom: 9rpx;
-  border-bottom: 1px #dce7e0 dotted;
 
   /* 阴影效果 */
   /* box-shadow: 7px 7px 3px #c0bbbb; */

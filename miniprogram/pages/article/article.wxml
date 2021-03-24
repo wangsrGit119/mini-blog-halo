@@ -1,5 +1,7 @@
 <!--miniprogram/pages/article/article.wxml-->
 <import src="../../components/towxml/entry.wxml"/>
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+
 <van-toast id="van-toast" />
 <l-capsule-bar 
 bind:linlefttap="onClickLeft"
@@ -27,6 +29,41 @@ style="margin-top:300px;"
   <view style="user-select: text;">
   <template is="entry" data="{{...articleDetail.content}}"/>
   </view>
+
+   <!-- 评论展示区 -->
+   <view class="su-item"  wx:for="{{comments}}" wx:key="index">
+       <!-- 头像昵称 -->
+    <l-card type="avatar" l-class="card" image="https://api.sunweihu.com/api/sjtx/api.php"
+    title="{{item.author}}" describe="{{item.ipAddress}}">
+        <!-- 内容  时间 -->
+        <view class="su-content">
+          <view class="su-content-middle">
+            {{item.content}}
+          </view>
+          <view class="su-content-footer">
+             <!-- 时间 -->
+             <view class="su-footer-time">
+              {{dateutils.dateTransfer(item.createTime)}}
+            </view>
+            <!-- 回复 -->
+            <view class="su-footer-replyicon">
+              <view>回复</view>
+            </view>
+          </view>
+        </view>
+        <l-tag  shape="circle" 
+                bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="large">
+                ... 举报
+        </l-tag>
+  </l-card>
+
+
+
+    </view>
+  <!-- 评论展示区结束 -->
 
 
 

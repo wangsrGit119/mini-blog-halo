@@ -2,6 +2,7 @@
   "usingComponents": {
     "l-button":"../../lin-ui/dist/button/index",
     "l-tab-bar":"../../lin-ui/dist/tab-bar/index",
-    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index"
+    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
+    "l-search-bar":"../../lin-ui/dist/search-bar/index"
   }
 }

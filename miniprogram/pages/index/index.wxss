@@ -2,20 +2,21 @@
 
 
 /*自定义字体*/
-.cu-font-family{
-  font-family: 'FZ_XKZJ';
+.su-font-family{
+  font-family: 'CUSTOM_FONT_T';
   font-weight: bolder;
 }
 
-/* page{
+page{
   background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg);
   background-attachment: fixed;
   background-size: cover; 
- } */
+ }
 
 .container-outer{
 
   margin: 25rpx;
+  margin-bottom: 50px;
 
 }
 

@@ -11,6 +11,7 @@ Page({
     articleDetail:{},
     showSkeleton:true,
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
+    comments:[],//评论
 
   },
 
@@ -23,12 +24,13 @@ Page({
       that.setData({
         showSkeleton:false
       })
-    },3000)
+    },1000)
    
     
     const data = JSON.parse(decodeURIComponent(options.item));
     console.log(data)
-    this.loadArticleDetail(data.id);   
+    // this.loadArticleDetail(data.id);
+    this.loadComments(20)   
   },
   //返回首页
   onClickLeft(){
@@ -133,17 +135,20 @@ onShareAppMessage: function (res) {
 
   },
   loadComments(postId){
+    const that = this;
     wx.request({
       url: app.globalData.baseUrl + '/content/posts/'+postId+'/comments/tree_view?api_access_key='+app.globalData.api_access_key,
       method: 'GET',
       success: function (res) {
+        console.log("comments")
         console.log(res)
         if(res.data.status == 200){
-          
+          that.setData({
+            comments:res.data.data.content
+          })
         }
       },
       fail: function (res) {
-        
         console.log("请求异常",res)
       }
     })

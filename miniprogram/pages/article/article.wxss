@@ -3,3 +3,35 @@
 .l-cu-outer-skeleton{
   margin-top: 100px;
 }
+
+.su-content{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  font-size: 24rpx;
+  margin-left: 90rpx;
+}
+
+.su-content .su-content-middle {
+  margin-top: 10rpx;
+  
+}
+.su-content .su-content-footer{
+ display: flex;
+ flex-direction: row;
+ margin-top: 10rpx;
+ border: 1px red solid;
+}
+
+.su-content-footer .su-footer-time{
+  font-weight: lighter;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+ .su-content-footer .su-footer-replyicon{
+  font-weight: lighter;
+  /* margin-left: 100px; */
+  justify-content: flex-end;
+  align-items: flex-end;
+}

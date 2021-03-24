@@ -17,6 +17,8 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
     list:app.list,// 自定义tabbar
     capsuleBarHeight:app.capsuleBarHeight,
+    index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
+    title:app.globalData.title,//自定义title
   },
 //增加分享屏幕
 onShareAppMessage: function (res) {
@@ -43,8 +45,8 @@ onShareTimeline(){
     if (wx.canIUse('loadFontFace')) {
       console.log("支持自定义字体");
       wx.loadFontFace({
-        family: 'FZ_XKZJ',
-        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/fzzt_xkjt.ttf?sign=b2110dd72fba333f3148f67fd6c4de59&t=1616421936")',
+        family: 'CUSTOM_FONT_T',
+        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/fangzhengziji_xingkaijianti.ttf?sign=e5d4d88dfc3de9b74e6aa51506ebce5a&t=1616579572")',
         success: function(res) {
           console.log(res)
           console.log("字体加载成功") //  loaded
@@ -182,8 +184,8 @@ onShareTimeline(){
       }
     })
   },
+  
   toArticleDetail(data){
-    console.log(data.currentTarget.dataset.articleItem)
     let url = '/pages/article/article?item=' + encodeURIComponent(JSON.stringify(data.currentTarget.dataset.articleItem));
     wx.navigateTo({
       url: url,

@@ -2,32 +2,31 @@
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
 <l-capsule-bar 
 hidden-capsule
-home-page="/pages/index/index"
+title="{{title}}"
 capsule-color="white" 
 bg-color="transparent">
-  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif" />
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
 </l-capsule-bar>
-<!-- <van-nav-bar
-custom-class="cu-navbar"
-  title="首页"
-  fixed="{{true}}"
-  placeholder="{{true}}"
-/> -->
+
+<van-search
+  clearable
+  bind:clear="onClear"	
+  value=""
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+
 <!-- 自定义tabbar -->
 <l-tab-bar list="{{list}}" />
 
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"	 />
 
-<van-search
-  value="{{ value }}"
-  shape="round"
-  background="white"
-  placeholder="请输入搜索关键词"
-/>
+
 <!-- /* start */ -->
 <view class="container-outer">
-
+  
   
 <view class="sw-top-article">
   <!--轮播图-->
@@ -45,7 +44,7 @@ custom-class="cu-navbar"
 
   <!-- tab for new -->
 
-  <view class="tab-new-tip cu-font-family">
+  <view class=" su-font-family">
     最新
   </view>
 
@@ -68,10 +67,10 @@ custom-class="cu-navbar"
             <view wx:if="{{item.tags.length-1 === index}}"> {{tag.name}} </view>
           </view>
       </view>
-      <view class="visits cu-font-family" >
+      <view class="visits su-font-family" >
         阅读量 {{item.visits}}
       </view>
-      <view class="time cu-font-family">
+      <view class="time su-font-family">
         {{dateutils.dateTransfer(item.createTime)}}
       </view> 
     </view>

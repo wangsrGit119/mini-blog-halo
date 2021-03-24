@@ -16,7 +16,6 @@
 
   "usingComponents": {
     "van-icon": "components/vant/components/dist/icon/index",
-    "van-nav-bar": "components/vant/components/dist/nav-bar/index",
     "van-row": "components/vant/components/dist/row/index",
     "van-col": "components/vant/components/dist/col/index",
     "van-field": "components/vant/components/dist/field/index",
@@ -35,7 +34,6 @@
     "van-image": "components/vant/components/dist/image/index",
     "van-dialog": "components/vant/components/dist/dialog/index",
     "van-search": "components/vant/components/dist/search/index"
-
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

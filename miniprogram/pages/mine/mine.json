@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "l-tab-bar":"../../lin-ui/dist/tab-bar/index"
-  }
+    "l-tab-bar":"../../lin-ui/dist/tab-bar/index",
+    "l-grid":"../../lin-ui/dist/grid/index",
+    "l-grid-item":"../../lin-ui/dist/grid-item/index"  }
 }
