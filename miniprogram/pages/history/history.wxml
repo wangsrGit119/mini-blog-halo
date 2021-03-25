@@ -24,7 +24,18 @@ bg-color="transparent">
   background="white"
   placeholder="请输入搜索关键词"
 />
-
+ <l-segment bind:linchange="changeTabs" active-key="one" scrollable="{{true}}" >
+       
+        <l-segment-item wx:for="{{allCategories}}"  wx:key="index"
+         key="{{item.id}}" 
+         slot="{{item.id}}"
+         data-cell="{{item.slug}}"
+         >
+          <view class="tab-item">
+            <view>{{item.slug}}</view>
+          </view>
+        </l-segment-item>
+  </l-segment>  
  <!-- 文章总体卡片背景 -->
  <view   style="background-color:rgba(237, 248, 248, 0.959)" wx:for="{{articleList}}" wx:key="index">
       <!-- 单个文章卡片 -->

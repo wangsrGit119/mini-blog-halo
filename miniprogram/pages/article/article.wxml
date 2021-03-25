@@ -27,42 +27,61 @@ style="margin-top:300px;"
   <!-- 插槽内容 -->
 
   <view style="user-select: text;">
+    <view class="article-title">
+      {{articleDetail.title}}
+    </view>
   <template is="entry" data="{{...articleDetail.content}}"/>
   </view>
+
+
+  <view class="comments-tag">评论</view>
 
    <!-- 评论展示区 -->
    <view class="su-item"  wx:for="{{comments}}" wx:key="index">
        <!-- 头像昵称 -->
-    <l-card type="avatar" l-class="card" image="https://api.sunweihu.com/api/sjtx/api.php"
+    <l-card type="avatar" full="{{true}}" l-class="card" image="https://api.sunweihu.com/api/sjtx/api.php"
     title="{{item.author}}" describe="{{item.ipAddress}}">
-        <!-- 内容  时间 -->
+        <!-- 内容  时间 回复 子评论  -->
         <view class="su-content">
-          <view class="su-content-middle">
-            {{item.content}}
-          </view>
-          <view class="su-content-footer">
-             <!-- 时间 -->
-             <view class="su-footer-time">
-              {{dateutils.dateTransfer(item.createTime)}}
+            <view class="su-content-middle">
+              {{item.content}}
             </view>
-            <!-- 回复 -->
-            <view class="su-footer-replyicon">
-              <view>回复</view>
+            <view class="su-content-footer">
+                  <!-- 时间 -->
+                  <view class="su-footer-time">
+                    {{dateutils.dateTransfer(item.createTime)}}
+                  </view>
+                    <!-- 回复 暂时不启用-->
+                  <view class="su-footer-replyicon"> 
+                    <!-- 回复 -->
+                  </view>
             </view>
-          </view>
+            <!-- 子评论 -->
+            <view class="su-children">
+              <l-card type="avatar" 
+                 wx:for="{{item.children}}" 
+                 wx:for-item="child" wx:key="index"
+                  l-class="card"
+                  full="{{true}}" 
+                  image="https://api.sunweihu.com/api/sjtx/api.php"
+                  title="{{child.author}}" 
+                  describe="18个小时前">
+                  <view class="child-content">
+                    <view>{{child.content}}</view>
+                    <view  class="child-time"> {{dateutils.dateTransfer(child.createTime)}}</view>
+                  </view>
+                </l-card>
+            </view>
         </view>
         <l-tag  shape="circle" 
                 bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
                 size="large">
-                ... 举报
+                ... 
         </l-tag>
   </l-card>
-
-
-
-    </view>
+  </view>
   <!-- 评论展示区结束 -->
 
 

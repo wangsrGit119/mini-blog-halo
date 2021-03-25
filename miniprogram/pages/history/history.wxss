@@ -3,6 +3,16 @@
 .su-font-family{
   font-family: 'CUSTOM_FONT_T';
 }
+
+.tab-item{
+  width: 150rpx;
+  font-weight: bolder;
+  font-size: 34rpx;
+  font-family: 'CUSTOM_FONT_T';
+  /* color: red; */
+}
+
+
 /* article list page */
 .a-com{
   margin-left: 9rpx;

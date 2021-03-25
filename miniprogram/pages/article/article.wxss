@@ -4,6 +4,22 @@
   margin-top: 100px;
 }
 
+/* 标题 */
+.article-title{
+  font-size: 34rpx;
+  margin: 20rpx;
+  font-weight: bolder;
+  text-align: center;
+}
+
+/* 评论卡片 */
+
+.comments-tag{
+  font-family: 'CUSTOM_FONT_T';
+  border-bottom: 1px rgb(238, 233, 233) solid;
+  
+}
+
 .su-content{
   display: flex;
   flex-flow: column;
@@ -19,19 +35,33 @@
 .su-content .su-content-footer{
  display: flex;
  flex-direction: row;
- margin-top: 10rpx;
- border: 1px red solid;
+ position: relative;
+ margin-top: 20rpx;
 }
 
 .su-content-footer .su-footer-time{
   font-weight: lighter;
-  justify-content: flex-start;
-  align-items: flex-start;
+  position: absolute;
+  left: 0;
+ 
 }
 
  .su-content-footer .su-footer-replyicon{
   font-weight: lighter;
-  /* margin-left: 100px; */
-  justify-content: flex-end;
-  align-items: flex-end;
+  position: absolute;
+  font-size: larger;
+  right: 0;
+ 
+}
+
+/* 子评论 */
+.child-content{
+  margin-left: 90rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.child-content .child-time{
+  font-weight: lighter;
+  margin-top:20rpx;
 }

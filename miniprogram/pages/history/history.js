@@ -64,7 +64,8 @@ Page({
       authorInfo:app.globalData.authorInfo
     })
     this.data.page = 0;
-    this.loadArticleByPage()
+    this.loadArticleByPage();
+    this.loadCategories()
   },
 
   /**
@@ -183,7 +184,6 @@ Page({
         if (that.data.page == 0) {
           allPageArticleList = []
         }
-        console.log(res)
         if (res.data.status == 200) {
           var list = res.data.data.content;
           if (list.length < that.data.pageSize || list.length ==0) {
@@ -235,5 +235,54 @@ Page({
       url: url,
     })
   },
+  changeTabs(tab){
+     this.data.page = 0;
+    console.log(tab)
+    wx.showNavigationBarLoading()					//在当前页面显示导航条加载动画
+    wx.showLoading({								//显示 loading 提示框
+      title: '文章加载中',
+    })
+    let slug = tab.detail.cell;
+    this.loadPostsBySlug(slug);
+  },
+ loadPostsBySlug(slug){
+  const that = this;
+  wx.request({
+    url: app.globalData.baseUrl + '/content/categories/'+slug+'/posts?api_access_key='+app.globalData.api_access_key,
+    method: 'GET',
+    success: function (res) {
+      wx.hideNavigationBarLoading()
+      wx.hideLoading()
+      console.log(res);
+      var allPageArticleList = that.data.articleList;
+        if (that.data.page == 0) {
+          allPageArticleList = []
+        }
+        if (res.data.status == 200) {
+          var list = res.data.data.content;
+          if (list.length < that.data.pageSize || list.length ==0) {
+            that.setData({
+              articleList: allPageArticleList.concat(list),
+              hasMoreData: false
+            })
+          } else {
+            that.setData({
+              articleList: allPageArticleList.concat(list),
+              hasMoreData: true,
+              page: that.data.page + 1
+            })
+          }
+        } else {
+          console.log("请求异常")
+        }
+    },
+    fail: function (res) {
+      wx.hideNavigationBarLoading()
+      wx.hideLoading()
+      console.log("请求异常",res)
+    }
+  })
+
+ },
 
 })

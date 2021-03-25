@@ -14,7 +14,7 @@
 
 <!-- 基础统计 -->
 <view class="su-font-margin">统计</view>
-<l-grid l-class="grid su-font-family su-style-grid" show-row-border="{{true}}">
+<l-grid l-class="grid su-font-family su-style-grid" show-border="{{true}}">
     <l-grid-item 
       wx:for="{{my_cu_grids01}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
         <van-icon name="{{item.image}}" />
