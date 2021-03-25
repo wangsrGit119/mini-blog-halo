@@ -39,8 +39,11 @@ style="margin-top:300px;"
    <!-- 评论展示区 -->
    <view class="su-item"  wx:for="{{comments}}" wx:key="index">
        <!-- 头像昵称 -->
-    <l-card type="avatar" full="{{true}}" l-class="card" image="https://api.sunweihu.com/api/sjtx/api.php"
-    title="{{item.author}}" describe="{{item.ipAddress}}">
+    <l-card type="avatar" full="{{true}}" l-class="card" 
+        image="https://api.sunweihu.com/api/sjtx/api.php"
+        title="{{item.author}}" 
+        describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}"
+        >
         <!-- 内容  时间 回复 子评论  -->
         <view class="su-content">
             <view class="su-content-middle">
@@ -65,7 +68,8 @@ style="margin-top:300px;"
                   full="{{true}}" 
                   image="https://api.sunweihu.com/api/sjtx/api.php"
                   title="{{child.author}}" 
-                  describe="18个小时前">
+                  describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(child.createTime))}}"
+                  >
                   <view class="child-content">
                     <view>{{child.content}}</view>
                     <view  class="child-time"> {{dateutils.dateTransfer(child.createTime)}}</view>
