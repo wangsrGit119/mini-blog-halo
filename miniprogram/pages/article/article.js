@@ -48,11 +48,11 @@ Page({
       that.setData({
         showSkeleton:false
       })
-    },2000)
+    },3000)
     const data = JSON.parse(decodeURIComponent(options.item));
     // console.log(data)
     this.loadArticleDetail(data.id);
-    this.loadComments(20)   
+    this.loadComments(data.id)   
   },
   //返回首页
   onClickLeft(){
