@@ -34,13 +34,26 @@ style="margin-top:300px;"
   </view>
 
 
-  <view class="comments-tag">评论</view>
 
+  <view class="comments-tag">评论{{comments.length}}</view>
+  <view wx:if="{{comments.length === 0}}" >
+    <l-skeleton 
+  loading="{{true}}"
+  avatar="{{true}}"
+  avatar-size="32rpx"
+  avatar-shape="circle"
+  rows="3"
+>
+  <!-- 插槽内容 -->
+  <view/>
+</l-skeleton>
+  </view>
    <!-- 评论展示区 -->
-   <view class="su-item"  wx:for="{{comments}}" wx:key="index">
+   <view class="su-item" wx:if="{{comments.length > 0}}"  wx:for="{{comments}}" wx:key="index">
+
        <!-- 头像昵称 -->
     <l-card type="avatar" full="{{true}}" l-class="card" 
-        image="https://api.sunweihu.com/api/sjtx/api.php"
+    image="https://cdn.v2ex.com/gravatar/{{child.gravatarMd5}}?s=256&d=monsterid"
         title="{{item.author}}" 
         describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}"
         >
@@ -66,7 +79,7 @@ style="margin-top:300px;"
                  wx:for-item="child" wx:key="index"
                   l-class="card"
                   full="{{true}}" 
-                  image="https://api.sunweihu.com/api/sjtx/api.php"
+                  image="https://cdn.v2ex.com/gravatar/{{child.gravatarMd5}}?s=256&d=monsterid"
                   title="{{child.author}}" 
                   describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(child.createTime))}}"
                   >

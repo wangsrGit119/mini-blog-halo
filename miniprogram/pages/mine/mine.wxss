@@ -4,12 +4,12 @@
 /* 自定义字体 */
 .su-font-margin{
   /* margin: 20rpx; */
-  font-family: 'CUSTOM_FONT_T';
+  font-family: 'CUSTOM_FONT_T_02';
   line-height: 40px;
 
 }
 .su-font-family{
-  font-family: 'CUSTOM_FONT_T';
+  font-family: 'CUSTOM_FONT_T_02';
   font-size: 30rpx;
   line-height: 40rpx;
   

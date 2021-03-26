@@ -14,35 +14,13 @@ Page({
     comments:[],//评论
 
   },
-  loadFont(){
-    if (wx.canIUse('loadFontFace')) {
-      console.log("支持自定义字体");
-      wx.loadFontFace({
-        family: 'CUSTOM_FONT_T',
-        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/fangzhengziji_xingkaijianti.ttf?sign=e5d4d88dfc3de9b74e6aa51506ebce5a&t=1616579572")',
-        success: function(res) {
-          console.log(res)
-          console.log("字体加载成功") //  loaded
-        },
-        fail: function(res) {
-          console.log("字体加载失败") //  error
-        },
-        complete: function(res) {
-          console.log(res)
-        console.log("加载完成");
-        }
-      });
-    } else {
-      console.log('不支持自定义字体')
-    }
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const that = this;
-    //加载字体
-    that.loadFont();
+   
     // 骨架屏显示
     setTimeout(function(){
       that.setData({

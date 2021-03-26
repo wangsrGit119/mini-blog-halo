@@ -3,7 +3,7 @@
 
 /*自定义字体*/
 .su-font-family{
-  font-family: 'CUSTOM_FONT_T';
+  font-family: 'CUSTOM_FONT_T_01';
   font-weight: bolder;
 }
 
@@ -27,7 +27,7 @@ page{
 .sw-top-article .ws-top-article-item{
   position: relative;
   justify-content: center;
-  border-radius: 40rpx;
+  /* border-radius: 40rpx; */
 }
 /* 热门icon */
 .sw-top-article .ws-top-article-item .article-hot-icon{

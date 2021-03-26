@@ -4,6 +4,7 @@
   margin-top: 100px;
 }
 
+
 /* 标题 */
 .article-title{
   font-size: 34rpx;
@@ -14,8 +15,11 @@
 
 /* 评论卡片 */
 
+
 .comments-tag{
-  font-family: 'CUSTOM_FONT_T';
+  font-family: 'CUSTOM_FONT_T_01';
+  margin-top: 40rpx;
+  margin-bottom: 40rpx ;
   border-bottom: 1px rgb(238, 233, 233) solid;
   
 }

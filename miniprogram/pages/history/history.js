@@ -20,33 +20,11 @@ Page({
     capsuleBarHeight:app.capsuleBarHeight,
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
   },
-  loadFont(){
-    if (wx.canIUse('loadFontFace')) {
-      console.log("支持自定义字体");
-      wx.loadFontFace({
-        family: 'CUSTOM_FONT_T',
-        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/jianghaoyingbikaishu.ttf?sign=18c0f2ade1275538ab962a0f3d293847&t=1616584122")',
-        success: function(res) {
-          console.log(res)
-          console.log("字体加载成功") //  loaded
-        },
-        fail: function(res) {
-          console.log("字体加载失败") //  error
-        },
-        complete: function(res) {
-          console.log(res)
-        console.log("加载完成");
-        }
-      });
-    } else {
-      console.log('不支持自定义字体')
-    }
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadFont()
   },
 
   /**

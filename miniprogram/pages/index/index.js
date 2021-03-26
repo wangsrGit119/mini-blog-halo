@@ -41,30 +41,7 @@ onShareTimeline(){
    this.loadTopArticles();
    this.loadLastestArticles();
   },
-  loadFont(){
-    if (wx.canIUse('loadFontFace')) {
-      console.log("支持自定义字体");
-      wx.loadFontFace({
-        family: 'CUSTOM_FONT_T',
-        source: 'url("https://7375-suke-blog-dev-3g5mwey7b0ffec16-1259221562.tcb.qcloud.la/font/fangzhengziji_xingkaijianti.ttf?sign=e5d4d88dfc3de9b74e6aa51506ebce5a&t=1616579572")',
-        success: function(res) {
-          console.log(res)
-          console.log("字体加载成功") //  loaded
-        },
-        fail: function(res) {
-          console.log("字体加载失败") //  error
-        },
-        complete: function(res) {
-          console.log(res)
-        console.log("加载完成");
-        }
-      });
-    } else {
-      console.log('不支持自定义字体')
-    }
-  },
   onLoad: function() {
-    this.loadFont();
     this.loadUserInfo();
     if (wx.getUserProfile) {
       this.setData({

@@ -1,14 +1,14 @@
 /* miniprogram/pages/history/history.wxss */
 /*自定义字体*/
 .su-font-family{
-  font-family: 'CUSTOM_FONT_T';
+  font-family: 'CUSTOM_FONT_T_02';
 }
 
 .tab-item{
   width: 150rpx;
   font-weight: bolder;
   font-size: 34rpx;
-  font-family: 'CUSTOM_FONT_T';
+  font-family: 'CUSTOM_FONT_T_02';
   /* color: red; */
 }
 

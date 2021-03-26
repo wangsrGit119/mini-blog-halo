@@ -16,7 +16,15 @@
 }
 
 
+@font-face {
+  font-family: 'CUSTOM_FONT_T_01';
+  src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2021032601fangzhengziji_xingkaijianti.ttf');
+}
 
+@font-face {
+  font-family: 'CUSTOM_FONT_T_02';
+  src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2020032601jianghaoyingbikaishu.ttf');
+}
 
  /**基础风格样式**/
 @import './components/towxml/style/main.wxss';
