@@ -16,7 +16,7 @@ App({
     },
     {
       pagePath:"/pages/history/history",
-      text:"记录",
+      text:"分类",
       "iconPath": "/images/history_record.png",
       "selectedIconPath": "/images/history_record-active.png"
     },
