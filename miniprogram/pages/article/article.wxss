@@ -15,15 +15,26 @@
 
 /* 评论卡片 */
 
-
+.comments-line{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
 .comments-tag{
   font-family: 'CUSTOM_FONT_T_01';
-  margin-top: 40rpx;
+  margin-top: 60rpx;
   margin-bottom: 40rpx ;
   border-bottom: 1px rgb(238, 233, 233) solid;
   
 }
 
+.comments-right-tag{
+  margin-top: 60rpx;
+  margin-bottom: 40rpx ;
+  font-family: 'CUSTOM_FONT_T_01';
+  position: absolute;
+  right: 40rpx;
+}
 .su-content{
   display: flex;
   flex-flow: column;
@@ -68,4 +79,10 @@
 .child-content .child-time{
   font-weight: lighter;
   margin-top:20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.child-time .child-childs{
+  margin-left: 20px;
 }
