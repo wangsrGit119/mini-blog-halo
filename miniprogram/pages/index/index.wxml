@@ -30,16 +30,25 @@ bg-color="transparent">
   
 <view class="sw-top-article">
   <!--轮播图-->
-     <swiper indicator-dots='true' autoplay='true' interval='3000'  duration='500' circular='true'>
+     <!-- <swiper indicator-dots='true' autoplay='true' interval='3000'  duration='500' circular='true'>
        <block wx:for="{{articleTopList}}" wx:key="index">
          <swiper-item class="ws-top-article-item" bindtap="toArticleDetail" data-article-item="{{item}}">
-           <view style="background-image:url({{item.thumbnail}});height:100vh">
+           <view class="imageBanner" style="background-image:url({{item.thumbnail}});height:100vh">
              <image  class="article-hot-icon" src="../../images/hot.png"></image>
              <text>{{item.title}}</text>
             </view>
          </swiper-item>
        </block>
-     </swiper>
+     </swiper> -->
+    <swiper class='bannerSwiper' previous-margin="64rpx" next-margin='64rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' bindchange='onChange' circular='true'>
+      <block wx:for="{{articleTopList}}">
+        <swiper-item class="ws-top-article-item" bindtap="toArticleDetail" data-article-item="{{item}}">
+          <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="{{item.thumbnail}}" id='{{item.url}}' bindtap='imageClick'></image>
+          <image  class="article-hot-icon" src="../../images/hot.png"></image>
+          <text>{{item.title}}</text>
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
 
   <!-- tab for new -->
@@ -75,7 +84,6 @@ bg-color="transparent">
       </view> 
     </view>
     <view class="right">
-       
     </view>
 
   </view>

@@ -24,6 +24,25 @@ page{
 .sw-top-article{
   margin-bottom: 25rpx;
 }
+.imageBanner {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+ 
+.imageBanner_small {
+  height: 100%;
+  transform: scale(0.9);
+  transition: all 0.2s ease-in 0s;
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+  bottom: -13rpx;
+  margin-left: -10rpx;
+  position: absolute;
+ 
+}
+
 .sw-top-article .ws-top-article-item{
   position: relative;
   justify-content: center;
@@ -33,14 +52,14 @@ page{
 .sw-top-article .ws-top-article-item .article-hot-icon{
   position: absolute;
   height:25px;width:25px;
-  right: 0;
+  right: 35rpx;
   top:0;
 }
 /* title */
 .sw-top-article .ws-top-article-item text{
   position: absolute;
   color: white;
-  left: 20px;
+  left: 10px;
   font-size: 13px;
   bottom:18px;
 }
@@ -99,7 +118,9 @@ page{
   
 }
 .article-card .right {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  font-size: 24rpx;
+  
 
 }

@@ -38,6 +38,7 @@ function calculateTimeDistance(t){
 var dateBegin = getDate(t.replace("-", "/"));//将-转化为/，
 var dateEnd = getDate();//获取当前时间
 var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+var yearDiff =  Math.floor(dateDiff / (24 * 3600 * 1000*365));//计算相差年份
 var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
 var leave1 = dateDiff % (24 * 3600 * 1000)    //计算天数后剩余的毫秒数
 var hours = Math.floor(leave1 / (3600 * 1000))//计算出小时数
@@ -49,12 +50,14 @@ var leave3 = leave2 % (60 * 1000)      //计算分钟数后剩余的毫秒数
 var seconds = Math.round(leave3 / 1000);
 var timesString = '';
 
-if (dayDiff != 0) {
-    timesString = dayDiff + '天之前';
+if(yearDiff != 0){
+  timesString = yearDiff + '年前';
+}else if (dayDiff != 0) {
+    timesString = dayDiff + '天前';
 } else if (dayDiff == 0 && hours != 0) {
-    timesString = hours + '小时之前';
+    timesString = hours + '小时前';
 } else if (dayDiff == 0 && hours == 0) {
-    timesString = minutes + '分钟之前';
+    timesString = minutes + '分钟前';
 }
   return timesString;
 }

@@ -26,8 +26,11 @@
   /* 阴影效果 */
   /* box-shadow: 7px 7px 3px #c0bbbb; */
 }
+
+
+
 .a-com .article-cover{
-  margin:7px;
+  /* margin:7px; */
   padding-left: 20px;
   padding-right: 20px;
   height: 120px;
@@ -36,22 +39,23 @@
 }
 .a-com .article-cover text {
   font-size:13px;
+  /* font-weight: bolder; */
   position: absolute;
   bottom: 10px;
   left: 5px;
-  bottom: 5;
+  bottom: 5px;
   color:white;
 }
 .a-com .article-cover .article-tag{
  position: absolute;
  padding-left: 3px ;
- font-size: 12px;
+ font-size: 24rpx;
  border-top-left-radius: 15%;
  border-bottom-left-radius: 15%;
  color: white;
- top:0px;
- right: 0;
- background-color: rgb(41, 138, 230);
+ top:5rpx;
+ right:5rpx;
+ /* background-color: rgb(41, 138, 230); */
  z-index: 999;
 }
 .a-com .article-footer{

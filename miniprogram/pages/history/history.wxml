@@ -40,9 +40,10 @@ bg-color="transparent">
  <view   style="background-color:rgba(237, 248, 248, 0.959)" wx:for="{{articleList}}" wx:key="index">
       <!-- 单个文章卡片 -->
       <view class="a-com" bindtap="toArticleDetail" data-article-item="{{item}}">
-        <view class="article-cover" style="background-image:url({{item.thumbnail}});margin:5px;transform: scale(0.9);">
+      
+        <view class="article-cover"  style="background:url({{item.thumbnail}}) no-repeat;background-size:100% 100%;transform: scale(0.9,1);">
           <!-- <view class="article-tag" wx:if="{{item.topPriority==1}}">置顶</view> -->
-          <view class="article-tag su-font-family" wx:if="{{index==0}}">置顶</view>
+          <!-- <view class="article-tag ">{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}</view> -->
           <text>
             {{item.title}}
           </text>
@@ -52,7 +53,7 @@ bg-color="transparent">
           <van-image
             round
               width="40"
-              height="43"
+              height="44"
               lazy-load
               src="{{authorInfo.avatar}}"
             />
