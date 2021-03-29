@@ -6,6 +6,16 @@
 - 下载后直接微信小程序开发工具打开即可。
 - 在app.js配置acess_key以及线上api地址
 
+## 预览
+
+
+<div  style="width:1000px;display: flex;flex-direction: row;">
+<image style="width:200px;height:498px" src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153818.jpg" />
+<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153854.jpg" />
+<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153901.jpg" />
+<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153908.jpg" />
+<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153914.jpg" />
+
 ## 小程序体验
 
 ![苏克分享](https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/blog-wxchat-gh_0b089e4e80ed_258.jpg)
