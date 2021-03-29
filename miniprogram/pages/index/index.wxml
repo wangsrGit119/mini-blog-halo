@@ -43,7 +43,7 @@ bg-color="transparent">
     <swiper class='bannerSwiper' previous-margin="64rpx" next-margin='64rpx' indicator-dots="true" indicator-color='#B5B5B5' indicator-active-color='#fff' interval='3000' duration='500' bindchange='onChange' circular='true'>
       <block wx:for="{{articleTopList}}">
         <swiper-item class="ws-top-article-item" bindtap="toArticleDetail" data-article-item="{{item}}">
-          <image class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="{{item.thumbnail}}" id='{{item.url}}' bindtap='imageClick'></image>
+          <image lazy-load="{{true}}" class="{{index==xindex?'imageBanner':'imageBanner_small'}}" src="{{item.thumbnail}}" id='{{item.url}}' bindtap='imageClick'></image>
           <image  class="article-hot-icon" src="../../images/hot.png"></image>
           <text>{{item.title}}</text>
         </swiper-item>
@@ -58,39 +58,55 @@ bg-color="transparent">
   </view>
 
 
+
+  <!-- 骨架屏 -->
+
+  <l-skeleton 
+  loading="{{index_skeleton_show}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="32rpx"
+  avatar-shape="circle"
+  rows="3"
+  active="{{false}}"
+>
+  <!-- 插槽内容 -->
+  <!-- 简约版列表渲染 -->
+      <view   wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">
+      <view class="article-card" bindtap="toArticleDetail" data-article-item="{{item}}">
+        <view class="left">
+          <image lazy-load="{{true}}" src="{{item.thumbnail}}"></image>
+
+        </view>
+        <view class="middle">
+          <view class="title">{{item.title}}</view>
+          <view class="art-tags" >
+              <view class="art-tag-item" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
+                <view wx:if="{{item.tags.length-1 !== index}}"> {{tag.name}}|</view>
+                <view wx:if="{{item.tags.length-1 === index}}"> {{tag.name}} </view>
+              </view>
+          </view>
+          <view class="visits su-font-family" >
+            阅读量 {{item.visits}}
+          </view>
+          <view class="time su-font-family">
+            {{dateutils.dateTransfer(item.createTime)}}
+          </view> 
+        </view>
+        <view class="right">
+        </view>
+
+      </view>
+    </view>
+<!-- /* end */ -->
+
+  
+</l-skeleton>
   
 
-  <!-- 简约版列表渲染 -->
-
-  <view   wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">
-  <view class="article-card" bindtap="toArticleDetail" data-article-item="{{item}}">
-    <view class="left">
-      <image lazy-load src="{{item.thumbnail}}"></image>
-
-    </view>
-    <view class="middle">
-      <view class="title">{{item.title}}</view>
-      <view class="art-tags" >
-          <view class="art-tag-item" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
-            <view wx:if="{{item.tags.length-1 !== index}}"> {{tag.name}}|</view>
-            <view wx:if="{{item.tags.length-1 === index}}"> {{tag.name}} </view>
-          </view>
-      </view>
-      <view class="visits su-font-family" >
-        阅读量 {{item.visits}}
-      </view>
-      <view class="time su-font-family">
-        {{dateutils.dateTransfer(item.createTime)}}
-      </view> 
-    </view>
-    <view class="right">
-    </view>
-
-  </view>
-</view>
 
 
-<!-- /* end */ -->
 </view>
 
 

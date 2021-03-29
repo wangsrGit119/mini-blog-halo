@@ -204,13 +204,36 @@ onShareAppMessage: function (res) {
     this.setData({actionSheetShow : false});
   },
   saveEvent(e){
-    if(this.data.myComment !== undefined 
-      && this.data.email !== undefined
-      && this.data.myComment !== ""){
-      this.doComments();
+    const that = this;
+    if(that.data.myComment !== undefined 
+      && that.data.email !== undefined
+      && that.data.myComment !== ""){
+        wx.cloud.callFunction({
+          name: 'msgseccheck',
+          data: {
+            content:that.data.myComment
+          },
+          success:(res)=>{
+            console.log(res)
+            if(res.result.errCode!=0){
+              wx.showToast({
+                title: '非法内容',
+                icon: 'error',
+                })
+                that.setData({
+                  myComment:""
+                })
+            }else if(res.result.errCode==0){
+              // that.doComments();
+            }
+          },
+          fail:err=>{
+            console.log(err)
+          }
+        })
     }else{
       wx.showToast({
-        title: '非法内容',
+        title: '内容不能为空',
         icon: 'error',
         })
     }

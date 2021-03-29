@@ -18,7 +18,8 @@ Page({
     list:app.list,// 自定义tabbar
     capsuleBarHeight:app.capsuleBarHeight,
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
-    title:app.globalData.title,//自定义title
+    title:app.globalData.title,//自定义title,
+    index_skeleton_show:true,//首页骨架屏
   },
 //增加分享屏幕
 onShareAppMessage: function (res) {
@@ -133,6 +134,7 @@ onShareTimeline(){
         if(res.data.status == 200){
           that.setData({
             articleLastestList:res.data.data.content,
+            index_skeleton_show:false
           })
         }
       },
