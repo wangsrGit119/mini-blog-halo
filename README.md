@@ -1,12 +1,11 @@
-# 简介
+# 简介须知
 
 此微信小程序是基于开源博客Halo提供的API开发，使用的前提是自己已经部署有自己的Halo博客网站。
 
 - 微信小程序使用api必须是https，因此需要自己的博客网站配置ssl证书。
 - 下载后直接微信小程序开发工具打开即可。
 - 在app.js配置acess_key以及线上api地址
-
-###  联系方式（bug或者新功能添加请在仓库issue中提出）
+-  联系方式（bug或者新功能添加请在仓库issue中提出）
 ![](https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-sucfufufu620119-brightgreen)
 ![](https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-%E8%8B%8F%E5%85%8B%E5%88%86%E4%BA%AB-yellowgreen)
 
