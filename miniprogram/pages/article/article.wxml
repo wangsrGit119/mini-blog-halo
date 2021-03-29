@@ -93,7 +93,7 @@ style="margin-top:300px;"
                     <view>{{child.content}}</view>
                     <view  class="child-time"> 
                       {{dateutils.dateTransfer(child.createTime)}}
-                      <view  class="child-childs">查看回复</view>
+                      <!-- <view  class="child-childs">查看回复</view> -->
                     </view>
                     
                   </view>
