@@ -10,11 +10,11 @@
 
 
 <div  style="width:1000px;display: flex;flex-direction: row;">
-<image style="width:200px;height:498px" src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153818.jpg" />
-<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153854.jpg" />
-<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153901.jpg" />
-<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153908.jpg" />
-<image style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153914.jpg" />
+<img align="left" style="width:200px;height:498px" src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153818.jpg" />
+<img align="left" style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153854.jpg" />
+<img align="left" style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153901.jpg" />
+<img align="left" style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153908.jpg" />
+<img align="left" style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153914.jpg" />
 
 ## 小程序体验
 
