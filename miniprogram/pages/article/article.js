@@ -262,7 +262,7 @@ onShareAppMessage: function (res) {
     const that = this;
     console.log(this.data)
     let params = {
-      "allowNotification": false,
+      "allowNotification": true,
       "author": app.globalData.userInfo.nickName,
       "authorUrl": app.globalData.userInfo.avatarUrl,
       "content": this.data.myComment,
