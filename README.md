@@ -6,6 +6,12 @@
 - 下载后直接微信小程序开发工具打开即可。
 - 在app.js配置acess_key以及线上api地址
 
+
+
+## 小程序体验
+
+![苏克分享](https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/blog-wxchat-gh_0b089e4e80ed_258.jpg)
+
 ## 预览
 
 <div>
@@ -18,9 +24,6 @@
 
 -----
 
-## 小程序体验
-
-![苏克分享](https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/blog-wxchat-gh_0b089e4e80ed_258.jpg)
 
 ## Halo开源博客地址
 
