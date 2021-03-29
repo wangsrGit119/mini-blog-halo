@@ -8,14 +8,13 @@
 
 ## 预览
 
-
+<div>
 <img align="left" height="350px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153818.jpg" />
 <img align="left" height="350px" src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153854.jpg" />
 <img align="left" height="350px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153901.jpg" />
 <img align="left" height="350px" src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153908.jpg" />
 <img align="left" height="350px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153914.jpg" />
-
-
+</div>
 
 -----
 
