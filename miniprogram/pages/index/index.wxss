@@ -29,6 +29,7 @@ page{
   height: 100%;
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
+  
 }
  
 .imageBanner_small {
@@ -40,7 +41,7 @@ page{
   bottom: -13rpx;
   margin-left: -10rpx;
   position: absolute;
- 
+  filter:blur(2px);
 }
 
 .sw-top-article .ws-top-article-item{
@@ -83,6 +84,7 @@ page{
   padding:5px;
   width: 80px;
   height: 70px;
+  
 }
 .article-card .middle {
   padding-top: 15px;
