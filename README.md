@@ -9,7 +9,6 @@
 ## 预览
 
 
-<div  style="width:1000px;display: flex;flex-direction: row;">
 <img align="left" style="width:200px;height:498px" src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153818.jpg" />
 <img align="left" style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153854.jpg" />
 <img align="left" style="width:200px;height:498px"  src="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/mini_blog_20210329153901.jpg" />
