@@ -26,14 +26,3 @@
   src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2020032601jianghaoyingbikaishu.ttf');
 }
 
- /**基础风格样式**/
-@import './components/towxml/style/main.wxss';
- 
- 
-/**如果页面有动态主题切换，则需要将使用到的样式全部引入**/
- 
-/**主题配色（浅色样式）**/
-@import './components/towxml/style/theme/light.wxss';
- 
-/**主题配色（深色样式）**/
-@import './components/towxml/style/theme/dark.wxss';

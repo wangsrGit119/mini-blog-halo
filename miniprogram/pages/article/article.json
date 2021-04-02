@@ -6,6 +6,7 @@
     "l-icon":"../../lin-ui/dist/icon/index",
     "l-tag":"../../lin-ui/dist/tag/index",
     "l-input":"../../lin-ui/dist/input/index",
-    "l-toast":"../../lin-ui/dist/toast/index"
+    "l-toast":"../../lin-ui/dist/toast/index",
+    "towxml":"../../towxml/towxml"
   }
 }

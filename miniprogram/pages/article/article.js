@@ -53,20 +53,26 @@ Page({
     wx.showLoading({								//显示 loading 提示框
       title: '文章加载中',
     })
+
     wx.request({
       url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key,
       method: 'GET',
       success: function (res) {
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data));
-          data.content = app.towxml.toJson(data.originalContent, 'markdown',{
-            theme:'light',                   // 主题，默认`light`
-            events:{                    // 为元素绑定的事件方法
-                tap:(e)=>{
-                    console.log('tap',e);
-                }
+          let obj = app.towxml(data.originalContent,'markdown',{
+            // theme:'dark',
+            events:{
+              tap:e => {
+                console.log('tap',e);
+              },
+              change:e => {
+                console.log('todo',e);
+              }
             }
           });
+          data.content = obj;
+          
           wx.hideNavigationBarLoading()
           wx.hideLoading()
           that.setData({
@@ -270,7 +276,6 @@ onShareAppMessage: function (res) {
       "parentId": this.data.currentComment === undefined ? 0 :this.data.currentComment.id,
       "postId": this.data.articleId
     }
-    console.log(params)
     wx.request({
       url: app.globalData.baseUrl + '/content/posts/comments?api_access_key='+app.globalData.api_access_key,
       data:params,

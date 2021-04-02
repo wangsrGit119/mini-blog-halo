@@ -30,7 +30,8 @@ style="margin-top:300px;"
     <view class="article-title">
       {{articleDetail.title}}
     </view>
-  <template is="entry" data="{{...articleDetail.content}}"/>
+    <!--使用towxml-->
+      <towxml nodes="{{articleDetail.content}}"/>
   </view>
 
 
