@@ -230,7 +230,7 @@ onShareAppMessage: function (res) {
                   myComment:""
                 })
             }else if(res.result.errCode==0){
-              // that.doComments();
+              that.doComments();
             }
           },
           fail:err=>{
