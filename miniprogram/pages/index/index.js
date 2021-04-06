@@ -1,10 +1,13 @@
 //index.js
+import Card from '../card';
 
 const app = getApp()
 
 Page({
   data: {
-    avatarUrl: './user-unlogin.png',
+    swiperIndex:0,
+    swiperHeight:140,
+    postersShow:false,//海报
     userInfo: {},
     authorInfo:{},//作者信息
     hasUserInfo: false,
@@ -39,8 +42,27 @@ onShareTimeline(){
   }
 },
   onShow: function(){
-   this.loadTopArticles();
-   this.loadLastestArticles();
+   
+  },
+  onReady: function(){
+  
+  },
+  markPosters(){
+
+    let tempArticle = this.data.articleTopList[0];
+    this.setData({
+      paintPallette: new Card(
+        '/images/bg-image002.jpeg',
+      tempArticle.thumbnail,
+      tempArticle.title,
+      tempArticle.summary).palette(),
+      postersShow:true
+    });
+  },
+  closePosters(){
+    this.setData({
+      postersShow:false
+    })
   },
   onLoad: function() {
     this.loadUserInfo();
@@ -49,8 +71,16 @@ onShareTimeline(){
         canIUseGetUserProfile: true,
       })
     }
+    //文章加载
+    this.loadTopArticles();
+    this.loadLastestArticles();
+   
   },
-
+  bindchange(e) {
+    this.setData({
+         swiperIndex: e.detail.current
+    })
+   },
   getUserProfile() {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
@@ -170,6 +200,25 @@ onShareTimeline(){
       url: url,
     })
   },
+  onImgOK(e) {
+    console.log("ok",e)
+    this.imagePath = e.detail.path;
+    this.setData({
+      image: this.imagePath
+    })
+    if (this.isSave) {
+      this.saveImage(this.imagePath);
+    }
+  },
+  saveImage() {
+    if (this.imagePath && typeof this.imagePath === 'string') {
+      this.isSave = false;
+      wx.saveImageToPhotosAlbum({
+        filePath: this.imagePath,
+      });
+    }
+  },
 
+ 
   
 })

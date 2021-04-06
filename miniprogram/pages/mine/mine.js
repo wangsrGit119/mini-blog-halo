@@ -1,6 +1,7 @@
 // miniprogram/pages/mine/mine.js
 const app = getApp()
 import Dialog from '../../components/vant/components/dist/dialog/dialog';
+
 Page({
 
   /**
@@ -10,17 +11,7 @@ Page({
     authorInfo:{},
     statisticsInfo:{},
     list:app.list,// 自定义tabbar
-    //九宫格
-    my_cu_grids01:[
-      {id:1,image:"records",text:"文章",info:0},
-      {id:2,image:"chat-o",text:"评论",info:0},
-      {id:3,image:"smile-comment-o",text:"通知",info:0},
-      {id:4,image:"edit",text:"日记",info:0},
-    ],
-    my_cu_grids02:[
-      {id:1,image:"question-o",text:"简介",bind:"showAbout"},
-      {id:2,image:"info-o",text:"其他",bind:"other"}
-    ],
+    paintPallette:null,//
 
   },
 
@@ -34,7 +25,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**
@@ -110,12 +101,6 @@ Page({
         if(res.data.status == 200){
           that.setData({
             statisticsInfo:temp,
-            my_cu_grids01:[
-              {id:1,image:"records",text:"文章",info:temp.postCount},
-              {id:2,image:"chat-o",text:"评论",info:temp.commentCount},
-              {id:3,image:"smile-comment-o",text:"通知",info:0},
-              {id:4,image:"edit",text:"日记",info:temp.journalCount},
-            ]
           })
         }
       },

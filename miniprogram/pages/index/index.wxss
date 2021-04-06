@@ -24,25 +24,30 @@ page{
 .sw-top-article{
   margin-bottom: 25rpx;
 }
-.imageBanner {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 20rpx;
-  border-top-right-radius: 20rpx;
-  
+
+.swiperClass {
+  margin: 0;
+  margin-top: 10px;
 }
- 
-.imageBanner_small {
-  height: 100%;
-  transform: scale(0.9);
+
+.slide-image {
+  width: 100%; 
+  height: 90%;
+  border-radius: 10px;
+  position: relative;
+}
+
+image.active {
+  transform: none;
+  transition: all 0.5s ease-in 0s;
+} 
+
+image.quiet {
+  transform: scale(0.8333333);
   transition: all 0.2s ease-in 0s;
-  border-top-left-radius: 15rpx;
-  border-top-right-radius: 15rpx;
-  bottom: -13rpx;
-  margin-left: -10rpx;
-  position: absolute;
-  filter:blur(2px);
 }
+
+
 
 .sw-top-article .ws-top-article-item{
   position: relative;
@@ -53,18 +58,42 @@ page{
 .sw-top-article .ws-top-article-item .article-hot-icon{
   position: absolute;
   height:25px;width:25px;
-  right: 35rpx;
-  top:0;
+  right: 20rpx;
+  top:5px;
 }
 /* title */
 .sw-top-article .ws-top-article-item text{
   position: absolute;
-  color: white;
+  color: #ffffff;
   left: 10px;
   font-size: 13px;
   bottom:18px;
 }
 
+/* new */
+.forNew{
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/* 制作海报 */
+.posters{
+  position: fixed;
+  bottom: 90px;
+  font-size: 30px;
+  right: 20px;
+}
+
+/* 关闭海报 */
+.closePosters{
+  padding-top: 20rpx;
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around ;
+
+}
 
 
 /* 简约版列表渲染 */
@@ -72,16 +101,18 @@ page{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   /* background-image: linear-gradient(to right, #F2F6F9, #EBF3EE); */
   /* box-shadow: 4px 4px 3px #c0bbbb; */
   margin-bottom: 15rpx;
   border-bottom: 1px #dce7e0 dotted;
   border-radius: 5px;
+  z-index: 10;
 
 }
 
 .article-card .left image{
-  padding:5px;
+  padding-right:5px;
   width: 80px;
   height: 70px;
   
@@ -97,14 +128,14 @@ page{
 
 .article-card .middle .title {
   font-size: 26rpx;
-  font-weight: bolder;
+  /* font-weight: bolder; */
 }
 .article-card .middle .art-tags {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   font-size: 22rpx;
-  font-weight: 400;
+  font-weight: lighter;
 }
 .article-card .middle .visits{
   font-size: 24rpx;

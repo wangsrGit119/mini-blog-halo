@@ -7,7 +7,7 @@
 .tab-item{
   width: 150rpx;
   font-weight: bolder;
-  font-size: 34rpx;
+  font-size: 30rpx;
   font-family: 'CUSTOM_FONT_T_02';
   /* color: red; */
 }
@@ -18,11 +18,10 @@
   margin-left: 9rpx;
   margin-right: 9rpx;
   background-color: rgb(252, 252, 252) ;
-  height: 170px;
+  height: 220px;
   margin:5px;
   padding-top: 5rpx;
   padding-bottom: 9rpx;
-
   /* 阴影效果 */
   /* box-shadow: 7px 7px 3px #c0bbbb; */
 }
@@ -30,16 +29,18 @@
 
 
 .a-com .article-cover{
-  /* margin:7px; */
+  margin:7px;
+  transform: scale(0.97,1);
   padding-left: 20px;
   padding-right: 20px;
-  height: 120px;
+  height: 145px;
   position: relative;
-  /* opacity: 1; */
+}
+.a-com .footer-summary{
+  font-size: xx-small;
 }
 .a-com .article-cover text {
   font-size:13px;
-  /* font-weight: bolder; */
   position: absolute;
   bottom: 10px;
   left: 5px;

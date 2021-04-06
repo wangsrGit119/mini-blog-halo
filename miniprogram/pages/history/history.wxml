@@ -1,5 +1,6 @@
 <!--miniprogram/pages/history/history.wxml-->
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
+<wxs src="../../utils/util.wxs" module="commonUtil" />
 
 <l-capsule-bar 
 hidden-capsule
@@ -24,7 +25,10 @@ bg-color="transparent">
   background="white"
   placeholder="请输入搜索关键词"
 />
- <l-segment bind:linchange="changeTabs" active-key="one" scrollable="{{true}}" >
+ <l-segment bind:linchange="changeTabs" 
+    active-key
+    has-line="{{false}}"
+    scrollable="{{true}}" >
        
         <l-segment-item wx:for="{{allCategories}}"  wx:key="index"
          key="{{item.id}}" 
@@ -41,12 +45,14 @@ bg-color="transparent">
       <!-- 单个文章卡片 -->
       <view class="a-com" bindtap="toArticleDetail" data-article-item="{{item}}">
       
-        <view class="article-cover"  style="background:url({{item.thumbnail}}) no-repeat;background-size:100% 100%;transform: scale(0.9,1);">
-          <!-- <view class="article-tag" wx:if="{{item.topPriority==1}}">置顶</view> -->
-          <!-- <view class="article-tag ">{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}</view> -->
+        <view class="article-cover"  style="background:url({{item.thumbnail}}) no-repeat;background-size:100% 100%;;">
+          <view class="article-tag" wx:if="{{item.status=='INTIMATE'}}">私密</view>
           <text>
             {{item.title}}
           </text>
+          <!-- <view class="footer-summary" >
+                 {{commonUtil.substringUtil(item.summary)}}
+          </view> -->
         </view>
         <!-- 封面底部 -->
         <view class="article-footer">
@@ -57,10 +63,10 @@ bg-color="transparent">
               lazy-load
               src="{{authorInfo.avatar}}"
             />
-            <!-- 昵称和发表时间 -->
-            <view class="footer-nk-time su-font-family">
-              <view class="footer-text nickname">suc</view>
-              <view class="footer-text time"> {{dateutils.dateTransfer(item.createTime)}}</view>
+            <!-- 昵称和发表时间  简述 -->
+            <view class="footer-nk-time ">
+              <view class="footer-text nickname">{{authorInfo.nickname}}</view>
+              <view class="footer-text time su-font-family"> {{dateutils.dateTransfer(item.createTime)}}</view>
             </view>
             <!-- 阅读量 评论数量组件 -->
             <view class="fonter-num-count su-font-family">

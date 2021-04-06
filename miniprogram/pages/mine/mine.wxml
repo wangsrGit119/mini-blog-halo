@@ -12,23 +12,35 @@
   <van-row>{{authorInfo.nickname}}</van-row>
 </view>
 
-<!-- 基础统计 -->
-<view class="su-font-margin">统计</view>
-<l-grid l-class="grid su-font-family su-style-grid" show-border="{{true}}">
-    <l-grid-item 
-      wx:for="{{my_cu_grids01}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-        <van-icon name="{{item.image}}" />
-        <view class="text">{{item.text}}{{item.info}}</view>
-    </l-grid-item>
-</l-grid>
 
-<!-- 其他说明 -->
-<view class="su-font-margin">其他</view>
 
-<l-grid  l-class="grid su-font-family su-style-grid" >
-    <l-grid-item bind:linitemtap="{{item.bind}}"
-      wx:for="{{my_cu_grids02}}" wx:key="{{index}}" key="{{index}}" slot="{{index}}">
-        <van-icon name="{{item.image}}" />
-        <view class="text">{{item.text}}</view>
-    </l-grid-item>
-</l-grid>
+<van-cell
+  icon="/images/myArticle.png"
+  title="我的文章"
+  url="" 
+  is-link
+  value="{{statisticsInfo.postCount}}" />
+
+<van-cell
+  icon="/images/collect.png"
+  title="我的收藏"
+  url="" 
+  is-link
+  value="" />
+
+  <van-cell 
+  icon="/images/comments.png"
+  title="总评论"
+  is-link 
+  value="{{statisticsInfo.commentCount}}" />
+
+  <van-cell 
+  icon="/images/jourals.png"
+  is-link
+  title="个人日志"
+  value="{{statisticsInfo.journalCount}}" />
+
+  <van-cell title="简介" icon="/images/simpleShow.png" >
+    <van-icon slot="right-icon" bindtap="showAbout" name="question-o" class="custom-icon" />
+  </van-cell>
+

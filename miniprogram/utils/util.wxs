@@ -1,0 +1,17 @@
+
+function  substringUtil(str){
+  if (str.length == 0 || str == undefined) {
+    return;
+  }
+  if (str.length > 20) {
+    return str.substring(0, 19) + "...";
+  } else {
+    return str;
+  }
+}
+
+
+module.exports = {
+
+  substringUtil:substringUtil
+}

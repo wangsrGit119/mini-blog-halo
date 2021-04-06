@@ -33,7 +33,8 @@
     "van-card": "components/vant/components/dist/card/index",
     "van-image": "components/vant/components/dist/image/index",
     "van-dialog": "components/vant/components/dist/dialog/index",
-    "van-search": "components/vant/components/dist/search/index"
+    "van-search": "components/vant/components/dist/search/index",
+    "painter":"components/painter/painter"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

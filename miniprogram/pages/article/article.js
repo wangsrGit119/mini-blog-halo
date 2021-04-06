@@ -58,6 +58,7 @@ Page({
       url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key,
       method: 'GET',
       success: function (res) {
+        console.log(res)
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data));
           let obj = app.towxml(data.originalContent,'markdown',{
