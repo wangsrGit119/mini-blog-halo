@@ -1,11 +1,12 @@
 
     export default class LastMayday {
 
-      constructor(bgUrl,articleCover,title,summary){
-        this.bgUrl=bgUrl
-        this.title=title
-        this.summary=summary
-        this.articleCover=articleCover
+      constructor(bgUrl,articleCover,title,summary,nickname){
+        this.bgUrl = bgUrl
+        this.title = title
+        this.summary = summary
+        this.articleCover = articleCover
+        this.nickname = nickname
       }
 
       palette() {
@@ -80,26 +81,47 @@
       "type": "text",
       "text": this.summary,
       "css": {
-        "color": "#f5f5f5",
+        "color": "#000000",
         "background": "",
-        "width": "400.5px",
+        "width": "531.301300292866px",
         "height": "23.939999999999994px",
         "top": "171.99999999999997px",
-        "left": "144.5px",
+        "left": "90.5px",
+        "rotate": "0",
+        "borderRadius": "",
+        "borderWidth": "0.1px",
+        "borderColor": "#000000",
+        "shadow": "10rpx 10rpx 5rpx #888888",
+        "padding": "",
+        "margin": "35px",
+
+        "fontSize": "22px",
+        "fontWeight": "normal",
+        "maxLines": "3",
+        "lineHeight": "40.964000000000006px",
+        "textStyle": "fill",
+        "textDecoration": "none",
+        "fontFamily": "",
+        "textAlign": "left"
+      }
+    },
+    // 文章标题
+    {
+      "type": "image",
+      "url": "/images/common-share.png",
+      "css": {
+        "color": "#000000",
+        "background": "",
+        // "width": "475px",
+        // "height": "175.02px",
+        "top": "354px",
+        "left": "149px",
         "rotate": "0",
         "borderRadius": "",
         "borderWidth": "",
         "borderColor": "#000000",
         "shadow": "",
         "padding": "0px",
-        "fontSize": "19px",
-        "fontWeight": "normal",
-        "maxLines": "4",
-        "lineHeight": "37.964000000000006px",
-        "textStyle": "fill",
-        "textDecoration": "none",
-        "fontFamily": "",
-        "textAlign": "left"
       }
     },
     {
@@ -146,39 +168,40 @@
         "textAlign": "center"
       }
     },
-    // 用户头像
-    {
-      "type": "image",
-      "url": "https://wangsrbus.cn/wangsr-font/bg_images/photo-1596162954151-cdcb4c0f70a8.jpeg",
-      "css": {
-        "width": "100px",
-        "height": "100px",
-        "bottom": "20px",
-        "right": "50px",
-        "rotate": "0",
-        "borderRadius": "50px",
-        "borderWidth": "",
-        "borderColor": "#000000",
-        "shadow": "10 10 10 #888888",
-        "mode": "scaleToFill"
-      }
-    },
-// 二维码
+    // 二维码
     {
       "type": "image",
       "url": "/images/wechat-q-code.jpg",
       "css": {
         "width": "100px",
-        "background": "#ffffff",
-        "height": "100px",
+        "height": "110px",
         "bottom": "20px",
-        "left": "40px",
+        "left": "50px",
         "rotate": "0",
         "borderRadius": "50px",
         "borderWidth": "",
-        "borderColor": "#000000",
-        "shadow": "",
-        "mode": "scaleToFill"
+        "shadow": "10rpx 10rpx 5rpx #888888",
+      }
+    },
+     // 用户昵称
+    {
+      "type": "text",
+      "text": this.nickname+" 邀你一起阅读",
+      "css": {
+        "width": "300px",
+        "height": "110px",
+        "bottom": "40px",
+        "right": "40px",
+        "rotate": "0",
+        "fontSize": "28px",
+        "fontWeight": "normal",
+        "maxLines": "1",
+        "lineHeight": "37.74px",
+        "textStyle": "fill",
+        "textDecoration": "none",
+        "borderRadius": "50px",
+        "borderWidth": "",
+        "shadow": "10rpx 10rpx 5rpx #888888",
       }
     }
   ]

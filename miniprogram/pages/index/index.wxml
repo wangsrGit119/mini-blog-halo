@@ -23,6 +23,10 @@ bg-color="transparent">
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"	 />
 
+ <!-- 制作海报图标 -->
+ <image class="posters"  bindtap="getUserProfile"	src="/images/GoodHealth.png" />
+
+<!-- 海报弹出制作结果 -->
 <l-popup 
    show="{{postersShow}}">
   <painter 
@@ -33,12 +37,15 @@ bg-color="transparent">
     action="{{action}}"
     widthPixels="1000"
   />
-  <image src="{{image}}" style="width: 654rpx; height: 900rpx; margin-left:40rpx;"/>
-
+  <!-- 加载提示 -->
+  <view hidden="{{!imgSuccess}}">
+    <van-loading   type="spinner" color="#1989fa" size="38px" /> 
+  </view>
+   <image hidden="{{imgSuccess}}" src="{{image}}" style="width: 654rpx; height: 900rpx; margin-left:40rpx;"/>
   <!-- 关闭 -->
-   <view  class="closePosters">
+   <view hidden="{{imgSuccess}}"  class="closePosters">
      <van-icon bindtap="closePosters"	name="/images/Cartoon-Closed.png" />
-     <van-icon bindtap="closePosters"	name="/images/savePosters.png" />
+     <van-icon bindtap="saveImage"	name="/images/savePosters.png" />
     </view>
 </l-popup>
 
@@ -70,10 +77,9 @@ bg-color="transparent">
     <van-icon name="/images/new2.png" />
   </view>
 
-  <!-- 制作 -->
- <view  class="posters">
-  <van-icon bindtap="markPosters"	name="/images/GoodHealth.png" />
- </view>
+
+
+
 
   <!-- 骨架屏 -->
 

@@ -12,6 +12,36 @@ bg-color="transparent">
 </l-capsule-bar>
 
 
+
+ <!-- 制作海报图标 -->
+ <image class="posters"  bindtap="getUserProfile"	src="/images/posters.png" />
+
+<!-- 海报弹出制作结果 -->
+<l-popup 
+   show="{{postersShow}}">
+  <painter 
+    customActionStyle="{{customActionStyle}}"
+    palette="{{paintPallette}}"
+    bind:imgOK="onImgOK" 
+    bind:touchEnd="touchEnd" 
+    action="{{action}}"
+    widthPixels="1000"
+  />
+  <!-- 加载提示 -->
+  <view hidden="{{!imgSuccess}}">
+    <van-loading   type="spinner" color="#1989fa" size="38px" /> 
+  </view>
+   <image hidden="{{imgSuccess}}" src="{{image}}" style="width: 654rpx; height: 900rpx; margin-left:40rpx;"/>
+  <!-- 关闭 -->
+   <view hidden="{{imgSuccess}}"  class="closePosters">
+     <van-icon bindtap="closePosters"	name="/images/Cartoon-Closed.png" />
+     <van-icon bindtap="saveImage"	name="/images/savePosters.png" />
+    </view>
+</l-popup>
+
+
+<!-- 文章和评论 -->
+
 <l-skeleton
 l-class="l-cu-outer-skeleton" 
 style="margin-top:300px;"

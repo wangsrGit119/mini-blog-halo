@@ -1,5 +1,6 @@
 // miniprogram/pages/article/article.js
-import Toast from '../../components/vant/components/dist/toast/toast';
+import Card from '../card';
+
 const app = getApp()
 
 Page({
@@ -8,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    postersShow:false,//海报弹窗
+    imgSuccess:true,//海报制作是否成功
     articleDetail:{},
     articleId:undefined,
     showSkeleton:true,
@@ -148,6 +151,68 @@ onShareAppMessage: function (res) {
    */
   onShareAppMessage: function () {
 
+  },
+  markPosters(){
+    let tempArticle = this.data.articleDetail;
+    this.setData({
+      paintPallette: new Card(
+        '/images/bg-image002.jpeg',
+      tempArticle.thumbnail,
+      tempArticle.title,
+      tempArticle.summary,
+      app.globalData.userInfo.nickName).palette(),
+      postersShow:true
+    });
+    
+  },
+  closePosters(){
+    this.setData({
+      postersShow:false
+    })
+  },
+  onImgOK(e) {
+    console.log("ok",e)
+    this.setData({imgSuccess:false})
+    this.imagePath = e.detail.path;
+    this.setData({
+      image: this.imagePath
+    })
+    if (this.isSave) {
+      this.saveImage(this.imagePath);
+    }
+  },
+  saveImage() {
+    if (this.imagePath && typeof this.imagePath === 'string') {
+      this.isSave = false;
+      wx.saveImageToPhotosAlbum({
+        filePath: this.imagePath,
+      });
+    }
+  },
+
+  //  获取用户信息并制作海报
+  getUserProfile() {
+    if(app.globalData.userInfo && app.globalData != undefined){
+      this.markPosters();
+    }else{
+      wx.getUserProfile({
+        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+          console.log(res)
+          app.globalData.userInfo = res.userInfo;
+          this.setData({
+            avatarUrl: res.userInfo.avatarUrl,
+            userInfo: res.userInfo,
+            hasUserInfo: true,
+          })
+          this.markPosters();
+        },
+        fail:(err)=>{
+          console.log(err)
+        }
+      })
+
+    }
   },
   loadComments(postId){
     const that = this;

@@ -7,6 +7,8 @@
     "l-tag":"../../lin-ui/dist/tag/index",
     "l-input":"../../lin-ui/dist/input/index",
     "l-toast":"../../lin-ui/dist/toast/index",
-    "towxml":"../../towxml/towxml"
+    "towxml":"../../towxml/towxml",
+    "l-popup":"../../lin-ui/dist/popup/index"
+
   }
 }

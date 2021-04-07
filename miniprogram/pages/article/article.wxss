@@ -86,3 +86,27 @@
 .child-time .child-childs{
   margin-left: 20px;
 }
+
+
+/* 制作海报 */
+.posters{
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  bottom: 120px;
+  font-size: 30px;
+  right: 20px;
+  box-shadow:0px 0px 8px 4px rgb(180, 177, 177);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* 关闭海报 */
+.closePosters{
+  padding-top: 20rpx;
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around ;
+}

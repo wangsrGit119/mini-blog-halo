@@ -7,7 +7,8 @@ Page({
   data: {
     swiperIndex:0,
     swiperHeight:140,
-    postersShow:false,//海报
+    postersShow:false,//海报弹窗
+    imgSuccess:true,//海报制作是否成功
     userInfo: {},
     authorInfo:{},//作者信息
     hasUserInfo: false,
@@ -48,16 +49,17 @@ onShareTimeline(){
   
   },
   markPosters(){
-
     let tempArticle = this.data.articleTopList[0];
     this.setData({
       paintPallette: new Card(
         '/images/bg-image002.jpeg',
       tempArticle.thumbnail,
       tempArticle.title,
-      tempArticle.summary).palette(),
+      tempArticle.summary,
+      app.globalData.userInfo.nickName).palette(),
       postersShow:true
     });
+    
   },
   closePosters(){
     this.setData({
@@ -81,22 +83,30 @@ onShareTimeline(){
          swiperIndex: e.detail.current
     })
    },
+  //  获取用户信息并制作海报
   getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          avatarUrl: res.userInfo.avatarUrl,
-          userInfo: res.userInfo,
-          hasUserInfo: true,
-        })
-      },
-      fail:(err)=>{
-        console.log(err)
-      }
-    })
+    
+    if(app.globalData.userInfo && app.globalData != undefined){
+      this.markPosters();
+    }else{
+      wx.getUserProfile({
+        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+          console.log(res)
+          app.globalData.userInfo = res.userInfo;
+          this.setData({
+            avatarUrl: res.userInfo.avatarUrl,
+            userInfo: res.userInfo,
+            hasUserInfo: true,
+          })
+          this.markPosters();
+        },
+        fail:(err)=>{
+          console.log(err)
+        }
+      })
+
+    }
   },
 
   onGetUserInfo: function(e) {
@@ -202,6 +212,9 @@ onShareTimeline(){
   },
   onImgOK(e) {
     console.log("ok",e)
+    this.setData({
+      imgSuccess:false
+    })
     this.imagePath = e.detail.path;
     this.setData({
       image: this.imagePath

@@ -47,6 +47,7 @@ App({
       api_access_key:"wangjianlong", //token
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"SUKE'S SHARE",//自定义title
+      userInfo:undefined,//登录用户信息储存处
     
     }
   }

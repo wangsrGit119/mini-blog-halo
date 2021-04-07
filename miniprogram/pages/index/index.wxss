@@ -77,12 +77,20 @@ image.quiet {
   flex-direction: row;
   justify-content: space-around;
 }
+
+
 /* 制作海报 */
 .posters{
   position: fixed;
-  bottom: 90px;
+  margin: 0;
+  padding: 0;
+  bottom: 120px;
   font-size: 30px;
   right: 20px;
+  box-shadow:0px 0px 8px 4px rgb(180, 177, 177);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 /* 关闭海报 */
@@ -92,7 +100,6 @@ image.quiet {
   display: flex;
   flex-direction: row;
   justify-content:space-around ;
-
 }
 
 
