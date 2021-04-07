@@ -112,8 +112,6 @@
       "css": {
         "color": "#000000",
         "background": "",
-        // "width": "475px",
-        // "height": "175.02px",
         "top": "354px",
         "left": "149px",
         "rotate": "0",
@@ -128,9 +126,7 @@
       "type": "image",
       "url": "/images/heats.png",
       "css": {
-        // "width": "127px",
         "background": "#ffffff",
-        // "height": "127px",
         "top": "590px",
         "left": "100px",
         "rotate": "0",
