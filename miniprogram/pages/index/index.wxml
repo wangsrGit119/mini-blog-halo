@@ -28,6 +28,7 @@ bg-color="transparent">
 
 <!-- 海报弹出制作结果 -->
 <l-popup 
+ locked="{{true}}"  
    show="{{postersShow}}">
   <painter 
     customActionStyle="{{customActionStyle}}"
