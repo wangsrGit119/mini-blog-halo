@@ -205,7 +205,11 @@ onShareTimeline(){
   },
   
   toArticleDetail(data){
-    let url = '/pages/article/article?item=' + encodeURIComponent(JSON.stringify(data.currentTarget.dataset.articleItem));
+    const password = data.currentTarget.dataset.articleItem.password;
+
+    const article = data.currentTarget.dataset.articleItem.id;
+    const status = data.currentTarget.dataset.articleItem.status;
+    let url = '/pages/article/article?articleId=' + article+'&status='+status+'&password='+password;
     wx.navigateTo({
       url: url,
     })

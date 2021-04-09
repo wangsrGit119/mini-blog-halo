@@ -40,6 +40,19 @@ locked="{{true}}"
     </view>
 </l-popup>
 
+<!-- 私密文章密码输入比对 -->
+<van-dialog
+  use-slot
+  show="{{ passwordDialog }}"
+  show-confirm-button="{{false}}"	
+>
+  <l-input label="访问密码"  label-layout="left" bind:lininput="onChangingPwd" value="{{inputPwd}}"  placeholder="请输入访问密码" >
+	<image slot="right" bindtap="onValidatePwd" src="/images/validatePwd.png" style="height:45rpx;width:45rpx;" />
+</l-input>
+</van-dialog>
+
+
+
 
 <!-- 文章和评论 -->
 

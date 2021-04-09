@@ -70,7 +70,22 @@ bg-color="transparent">
             </view>
             <!-- 阅读量 评论数量组件 -->
             <view class="fonter-num-count su-font-family">
-              阅读 {{item.visits}}
+              <!-- 阅读 {{item.visits}} -->
+               <!-- 阅读量 -->
+            <view class="visits">
+              <van-icon  name="/images/readNum.png" />
+              <text style="">{{item.visits}}</text>
+            </view>
+            <!-- 喜欢点赞 -->
+            <view class="likes" > 
+              <van-icon 	 name="/images/likes22_22.png" />
+              <text >{{item.likes}}</text>
+            </view>
+            <!-- 评论数 -->
+            <view class="commentCount" > 
+              <van-icon 	 name="/images/commentCount.png" />
+              <text >{{item.commentCount}}</text>
+            </view>
             </view>
         </view>
       </view>

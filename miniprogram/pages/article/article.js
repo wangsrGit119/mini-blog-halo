@@ -12,8 +12,13 @@ Page({
     postersShow:false,//海报弹窗
     imgSuccess:true,//海报制作是否成功
     articleDetail:{},
+    //文章信息
     articleId:undefined,
-    showSkeleton:true,
+    status:undefined,
+    password:undefined,
+    showSkeleton:true,//骨架屏
+    passwordDialog:false,//密码输入框
+    inputPwd:"",//用户输入的密码
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
     comments:[],//评论
     userInfo:app.globalData.userInfo,
@@ -29,19 +34,58 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    
-    const data = JSON.parse(decodeURIComponent(options.item));
+    console.log(options)
+    that.setData({
+      articleId:options.articleId,
+      status:options.status,
+      password:options.password
+    })
     // 骨架屏显示
     setTimeout(function(){
       that.setData({
         showSkeleton:false,
-        articleId:data.id
       })
-    },1000)
-    console.log(data)
-    // console.log(data)
-    this.loadArticleDetail(data.id);
-    this.loadComments(data.id)   
+    },2000)
+    if(options.status === 'INTIMATE'){
+      wx.showToast({
+        title: '私密文章',
+        image:'../../images/privateInfo.png'
+      })
+      //展示密码输入框
+      that.setData({
+        passwordDialog:true,
+      })
+    }else if(options.status === 'PUBLISHED'){
+      this.initArticle(options.articleId)
+    }    
+  },
+  onValidatePwd(){
+    if(this.data.password === this.data.inputPwd){
+      wx.showToast({
+        title: '校验通过',
+        image:'../../images/validateSuccess.png'
+      })
+      this.setData({
+        passwordDialog:false
+      })
+      this.initArticle(this.data.articleId)
+    }else{
+      wx.showToast({
+        title: '密码错误',
+        image:'../../images/validateError.png'
+      })
+    }
+  },
+  onChangingPwd(e){
+    console.log(e)
+    this.setData({
+      inputPwd:e.detail.value
+    })
+  },
+  //初始化文章页面
+  initArticle(articleId){
+  this.loadArticleDetail(articleId);
+  this.loadComments(articleId) 
   },
   //返回首页
   onClickLeft(){

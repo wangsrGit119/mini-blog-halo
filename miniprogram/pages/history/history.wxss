@@ -93,3 +93,10 @@
   font-weight: lighter;
 
 }
+.a-com .article-footer .fonter-num-count .visits,.likes,.commentCount{
+
+  font-size: 28rpx;
+  display: flex;
+  margin-left: 10rpx;
+  flex-direction: row;
+} 

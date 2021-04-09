@@ -110,3 +110,12 @@
   flex-direction: row;
   justify-content:space-around ;
 }
+
+/* 密码输入框弹出层 */
+.privateArticlePwdPop{
+
+  /* text-align: center; */
+  border: 1px rgb(27, 49, 173) solid;
+  /* width: 600px; */
+  /* height: 300px; */
+}

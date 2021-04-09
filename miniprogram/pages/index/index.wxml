@@ -94,6 +94,8 @@ bg-color="transparent">
   rows="3"
   active="{{false}}"
 >
+<!-- <official-account></official-account> -->
+
   <!-- 插槽内容 -->
   <!-- 简约版列表渲染 -->
       <view   wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">

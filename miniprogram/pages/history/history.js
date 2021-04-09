@@ -77,8 +77,8 @@ Page({
       this.loadArticleByPage();
     } else {
       wx.showToast({
-        icon:'loading',
         title: '没有更多数据',
+        image:'../../images/noneData.png',
         duration: 2000
       })
     }
@@ -207,8 +207,10 @@ Page({
     })
   },
   toArticleDetail(data){
-    console.log(data.currentTarget.dataset.articleItem)
-    let url = '/pages/article/article?item=' + encodeURIComponent(JSON.stringify(data.currentTarget.dataset.articleItem));
+    const article = data.currentTarget.dataset.articleItem.id;
+    const status = data.currentTarget.dataset.articleItem.status;
+    const password = data.currentTarget.dataset.articleItem.password;
+    let url = '/pages/article/article?articleId=' + article+'&status='+status+"&password="+password;
     wx.navigateTo({
       url: url,
     })
