@@ -35,6 +35,14 @@
   position: absolute;
   right: 40rpx;
 }
+
+/* .card{
+  border:1px blue solid;
+} */
+.img-card{
+  border-radius: 3%;
+  /* border: 1px blue solid; */
+}
 .su-content{
   display: flex;
   flex-flow: column;
@@ -93,7 +101,7 @@
   position: fixed;
   margin: 0;
   padding: 0;
-  bottom: 150px;
+  bottom: 180px;
   font-size: 30px;
   right: 20px;
   box-shadow:0px 0px 8px 4px rgb(180, 177, 177);

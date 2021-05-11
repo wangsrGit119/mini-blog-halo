@@ -380,7 +380,7 @@ onShareAppMessage: function (res) {
     let params = {
       "allowNotification": true,
       "author": app.globalData.userInfo.nickName,
-      "authorUrl": app.globalData.userInfo.avatarUrl,
+      "avatar": app.globalData.userInfo.avatarUrl,
       "content": this.data.myComment,
       "email": this.data.email,
       "parentId": this.data.currentComment === undefined ? 0 :this.data.currentComment.id,

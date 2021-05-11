@@ -102,8 +102,11 @@ style="margin-top:300px;"
    <view class="su-item" wx:if="{{comments.length > 0}}"  wx:for="{{comments}}" wx:key="index">
 
        <!-- 头像昵称 -->
-    <l-card type="avatar" full="{{true}}" l-class="card" 
-    image="https://cdn.v2ex.com/gravatar/{{child.gravatarMd5}}?s=256&d=monsterid"
+    <l-card type="avatar" 
+        full="{{true}}"
+        l-img-class="img-card"  
+        l-class="card" 
+        image="{{item.avatar}}"
         title="{{item.author}}" 
         describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}"
         >
@@ -129,8 +132,9 @@ style="margin-top:300px;"
                  wx:for="{{item.children}}" 
                  wx:for-item="child" wx:key="index"
                   l-class="card"
+                  l-img-class="img-card"
                   full="{{true}}" 
-                  image="https://cdn.v2ex.com/gravatar/{{child.gravatarMd5}}?s=256&d=monsterid"
+                  image="{{child.avatar}}"
                   title="{{child.author}}" 
                   describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(child.createTime))}}"
                   >
@@ -160,7 +164,7 @@ style="margin-top:300px;"
 
 </l-skeleton>
 
-<!-- 弹出框添加记事 -->
+<!-- 弹出框 -->
 <van-action-sheet 
   show="{{ actionSheetShow }}" 
   title="{{userInfo.nickName}}评论" 

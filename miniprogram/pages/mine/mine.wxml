@@ -40,6 +40,11 @@
   title="个人日志"
   value="{{statisticsInfo.journalCount}}" />
 
+
+<van-cell title="客服" icon="/images/contact.png" >
+  <van-button  open-type="contact" show-message-card="{{true}}" type="primary" size="mini">联系客服</van-button>
+</van-cell>
+
   <van-cell title="简介" icon="/images/simpleShow.png" >
     <van-icon slot="right-icon" bindtap="showAbout" name="question-o" class="custom-icon" />
   </van-cell>
