@@ -4,6 +4,16 @@
 
 ### 此微信小程序是基于开源博客[Halo](https://halo.run/)提供的API开发，使用的前提是自己已经部署有自己的Halo博客网站。
 
+### 基本功能
+- 基本统计展示
+- 最新和最热门文章展示
+- 评论
+- 分类
+- 海报
+- 日记
+- 相册
+- 文章阅读的舒适感
+
 ## 准备
 
 - 线上小程序必须使用`备案过的域名`，因此您需要准备一个`已备案域名`（`微信审核`必须要的）
@@ -20,6 +30,7 @@
 - 联系方式
 ![](https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-sucfufufu620119-brightgreen)
 ![](https://img.shields.io/badge/%E5%85%AC%E4%BC%97%E5%8F%B7-%E8%8B%8F%E5%85%8B%E5%88%86%E4%BA%AB-yellowgreen)
+
 
 ## 小程序体验
 
