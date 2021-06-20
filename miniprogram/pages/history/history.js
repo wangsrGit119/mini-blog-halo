@@ -222,8 +222,12 @@ Page({
     wx.showLoading({								//显示 loading 提示框
       title: '文章加载中',
     })
-    let slug = tab.detail.cell;
-    this.loadPostsBySlug(slug);
+    if(tab.detail.activeKey === 'su-top'){
+        this.loadArticleByPage()
+    }else{
+      let slug = tab.detail.cell;
+      this.loadPostsBySlug(slug);
+    }
   },
  loadPostsBySlug(slug){
   const that = this;

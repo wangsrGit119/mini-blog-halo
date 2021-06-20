@@ -25,7 +25,7 @@ bg-color="transparent">
           
  </van-empty>
 
- <l-steps direction="column" active-index="0">
+ <l-steps dot="{{true}}" direction="column" active-index="0">
   <l-step title="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}" wx:for="{{journalList}}" wx:key="index">
     <view class="describe-container" slot="describe">
       {{item.sourceContent}}

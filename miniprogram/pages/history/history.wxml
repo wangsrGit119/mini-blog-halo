@@ -26,11 +26,21 @@ bg-color="transparent">
   placeholder="请输入搜索关键词"
 />
  <l-segment bind:linchange="changeTabs" 
-    active-key
-    has-line="{{false}}"
+    active-key="su-top"
+    has-line="{{true}}"
+    l-active-class="tab-active"
+    l-header-class="su-tab-header"
     scrollable="{{true}}" >
-       
-        <l-segment-item wx:for="{{allCategories}}"  wx:key="index"
+    <l-segment-item     has-line
+         key="su-top" slot="su-top">
+          <view class="tab-item">
+            <view>推荐</view>
+          </view>
+        </l-segment-item>
+        <l-segment-item
+        has-line
+         wx:for="{{allCategories}}" 
+         wx:key="index"
          key="{{item.id}}" 
          slot="{{item.id}}"
          data-cell="{{item.slug}}"
@@ -72,19 +82,24 @@ bg-color="transparent">
             <view class="fonter-num-count su-font-family">
               <!-- 阅读 {{item.visits}} -->
                <!-- 阅读量 -->
-            <view class="visits">
-              <van-icon  name="/images/readNum.png" />
-              <text style="">{{item.visits}}</text>
+            <view class="visits su-font-family">
+              <van-icon  name="/images/eye.png" />
+              <text style="margin-left:6rpx">{{item.visits}}</text>
             </view>
             <!-- 喜欢点赞 -->
-            <view class="likes" > 
+            <!-- <view class="likes"> 
               <van-icon 	 name="/images/likes22_22.png" />
-              <text >{{item.likes}}</text>
-            </view>
+              <text style="margin-left:6rpx">{{item.likes}}</text>
+            </view> -->
             <!-- 评论数 -->
-            <view class="commentCount" > 
+            <view class="commentCount su-font-family" > 
               <van-icon 	 name="/images/commentCount.png" />
-              <text >{{item.commentCount}}</text>
+              <text style="margin-left:6rpx">{{item.commentCount}}</text>
+            </view>
+            <!-- 字数 -->
+            <view class="wordCount su-font-family" > 
+              <van-icon 	 name="/images/wordCount.png" />
+              <text style="margin-left:6rpx">{{item.wordCount}}</text>
             </view>
             </view>
         </view>

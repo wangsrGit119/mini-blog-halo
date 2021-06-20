@@ -32,13 +32,13 @@ onShareAppMessage: function (res) {
     console.log(res.target)
   }
   return {
-    title: 'suke的博客',
+    title: app.globalData.shareName,
     path: '/pages/index/index'
   }
 },
 onShareTimeline(){
   return {
-    title: 'suke的博客',
+    title: app.globalData.shareName,
     path: '/pages/index/index'
   }
 },

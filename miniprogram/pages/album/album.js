@@ -110,6 +110,17 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //增加分享屏幕
+onShareAppMessage: function (res) {
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  return {
+    title: app.globalData.shareName,
+    path: '/pages/index/index'
+  }
+},
   loadImagesInfo(){
     const that = this;
     that.setData({

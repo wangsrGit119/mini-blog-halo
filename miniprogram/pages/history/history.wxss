@@ -4,22 +4,36 @@
   font-family: 'CUSTOM_FONT_T_02';
 }
 
-.tab-item{
-  width: 150rpx;
-  font-weight: bolder;
-  font-size: 30rpx;
-  font-family: 'CUSTOM_FONT_T_02';
-  /* color: red; */
+page{
+  background-color: #F3F5F7;
+  background-size: cover; 
+ }
+
+.su-tab-header{
+  /* border: 1px rgb(255, 0, 234) solid; */
+  background-color: white;
+
 }
 
+.tab-item{
+  /* border-top: 1px gray solid; */
+  width: 150rpx;
+  font-size: 30rpx;
+}
+.tab-active{
+  color: #007FFF; 
+
+}
 
 /* article list page */
 .a-com{
   margin-left: 9rpx;
   margin-right: 9rpx;
   background-color: rgb(252, 252, 252) ;
-  height: 220px;
-  margin:5px;
+  /* border: 1px red solid; */
+  height: 200px;
+  margin-top:5px;
+  margin-bottom: 5px;
   padding-top: 5rpx;
   padding-bottom: 9rpx;
   /* 阴影效果 */
@@ -68,6 +82,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+ 
 }
 
 .a-com .article-footer .footer-nk-time .footer-text{
@@ -80,6 +95,7 @@
 .a-com .article-footer .footer-nk-time .time{
   color: grey;
   font-weight: lighter;
+  font-family: 'CUSTOM_FONT_T_02';
 }
 .a-com .article-footer .fonter-num-count{
   flex-grow: 1;
@@ -93,10 +109,9 @@
   font-weight: lighter;
 
 }
-.a-com .article-footer .fonter-num-count .visits,.likes,.commentCount{
-
-  font-size: 28rpx;
+.a-com .article-footer .fonter-num-count .visits,.likes,.commentCount,.wordCount{
   display: flex;
   margin-left: 10rpx;
   flex-direction: row;
+  font-weight: lighter;
 } 
