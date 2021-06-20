@@ -1,0 +1,23 @@
+<!--miniprogram/pages/album/album.wxml-->
+<l-capsule-bar 
+hidden-capsule
+title="个人相册"
+home-page="/pages/index/index"
+capsule-color="white" 
+bg-color="transparent">
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight}}rpx;" src="{{index_bg_image_url}}" />
+</l-capsule-bar>
+<!-- 自定义tabbar -->
+<l-tab-bar list="{{list}}" />
+
+<van-search
+  clearable
+  bind:clear="onClear"	
+  value=""
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+
+<!-- 加载成功与否提示 -->
+<l-water-flow generic:l-water-flow-item="l-su-water"/>

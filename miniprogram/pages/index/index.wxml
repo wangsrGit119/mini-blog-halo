@@ -58,7 +58,7 @@ bg-color="transparent">
 <view class="sw-top-article">
   <!--轮播图-->
      <swiper class='swiperClass' autoplay indicator-color="#a39f99" indicator-active-color="#f49641" indicator-dots  interval="2000" duration="1000" previous-margin="30px" next-margin="30px" circular bindchange="bindchange" style='height: {{swiperHeight}}px'>
-      <block wx:for="{{articleTopList}}" wx:key="{{index}}">
+      <block wx:for="{{articleTopList}}" wx:key="index">
       <swiper-item class="ws-top-article-item" data-article-item="{{item}}" bindtap="toArticleDetail">
         <image src="{{item.thumbnail}}" class="slide-image {{swiperIndex == index ? 'active' : 'quiet'}}" mode='aspectFill'>
           <text>{{item.title}}</text>
@@ -98,49 +98,52 @@ bg-color="transparent">
 
   <!-- 插槽内容 -->
   <!-- 简约版列表渲染 -->
-      <view   wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">
-      <view class="article-card" bindtap="toArticleDetail" data-article-item="{{item}}">
-        <view class="left">
+
+  <view class="article-card" id="article-card" wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">
+    <view bindtap="toArticleDetail" data-article-item="{{item}}">
+        <!-- header -->
+     <van-row >
+        <van-col span="8" class="left">
           <image lazy-load="{{true}}" src="{{item.thumbnail}}"></image>
-        </view>
-        <view class="middle">
-          <view class="title">{{item.title}}</view>
-          <!-- <view class="art-tags" >
-              <view class="art-tag-item" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">
-                <view wx:if="{{item.tags.length-1 !== index}}"> {{tag.name}}|</view>
-                <view wx:if="{{item.tags.length-1 === index}}"> {{tag.name}} </view>
-              </view>
-          </view> -->
-          <view class="summary" >
-             <!-- <van-icon custom-class="su-visits-icon"	 name="browsing-history-o" />{{item.visits}} -->
-          </view>
-          <view class="time su-font-family">
-            {{dateutils.dateTransfer(item.createTime)}} 
+        </van-col>
+        <van-col span="16">
+          <van-row >
+            <view class="title">{{item.title}}</view>
+          </van-row>
+          <van-row class="article-desc">
+            <view>{{item.summary}}</view>
+          </van-row>
+        </van-col>
+      </van-row>
+      <!-- bottom -->
+      <van-row>
+        <van-col span="16">
+          <view  class="bottom-item">
+              <view class="a-time">{{(dateutils.dateTransfer(item.createTime))}}</view> 
             <!-- 阅读量 -->
             <view class="visits">
-              <van-icon  name="/images/readNum.png" />
-              <text style="">{{item.visits}}</text>
+              <van-icon  name="/images/eye.png" />
+              <text style="margin-left:6rpx">{{item.visits}}</text>
             </view>
             <!-- 喜欢点赞 -->
             <view class="likes" > 
               <van-icon 	 name="/images/likes22_22.png" />
-              <text >{{item.likes}}</text>
+              <text style="margin-left:6rpx">{{item.likes}}</text>
             </view>
             <!-- 评论数 -->
             <view class="commentCount" > 
               <van-icon 	 name="/images/commentCount.png" />
-              <text >{{item.commentCount}}</text>
+              <text style="margin-left:6rpx">{{item.commentCount}}</text>
             </view>
-            <!-- 总字数 -->
-            <view class="wordCount" > 
-              <van-icon 	 name="/images/wordCount.png" />
-              <text >{{item.wordCount}}</text>
             </view>
-             
-          </view> 
-        </view>
-      </view>
+        </van-col>
+        <van-col span="8" class="a-details">
+          <van-icon name="/images/a-details.png" />
+        </van-col>  
+      </van-row>
     </view>
+  </view>
+     
 <!-- /* end */ -->
 
   

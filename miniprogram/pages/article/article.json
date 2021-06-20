@@ -8,7 +8,9 @@
     "l-input":"../../lin-ui/dist/input/index",
     "l-toast":"../../lin-ui/dist/toast/index",
     "towxml":"../../towxml/towxml",
-    "l-popup":"../../lin-ui/dist/popup/index"
+    "l-popup":"../../lin-ui/dist/popup/index",
+    "l-loading":"../../lin-ui/dist/loading/index"
+
 
   }
 }

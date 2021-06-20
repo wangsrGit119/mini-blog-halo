@@ -1,0 +1,38 @@
+<!--miniprogram/pages/journal/journal.wxml-->
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+<l-capsule-bar 
+hidden-capsule
+title="日记"
+home-page="/pages/index/index"
+capsule-color="white" 
+bg-color="transparent">
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight}}rpx;" src="{{index_bg_image_url}}" />
+</l-capsule-bar>
+<!-- 自定义tabbar -->
+<l-tab-bar list="{{list}}" />
+
+<van-search
+  clearable
+  bind:clear="onClear"	
+  value=""
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+
+<!-- 空状态 -->
+<van-empty wx:if="{{journalList.length == 0}}" description="空空如也" image="/images/empty.png">
+          
+ </van-empty>
+
+ <l-steps direction="column" active-index="0">
+  <l-step title="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}" wx:for="{{journalList}}" wx:key="index">
+    <view class="describe-container" slot="describe">
+      {{item.sourceContent}}
+      <view class="su-time-distance">
+      {{dateutils.dateTransfer(item.createTime)}}
+      </view>
+    </view>
+  </l-step>
+
+</l-steps>

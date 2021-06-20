@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "l-button":"../../lin-ui/dist/button/index",
+    "l-tab-bar":"../../lin-ui/dist/tab-bar/index",
+    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
+    "l-search-bar":"../../lin-ui/dist/search-bar/index",
+    "l-skeleton":"../../lin-ui/dist/skeleton/index",
+    "l-popup":"../../lin-ui/dist/popup/index",
+    "l-steps":"../../lin-ui/dist/steps/index",
+    "l-step":"../../lin-ui/dist/step/index"
+
+  }
+}

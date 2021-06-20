@@ -3,7 +3,10 @@
     "pages/index/index",
     "pages/history/history",
     "pages/mine/mine",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/album/album",
+    "pages/journal/journal",
+    "pages/l-su-water/l-su-water"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -12,8 +15,7 @@
     "navigationBarTitleText": "wechat",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
-    },
-
+  },
   "usingComponents": {
     "van-icon": "components/vant/components/dist/icon/index",
     "van-row": "components/vant/components/dist/row/index",
@@ -34,7 +36,7 @@
     "van-image": "components/vant/components/dist/image/index",
     "van-dialog": "components/vant/components/dist/dialog/index",
     "van-search": "components/vant/components/dist/search/index",
-    "painter":"components/painter/painter"
+    "painter": "components/painter/painter"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
@@ -50,9 +52,19 @@
         "selectedIconPath": "images/home-active.png"
       },
       {
+        "pagePath": "pages/journal/journal",
+        "iconPath": "images/journal.png",
+        "selectedIconPath": "images/journal-active.png"
+      },
+      {
         "pagePath": "pages/history/history",
         "iconPath": "images/history_record.png",
         "selectedIconPath": "images/history_record-active.png"
+      },
+      {
+        "pagePath": "pages/album/album",
+        "iconPath": "images/album.png",
+        "selectedIconPath": "images/album-active.png"
       },
       {
         "pagePath": "pages/mine/mine",

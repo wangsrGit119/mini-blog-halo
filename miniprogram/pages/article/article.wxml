@@ -2,7 +2,9 @@
 <import src="../../components/towxml/entry.wxml"/>
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
 
+<!-- 轻提示 -->
 <van-toast id="van-toast" />
+<!-- bar -->
 <l-capsule-bar 
 bind:linlefttap="onClickLeft"
 home-page="/pages/index/index"
@@ -10,8 +12,6 @@ capsule-color="white"
 bg-color="transparent">
   <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif" />
 </l-capsule-bar>
-
-
 
  <!-- 制作海报图标 -->
  <image class="posters"  bindtap="getUserProfile"	src="/images/posters.png" />
@@ -69,7 +69,6 @@ style="margin-top:300px;"
   active="{{true}}"
 >
   <!-- 插槽内容 -->
-
   <view style="user-select: text;">
     <view class="article-title">
       {{articleDetail.title}}
@@ -78,8 +77,6 @@ style="margin-top:300px;"
       <towxml nodes="{{articleDetail.content}}"/>
   </view>
 
-
-
   <view class="comments-line">
     <view class="comments-tag">评论{{comments.length}}</view>
   <view class="comments-right-tag"> 
@@ -87,16 +84,10 @@ style="margin-top:300px;"
  </view>
   </view>
   <view wx:if="{{comments.length === 0}}" >
-    <l-skeleton 
-  loading="{{true}}"
-  avatar="{{true}}"
-  avatar-size="32rpx"
-  avatar-shape="circle"
-  rows="3"
->
-  <!-- 插槽内容 -->
-  <view/>
-</l-skeleton>
+       <!-- 空评论 -->
+       <van-empty description="留下您的足迹吧^_^" image="/images/empty.png">
+          
+        </van-empty>
   </view>
    <!-- 评论展示区 -->
    <view class="su-item" wx:if="{{comments.length > 0}}"  wx:for="{{comments}}" wx:key="index">
@@ -160,9 +151,9 @@ style="margin-top:300px;"
   </view>
   <!-- 评论展示区结束 -->
 
-
-
 </l-skeleton>
+
+
 
 <!-- 弹出框 -->
 <van-action-sheet 

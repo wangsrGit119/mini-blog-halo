@@ -1,6 +1,7 @@
 const app = getApp()
 
 const formatTime = date => {
+  console.log("date",date)
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -34,9 +35,32 @@ const substringUtil = (str) => {
   }
 }
 
+/** 
+ * 时间戳转化为年 月 日 时 分 秒 
+ * number: 传入时间戳 
+*/
+function formatTimes(number) {
+  var format = 'Y/M/D h:m:s'
+  var formateArr = ['Y', 'M', 'D', 'h', 'm', 's'];
+  var returnArr = [];
+  var date = new Date(number);
+  returnArr.push(date.getFullYear());
+  returnArr.push(formatNumber(date.getMonth() + 1));
+  returnArr.push(formatNumber(date.getDate()));
+
+  returnArr.push(formatNumber(date.getHours()));
+  returnArr.push(formatNumber(date.getMinutes()));
+  returnArr.push(formatNumber(date.getSeconds()));
+
+  for (var i in returnArr) {
+      format = format.replace(formateArr[i], returnArr[i]);
+  }
+  return format;
+}
 
 module.exports = {
   formatTime: formatTime,
   checkContent: checkContent,
-  substringUtil:substringUtil
+  substringUtil:substringUtil,
+  formatTimes:formatTimes
 }

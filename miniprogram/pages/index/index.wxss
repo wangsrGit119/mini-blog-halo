@@ -3,19 +3,20 @@
 
 /*自定义字体*/
 .su-font-family{
-  font-family: 'CUSTOM_FONT_T_01';
-  font-weight: bolder;
+  /* font-family: 'CUSTOM_FONT_T_01'; */
+  /* font-weight: bolder; */
 }
 
 page{
   background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg);
   background-attachment: fixed;
+  background-color: #F3F5F7;
   background-size: cover; 
  }
 
 .container-outer{
 
-  margin: 25rpx;
+  margin: 0rpx;
   margin-bottom: 50px;
 
 }
@@ -91,6 +92,7 @@ image.quiet {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  z-index: 99999;
 }
 
 /* 关闭海报 */
@@ -105,59 +107,84 @@ image.quiet {
 
 /* 简约版列表渲染 */
 .article-card {
-  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 120px;
   /* border: 1px blue solid; */
-  padding-top: 20rpx;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  /* background-image: linear-gradient(to right, #F2F6F9, #EBF3EE); */
-  /* box-shadow: 4px 4px 3px #c0bbbb; */
   margin-bottom: 25rpx;
-  border-bottom: 1px #dce7e0 dotted;
-  border-radius: 5px;
+  margin-top: 10rpx;
+  position: relative;
+  /* border-bottom: 1px #dce7e0 dotted; */
+  /* border-radius: 5px; */
   z-index: 10;
 }
 
+
 .article-card .left image{
-  /* padding-right:5px; */
-  width: 80px;
-  height: 70px;
-  border-radius: 20rpx;
-  box-shadow: 0px 0px 2px 2px rgb(128, 128, 128);
+  margin-top: 25px;
+  width: 70px;
+  height: 60px;
+  margin-left: 10px;
+  object-fit: contain;
+  
+  /* border-radius: 20rpx; */
+  /* box-shadow: 0px 0px 2px 2px rgb(128, 128, 128); */
 
 }
-.article-card .middle {
-  /* 填充剩余空间 */
-  flex: 1;
-  margin-left: 10rpx;
-  height: 70px;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-around;
+
+.article-card  .title {
+  margin-top: 23px;
+  margin-bottom: 10px;
+  font-size: 33rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;/*想省略几行就写几*/
+  -webkit-box-orient: vertical;  
+
 }
 
-.article-card .middle .title {
-  font-size: 26rpx;
-  /* font-weight: bolder; */
-}
-.article-card .middle .art-tags {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  font-size: 22rpx;
+.article-card  .article-desc{
+  /* margin-top: 20px; */
+  margin-right: 10px;
+  line-height: normal;
+  /* border: 1px rgb(0, 255, 149) solid; */
+  font-size: xx-small;
   font-weight: lighter;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;/*想省略几行就写几*/
+  -webkit-box-orient: vertical;
+  
 }
+.article-card .categories{
+  background-color: gray;
+  /* color: blue; */
+}
+.article-card  .bottom-item{
+  width: 70%;
+  position: absolute;
+  bottom: 2px;
+  left: 5px;
+  display: flex;
+  font-size: xx-small;
+  font-weight: lighter;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: xx-small;
+  
+}
+.article-card .a-details{
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+.a-time,.visits,.likes,.commentCount,.a-details{
+  font-family: 'CUSTOM_FONT_T_01';
+}
+/*
 
-.article-card .middle .art-tags .art-tag-item{
-  margin-left: 5rpx;
-}
-
-.article-card .middle .summary{
-  font-size: 24rpx;
-  font-weight: 380;
-}
 
 .article-card .middle .time {
   width: 99%;
@@ -174,6 +201,6 @@ image.quiet {
   font-size: 28rpx;
   display: flex;
   flex-direction: row;
-} 
+}  */
 
 

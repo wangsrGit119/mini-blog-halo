@@ -1,4 +1,6 @@
 
+    
+    // 海报
     export default class LastMayday {
 
       constructor(bgUrl,articleCover,title,summary,nickname){
