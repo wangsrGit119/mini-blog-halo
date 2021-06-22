@@ -106,12 +106,12 @@ style="margin-top:300px;"
             <view class="su-content-middle">
               {{item.content}}
             </view>
-            <view class="su-content-footer">
+            <view class="su-content-footer" >
                   <!-- 时间 -->
                   <view class="su-footer-time">
                     {{dateutils.dateTransfer(item.createTime)}}
                   </view>
-                    <!-- 回复 暂时不启用-->
+                    <!-- 回复 -->
                   <view class="su-footer-replyicon" data-comment-one="{{item}}" bindtap="toComment"> 
                     回复
                     <!-- 回复 -->
@@ -130,10 +130,10 @@ style="margin-top:300px;"
                   describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(child.createTime))}}"
                   >
                   <view class="child-content">
-                    <view>{{child.content}}</view>
+                    <view class="child-content-middle" >{{child.content}}</view>
                     <view  class="child-time"> 
                       {{dateutils.dateTransfer(child.createTime)}}
-                      <!-- <view  class="child-childs">查看回复</view> -->
+                      <view  class="child-childs">查看回复</view>
                     </view>
                     
                   </view>

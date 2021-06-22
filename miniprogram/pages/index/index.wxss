@@ -3,12 +3,12 @@
 
 /*自定义字体*/
 .su-font-family{
-  /* font-family: 'CUSTOM_FONT_T_01'; */
-  /* font-weight: bolder; */
+  font-family: 'CUSTOM_FONT_T_01'; 
+   font-weight: bolder;
 }
 
 page{
-  background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg);
+  /* background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg); */
   background-attachment: fixed;
   background-color: #F3F5F7;
   background-size: cover; 
@@ -23,7 +23,9 @@ page{
 
 /* 轮播 */
 .sw-top-article{
-  margin-bottom: 25rpx;
+  /* border: 1px blue solid; */
+  margin-top: 1px;
+
 }
 
 .swiperClass {
@@ -73,10 +75,10 @@ image.quiet {
 
 /* new */
 .forNew{
-  font-size: medium;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  background-color: white;  
+  margin-left: 4px;
+  margin-right: 4px;
+  
 }
 
 
@@ -108,33 +110,41 @@ image.quiet {
 /* 简约版列表渲染 */
 .article-card {
   background-color: white;
-  width: 100%;
   height: 120px;
+  margin-left: 7px;
+  margin-right: 7px;
   /* border: 1px blue solid; */
   margin-bottom: 25rpx;
   margin-top: 10rpx;
   position: relative;
-  /* border-bottom: 1px #dce7e0 dotted; */
-  /* border-radius: 5px; */
+  border-radius: 5px;
   z-index: 10;
 }
 
-
-.article-card .left image{
-  margin-top: 25px;
-  width: 70px;
-  height: 60px;
-  margin-left: 10px;
-  object-fit: contain;
-  
-  /* border-radius: 20rpx; */
-  /* box-shadow: 0px 0px 2px 2px rgb(128, 128, 128); */
-
+.left{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 102px;
+  /* border: 1px blue solid; */
 }
+.article-card .left image{
+  width: 75px;
+  height: 65px;
+  object-fit: contain;
+}
+.right{
+  height: 102px;
+  /* border: 1px rgb(255, 0, 200) solid; */
+}
+
 
 .article-card  .title {
   margin-top: 23px;
   margin-bottom: 10px;
+  /* font-weight: bold; */
+  letter-spacing:1.5px;
   font-size: 33rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -145,12 +155,9 @@ image.quiet {
 }
 
 .article-card  .article-desc{
-  /* margin-top: 20px; */
   margin-right: 10px;
-  line-height: normal;
-  /* border: 1px rgb(0, 255, 149) solid; */
-  font-size: xx-small;
-  font-weight: lighter;
+  color: rgb(182, 180, 180);
+  font-size:24rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -166,9 +173,8 @@ image.quiet {
   width: 70%;
   position: absolute;
   bottom: 2px;
-  left: 5px;
+  left: 10px;
   display: flex;
-  font-size: xx-small;
   font-weight: lighter;
   flex-direction: row;
   justify-content: space-between;
@@ -181,7 +187,9 @@ image.quiet {
   right: 10px;
 }
 .a-time,.visits,.likes,.commentCount,.a-details{
-  font-family: 'CUSTOM_FONT_T_01';
+  /* font-family: 'CUSTOM_FONT_T_01'; */
+  font-weight: lighter;
+  color: rgb(182, 180, 180);
 }
 /*
 

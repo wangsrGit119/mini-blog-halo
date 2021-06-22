@@ -8,14 +8,7 @@ bg-color="transparent">
   <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
 </l-capsule-bar>
 
-<van-search
-  clearable
-  bind:clear="onClear"	
-  value=""
-  shape="round"
-  background="white"
-  placeholder="请输入搜索关键词"
-/>
+
 
 <!-- 自定义tabbar -->
 <l-tab-bar list="{{list}}" />
@@ -72,10 +65,17 @@ bg-color="transparent">
   <!-- tab for new -->
 
   <view class="forNew">
+    <!-- <van-icon name="/images/new2.png" />
     <van-icon name="/images/new2.png" />
     <van-icon name="/images/new2.png" />
-    <van-icon name="/images/new2.png" />
-    <van-icon name="/images/new2.png" />
+    <van-icon name="/images/new2.png" /> -->
+    <l-list 
+    title="最新文章" 
+    icon="time"
+    right-desc="查看更多"	
+    link-type="switchTab"	
+    url="/pages/history/history"
+     />
   </view>
 
 
@@ -103,16 +103,20 @@ bg-color="transparent">
     <view bindtap="toArticleDetail" data-article-item="{{item}}">
         <!-- header -->
      <van-row >
-        <van-col span="8" class="left">
-          <image lazy-load="{{true}}" src="{{item.thumbnail}}"></image>
+        <van-col span="8">
+          <view  class="left">
+            <image lazy-load="{{true}}" src="{{item.thumbnail}}"></image>
+          </view>
         </van-col>
         <van-col span="16">
-          <van-row >
+          <view  class="right" style="">
+            <van-row >
             <view class="title">{{item.title}}</view>
-          </van-row>
-          <van-row class="article-desc">
-            <view>{{item.summary}}</view>
-          </van-row>
+            </van-row>
+            <van-row class="article-desc">
+              <view>{{item.summary}}</view>
+            </van-row>
+          </view>
         </van-col>
       </van-row>
       <!-- bottom -->

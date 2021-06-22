@@ -1,5 +1,6 @@
 <!--miniprogram/pages/journal/journal.wxml-->
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
+
 <l-capsule-bar 
 hidden-capsule
 title="日记"

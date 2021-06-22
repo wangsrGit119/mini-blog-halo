@@ -98,6 +98,22 @@ Page({
       success: function (res) {
         if (res.data.status == 200) {
           let list = res.data.data.content;
+          // let temp = [];
+          // list.forEach(e=>{
+          //   let obj = app.towxml(e.content,'markdown',{
+          //     // theme:'dark',
+          //     events:{
+          //       tap:e => {
+          //         console.log('tap',e);
+          //       },
+          //       change:e => {
+          //         console.log('todo',e);
+          //       }
+          //     }
+          //   });
+          //   e.wxsource = obj;
+          //   temp.push(e)
+          // })
           that.setData({
             journalList:list
           })

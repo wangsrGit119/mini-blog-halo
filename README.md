@@ -1,7 +1,7 @@
 # 简介须知
 
 此微信小程序是基于开源博客Halo提供的API开发，使用的前提是自己已经部署有自己的Halo博客网站。
-
+- 文档地址：[http://mbhdoc.wangsrbus.cn](http://mbhdoc.wangsrbus.cn/#/)
 - 微信小程序使用api必须是https，因此需要自己的博客网站配置ssl证书。
 - 下载后直接微信小程序开发工具打开即可。
 - 在app.js配置acess_key以及线上api地址
@@ -76,3 +76,12 @@
 - 海报生成的二维码配置
 
 > `项目下路径` > `images` > `wechat-q-code.jpg`替换成自己的二维码  
+
+## 鸣谢
+ - Halo 高颜值轻便开源个人博客
+ - lin-ui 简洁美观的小程序UI组件
+ - towxml 富文本和markdown渲染组件
+ - vant 众多人喜欢的小程序渲染组件
+ 
+## License
+ MIT

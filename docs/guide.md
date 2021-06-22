@@ -42,3 +42,12 @@
 
 - [halo官网](https://halo.run/)
 - [halo-GitHub地址](https://github.com/halo-dev/halo)
+
+## 鸣谢
+ - Halo 高颜值轻便开源个人博客
+ - lin-ui 简洁美观的小程序UI组件
+ - towxml 富文本和markdown渲染组件
+ - vant 众多人喜欢的小程序渲染组件
+ 
+## License
+ MIT

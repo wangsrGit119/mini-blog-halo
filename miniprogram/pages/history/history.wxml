@@ -68,7 +68,7 @@ bg-color="transparent">
         <view class="article-footer">
           <van-image
             round
-              width="40"
+              width="46"
               height="44"
               lazy-load
               src="{{authorInfo.avatar}}"

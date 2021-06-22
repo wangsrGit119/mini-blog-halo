@@ -49,10 +49,13 @@
   justify-content: space-between;
   font-size: 24rpx;
   margin-left: 90rpx;
+
 }
 
 .su-content .su-content-middle {
   margin-top: 10rpx;
+  padding-top: 5px;
+  padding-bottom: 5px;
   
 }
 .su-content .su-content-footer{
@@ -60,6 +63,8 @@
  flex-direction: row;
  position: relative;
  margin-top: 20rpx;
+ height: 18px; 
+ border-bottom: 1px rgb(231, 227, 227) solid;
 }
 
 .su-content-footer .su-footer-time{
@@ -82,7 +87,12 @@
   margin-left: 90rpx;
   display: flex;
   flex-direction: column;
+  border-bottom: 1px rgb(231, 227, 227) solid;
+  position: relative;
+
 }
+
+
 
 .child-content .child-time{
   font-weight: lighter;
@@ -93,6 +103,8 @@
 
 .child-time .child-childs{
   margin-left: 20px;
+  position: absolute;
+  right: 5px;
 }
 
 

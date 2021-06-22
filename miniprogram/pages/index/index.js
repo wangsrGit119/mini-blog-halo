@@ -6,7 +6,7 @@ const app = getApp()
 Page({
   data: {
     swiperIndex:0,
-    swiperHeight:140,
+    swiperHeight:170,
     postersShow:false,//海报弹窗
     imgSuccess:true,//海报制作是否成功
     userInfo: {},

@@ -113,6 +113,11 @@ Page({
             events:{
               tap:e => {
                 console.log('tap',e);
+                if(e.currentTarget.dataset.data.tag === 'img'){
+                    wx.previewImage({
+                      urls: [e.currentTarget.dataset.data.attr.src],
+                    })
+                }
               },
               change:e => {
                 console.log('todo',e);
@@ -120,7 +125,6 @@ Page({
             }
           });
           data.content = obj;
-          
           wx.hideNavigationBarLoading()
           wx.hideLoading()
           that.setData({
