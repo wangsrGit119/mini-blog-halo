@@ -1,0 +1,47 @@
+<!--miniprogram/pages/admin/admin.wxml-->
+<l-capsule-bar 
+title="管理后台"
+disable-back	
+home-page="/pages/mine/mine"
+capsule-color="white" 
+bg-color="transparent">
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
+</l-capsule-bar>
+<!-- 统计 -->
+<view class="topStatistic" style="margin-top:{{capsuleBarHeight-30}}rpx;">
+  <van-cell title="统计" icon="bar-chart-o" />
+  <l-grid row-num="4">
+    <l-grid-item key="one" slot="one">
+        <view class="num">{{statistics.visitCount}}</view>
+        <view class="su-text">阅读</view>
+     </l-grid-item>
+    <l-grid-item key="two" slot="two">
+        <view class="num">{{statistics.likeCount}}</view>
+        <view class="su-text">点赞</view>
+    </l-grid-item>
+    <l-grid-item key="three" slot="three">
+        <view class="num">{{statistics.commentCount}}</view>
+        <view class="su-text">评论</view>
+    </l-grid-item>
+    <l-grid-item key="four" slot="four">
+        <view class="num">{{statistics.establishDays}}</view>
+        <view class="su-text">运行</view>
+     </l-grid-item>
+  </l-grid>
+</view>
+<!-- 模块 -->
+<van-cell title="模块" icon="apps-o" />
+<view class="content-middle" >
+  <l-grid l-class="grid" row-num="2" is-hover	 show-border="{{true}}">
+    <l-grid-item
+      l-grid-item-class="su-item"	 
+      wx:for="{{gridsMenu}}" 
+      wx:key="index"
+      bindtap="{{item.event}}" 
+      key="{{index}}" 
+      slot="{{index}}">
+        <van-icon size="40px" name="{{item.image}}" />
+        <view class="su-text">{{item.text}}</view>
+    </l-grid-item>
+  </l-grid>
+</view>

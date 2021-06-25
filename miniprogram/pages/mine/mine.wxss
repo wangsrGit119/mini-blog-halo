@@ -17,6 +17,7 @@
 /* 自定义grid中信息 */
 .su-style-grid{
   color: #6e6765;
+  color: rgb(95, 97, 212);
 }
 
 

@@ -120,7 +120,11 @@ image.quiet {
   border-radius: 5px;
   z-index: 10;
 }
-
+.topPriority{
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
 .left{
   display: flex;
   flex-direction: row;

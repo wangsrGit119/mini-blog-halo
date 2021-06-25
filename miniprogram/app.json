@@ -6,7 +6,9 @@
     "pages/article/article",
     "pages/album/album",
     "pages/journal/journal",
-    "pages/l-su-water/l-su-water"
+    "pages/l-su-water/l-su-water",
+    "pages/comments/comments",
+    "pages/admin-manager/admin-manager"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

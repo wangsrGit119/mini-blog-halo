@@ -2,5 +2,11 @@
   "usingComponents": {
     "l-tab-bar":"../../lin-ui/dist/tab-bar/index",
     "l-grid":"../../lin-ui/dist/grid/index",
-    "l-grid-item":"../../lin-ui/dist/grid-item/index"  }
+    "l-grid-item":"../../lin-ui/dist/grid-item/index" ,
+    "l-dialog":"../../lin-ui/dist/dialog/index",
+    "l-input":"../../lin-ui/dist/input/index",
+    "l-message":"../../lin-ui/dist/message/index",
+    "l-loading":"../../lin-ui/dist/loading/index"
+
+   }
 }

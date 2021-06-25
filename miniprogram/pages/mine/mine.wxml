@@ -4,7 +4,7 @@
 <!-- 自定义tabbar -->
 <l-tab-bar list="{{list}}" />
 
-
+<!-- vant 弹出框 -->
 <van-dialog id="van-dialog" />
 
 <view class="my-info">
@@ -12,32 +12,46 @@
   <van-row>{{authorInfo.nickname}}</van-row>
 </view>
 
+<!-- lin-ui message -->
+<l-message />
 
+<!-- 全屏loadiing -->
+
+<l-loading
+  l-container-class="l-container"
+  bg-color="#f3f3f3"
+  z-index="776"
+  opacity="1"
+  show="{{loading}}"
+  full-screen="{{true}}"
+  type="flash"
+>
+</l-loading>
 
 <van-cell
   icon="/images/myArticle.png"
-  title="我的文章"
+  title="文章"
   url="" 
   is-link
   value="{{statisticsInfo.postCount}}" />
 
-<van-cell
+<!-- <van-cell
   icon="/images/collect.png"
   title="我的收藏"
   url="" 
   is-link
-  value="" />
+  value="" /> -->
 
   <van-cell 
   icon="/images/comments.png"
-  title="总评论"
+  title="评论"
   is-link 
   value="{{statisticsInfo.commentCount}}" />
 
   <van-cell 
-  icon="/images/jourals.png"
+  icon="/images/journals.png"
   is-link
-  title="个人日志"
+  title="日志"
   value="{{statisticsInfo.journalCount}}" />
 
 
@@ -49,3 +63,36 @@
     <van-icon slot="right-icon" bindtap="showAbout" name="question-o" class="custom-icon" />
   </van-cell>
 
+<!-- 管理员登录 -->
+<l-dialog 
+  show="{{adminQ}}"
+  type="confirm"  
+  title="提问"
+  content="您是管理员吗？"
+  confirm-text="yes"
+  confirm-color="#f60"
+  cancel-text="no~"
+  locked="{{true}}"
+  bind:linconfirm="adminQConfirm"
+  bind:lincancel="adminQCancel"
+  cancel-color="rgb(95, 97, 212)" >
+  </l-dialog>
+
+   <!--  非管理员密钥比对 -->
+   <l-dialog 
+  show="{{keyInputShow}}"
+  type="confirm"  
+  locked="{{true}}"
+  show-title="{{true}}"
+  title="请输入密钥"
+  bind:linconfirm="validateAccessOK"
+  data-input-secret-key="{{inputSecretKey}}"
+>
+<l-input placeholder="请输入" type="password" bind:lininput="inputKeyOnChange" value="{{inputSecretKey}}" label="密钥" clear="{{true}}" required="{{true}}" />
+
+</l-dialog>
+
+
+  <van-cell title="管理" icon="/images/manager.png" >
+    <van-button   bindtap="showDoorForAdmin" type="warning" size="mini">管理入口</van-button>
+  </van-cell>

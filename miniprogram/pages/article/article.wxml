@@ -10,7 +10,7 @@ bind:linlefttap="onClickLeft"
 home-page="/pages/index/index"
 capsule-color="white" 
 bg-color="transparent">
-  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif" />
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
 </l-capsule-bar>
 
  <!-- 制作海报图标 -->

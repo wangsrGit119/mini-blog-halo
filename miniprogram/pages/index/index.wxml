@@ -99,10 +99,11 @@ bg-color="transparent">
   <!-- 插槽内容 -->
   <!-- 简约版列表渲染 -->
 
-  <view class="article-card" id="article-card" wx:for="{{articleLastestList}}" wx:for-item="item" wx:key="index">
+  <view class="article-card" id="article-card" wx:for="{{articleList}}" wx:for-item="item" wx:key="index">
     <view bindtap="toArticleDetail" data-article-item="{{item}}">
         <!-- header -->
      <van-row >
+      <van-tag class="topPriority" wx:if="{{item.topPriority >0}}"  mark type="danger">置顶</van-tag>
         <van-col span="8">
           <view  class="left">
             <image lazy-load="{{true}}" src="{{item.thumbnail}}"></image>

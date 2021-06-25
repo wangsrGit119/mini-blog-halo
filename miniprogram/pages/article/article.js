@@ -18,7 +18,8 @@ Page({
     password:undefined,
     showSkeleton:true,//骨架屏
     passwordDialog:false,//密码输入框
-    inputPwd:"",//用户输入的密码
+    inputPwd:"",//用户输入的密码(私密文章)
+    index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
     comments:[],//评论
     userInfo:app.globalData.userInfo,
@@ -59,89 +60,7 @@ Page({
       this.initArticle(options.articleId)
     }    
   },
-  onValidatePwd(){
-    if(this.data.password === this.data.inputPwd){
-      wx.showToast({
-        title: '校验通过',
-        image:'../../images/validateSuccess.png'
-      })
-      this.setData({
-        passwordDialog:false
-      })
-      this.initArticle(this.data.articleId)
-    }else{
-      wx.showToast({
-        title: '密码错误',
-        image:'../../images/validateError.png'
-      })
-    }
-  },
-  onChangingPwd(e){
-    console.log(e)
-    this.setData({
-      inputPwd:e.detail.value
-    })
-  },
-  //初始化文章页面
-  initArticle(articleId){
-  this.loadArticleDetail(articleId);
-  this.loadComments(articleId) 
-  },
-  //返回首页
-  onClickLeft(){
-    wx.navigateBack({
-      delta: 1
-    })
-  },
-  // load details 
-  loadArticleDetail(articleId){
-    const that = this;
-    wx.showNavigationBarLoading()					//在当前页面显示导航条加载动画
-    wx.showLoading({								//显示 loading 提示框
-      title: '文章加载中',
-    })
-
-    wx.request({
-      url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key,
-      method: 'GET',
-      success: function (res) {
-        console.log(res)
-        if(res.data.status == 200){
-          let data = JSON.parse(JSON.stringify(res.data.data));
-          let obj = app.towxml(data.originalContent,'markdown',{
-            // theme:'dark',
-            events:{
-              tap:e => {
-                console.log('tap',e);
-                if(e.currentTarget.dataset.data.tag === 'img'){
-                    wx.previewImage({
-                      urls: [e.currentTarget.dataset.data.attr.src],
-                    })
-                }
-              },
-              change:e => {
-                console.log('todo',e);
-              }
-            }
-          });
-          data.content = obj;
-          wx.hideNavigationBarLoading()
-          wx.hideLoading()
-          that.setData({
-            articleDetail:data,
-          })
-        }else{
-          wx.hideNavigationBarLoading()
-          wx.hideLoading()
-        }
-      },
-      fail: function (res) {
-        wx.hideNavigationBarLoading()
-        wx.hideLoading()
-        console.log("请求异常",res)
-      }
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -200,6 +119,91 @@ onShareAppMessage: function (res) {
   onShareAppMessage: function () {
 
   },
+  showMyToast(title,type){
+    if(type === 'success'){
+      wx.showToast({
+        title: title,
+        image:'../../images/validateSuccess.png'
+      })
+    }else if(type === 'fail'){
+      wx.showToast({
+        title: title,
+        image:'../../images/validateError.png'
+      })
+    }
+  },
+  // 私密文章密码输入比对
+  onValidatePwd(){
+    if(this.data.password === this.data.inputPwd){
+      this.showMyToast('校验通过','success')
+      this.setData({
+        passwordDialog:false
+      })
+      this.initArticle(this.data.articleId)
+    }else{
+      this.showMyToast('密码错误','fail')
+    }
+  },
+  // 监听密码输入
+  onChangingPwd(e){
+    console.log(e)
+    this.setData({
+      inputPwd:e.detail.value
+    })
+  },
+  //初始化文章页面
+  initArticle(articleId){
+    this.loadArticleDetail(articleId);
+    this.loadComments(articleId) 
+  },
+  //返回上一级
+  onClickLeft(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  loadArticleDetail(articleId){
+    const that = this;
+    wx.showLoading({								//显示 loading 提示框
+      title: '文章加载中',
+    })
+    wx.request({
+      url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key,
+      method: 'GET',
+      success: function (res) {
+        console.log(res)
+        if(res.data.status == 200){
+          let data = JSON.parse(JSON.stringify(res.data.data));
+          let obj = app.towxml(data.originalContent,'markdown',{
+            // theme:'dark',
+            events:{
+              tap:e => {
+                if(e.currentTarget.dataset.data.tag === 'img'){
+                    wx.previewImage({
+                      urls: [e.currentTarget.dataset.data.attr.src],
+                    })
+                }
+              },
+              change:e => {
+                console.log('todo',e);
+              }
+            }
+          });
+          data.content = obj;
+          wx.hideLoading()
+          that.setData({
+            articleDetail:data,
+          })
+        }else{
+          wx.hideLoading()
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading()
+        console.log("请求异常",res)
+      }
+    })
+  },
   markPosters(){
     let tempArticle = this.data.articleDetail;
     this.setData({
@@ -219,7 +223,6 @@ onShareAppMessage: function (res) {
     })
   },
   onImgOK(e) {
-    console.log("ok",e)
     this.setData({imgSuccess:false})
     this.imagePath = e.detail.path;
     this.setData({
@@ -281,6 +284,7 @@ onShareAppMessage: function (res) {
       }
     })
   },
+  // 评论按钮事件
   toComment(e){
     const that = this;
     this.setData({
@@ -323,11 +327,15 @@ onShareAppMessage: function (res) {
   onClickHide(e){
     this.setData({actionSheetShow : false});
   },
+  // 提交评论
   saveEvent(e){
     const that = this;
     if(that.data.myComment !== undefined 
       && that.data.email !== undefined
-      && that.data.myComment !== ""){
+      && that.data.myComment.trim() !== ""){
+        wx.showLoading({							
+          title: '内容校验中...',
+        })
         wx.cloud.callFunction({
           name: 'msgseccheck',
           data: {
@@ -336,10 +344,7 @@ onShareAppMessage: function (res) {
           success:(res)=>{
             console.log(res)
             if(res.result.errCode!=0){
-              wx.showToast({
-                title: '非法内容',
-                icon: 'error',
-                })
+                this.showMyToast('非法内容','fail')
                 that.setData({
                   myComment:""
                 })
@@ -352,10 +357,7 @@ onShareAppMessage: function (res) {
           }
         })
     }else{
-      wx.showToast({
-        title: '内容不能为空',
-        icon: 'error',
-        })
+      this.showMyToast('内容不能为空','fail')
     }
   },
   //邮箱失焦验证
@@ -371,16 +373,12 @@ onShareAppMessage: function (res) {
     if (str.test(email)) {
       return true
       } else {
-        wx.showToast({
-          title: '非法邮箱',
-          icon: 'error',
-          })
-          return false 
+      this.showMyToast('非法邮箱','fail')
+      return false 
      }  
   },
   doComments(){
     const that = this;
-    console.log(this.data)
     let params = {
       "allowNotification": true,
       "author": app.globalData.userInfo.nickName,
@@ -394,25 +392,21 @@ onShareAppMessage: function (res) {
       url: app.globalData.baseUrl + '/content/posts/comments?api_access_key='+app.globalData.api_access_key,
       data:params,
       method: 'POST',
-      header: 'Content-Type: application/json',
+      header: {ContentType: 'application/json'},
       success: function (res) {
-        console.log(res)
+        wx.hideLoading()
         if(res.data.status == 200){
           that.loadComments(that.data.articleId)   
           that.setData({actionSheetShow : false});
-          wx.showToast({
-            title: '评论成功',
-            icon: 'succcess',
-            })
+          that.showMyToast('评论成功','success');
         }else{
-          wx.showToast({
-            title: '评论失败',
-            icon: 'error',
-            })
+          that.showMyToast('评论失败','fail');
         }
       },
       fail: function (res) {
+        that.showMyToast('请求异常','fail');
         console.log("请求异常",res)
+        wx.hideLoading()
       }
     })
   }

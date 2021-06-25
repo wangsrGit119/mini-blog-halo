@@ -1,0 +1,6 @@
+/* miniprogram/pages/comments/comments.wxss */
+
+.van-cell-text{
+  color: rgb(196, 190, 190);
+  font-size: small;
+}

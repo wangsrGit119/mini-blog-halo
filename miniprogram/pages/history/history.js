@@ -19,6 +19,9 @@ Page({
     list:app.list,// 自定义tabbar
     capsuleBarHeight:app.capsuleBarHeight,
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
+    currentTab:'latestTag',//当前标签页 默认为 latestTag
+    latestTag:"latestTag",//最新标签值
+    searchKey:"",//搜索关键词
   },
   
   /**
@@ -41,9 +44,15 @@ Page({
     this.setData({
       authorInfo:app.globalData.authorInfo
     })
-    this.data.page = 0;
+    // 当前页面显示导航条加载动画
+    wx.showNavigationBarLoading()
+    // 加载最新文章
     this.loadArticleByPage();
+    // 初始化参数
+    this.initParams();
+    // 获取所有分类
     this.loadCategories()
+    
   },
 
   /**
@@ -64,17 +73,27 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.data.page = 0;
-    this.loadArticleByPage();
+    console.log("下拉刷新")
+    // this.initParams()
+    // this.loadArticleByPage();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    const that = this;
-    if (that.data.hasMoreData) {
-      this.loadArticleByPage();
+    if (this.data.hasMoreData) {
+      // 搜索
+      if(this.data.searchKey != null){
+        this.searchArticles(this.data.searchKey)
+        return;
+      }
+      // 切换类别
+      if(this.data.currentTab === this.data.latestTag){
+        this.loadArticleByPage();
+      }else{
+        this.loadPostsBySlug(this.data.currentTab)
+      }
     } else {
       wx.showToast({
         title: '没有更多数据',
@@ -90,17 +109,43 @@ Page({
   onShareAppMessage: function () {
 
   },
-  onSearch(key){
-    wx.showNavigationBarLoading()					//在当前页面显示导航条加载动画
-    wx.showLoading({								//显示 loading 提示框
-      title: '搜索中',
+  // 初始化参数
+  initParams(){
+    this.setData({
+      page:0,
+      pageSize:5,
+      articleList:[],
+      currentTab:'latestTag',//当前标签页 默认为 latestTag
+      searchKey:null,
     })
-    this.data.page = 0;
+  },
+  onSearch(key){
+    this.initParams();
+    this.setData({
+      searchKey:key.detail
+    })
     this.searchArticles(key.detail);
   },
   onClear(){
-    this.data.page = 0;
+    this.initParams()
     this.loadArticleByPage()
+  },
+  // 文章列表追加
+  appendArticleList(resList){
+    let allPageArticleList = this.data.articleList;
+    console.log("reslist",resList.length)
+    if (resList.length < this.data.pageSize || resList.length ==0) {
+      this.setData({
+        articleList: allPageArticleList.concat(resList),
+        hasMoreData: false
+      })
+    } else {
+      this.setData({
+        articleList: allPageArticleList.concat(resList),
+        hasMoreData: true,
+        page: this.data.page + 1
+      })
+    }
   },
   // search article
   searchArticles(keyword){
@@ -108,36 +153,21 @@ Page({
     const page = that.data.page;
     const size = that.data.pageSize;
     const sort = "createTime,desc";
+    wx.showLoading({								//显示 loading 提示框
+      title: '搜索中',
+    })
     wx.request({
       url: app.globalData.baseUrl + '/content/posts/search?api_access_key='+app.globalData.api_access_key+'&page='+page+'&size='+size+'&sort='+sort+'&keyword='+keyword,
       method: 'POST',
       success: function (res) {
-        wx.hideNavigationBarLoading()
         wx.hideLoading()
-        var allPageArticleList = that.data.articleList;
-        if (that.data.page == 0) {
-          allPageArticleList = []
-        }
         if (res.data.status == 200) {
-          var list = res.data.data.content;
-          if (list.length < that.data.pageSize || list.length ==0) {
-            that.setData({
-              articleList: allPageArticleList.concat(list),
-              hasMoreData: false
-            })
-          } else {
-            that.setData({
-              articleList: allPageArticleList.concat(list),
-              hasMoreData: true,
-              page: that.data.page + 1
-            })
-          }
+          that.appendArticleList(res.data.data.content)
         } else {
           console.log("请求异常")
         }
       },
       fail: function (res) {
-        wx.hideNavigationBarLoading()
         wx.hideLoading()
         console.log("请求异常",res)
       }
@@ -145,37 +175,21 @@ Page({
   },
   loadArticleByPage(){
     const that = this;
-    wx.showNavigationBarLoading()					//在当前页面显示导航条加载动画
+    const page = that.data.page;
+    const size = that.data.pageSize;
+    const sort1 = "topPriority,desc";
+    const sort2 = "createTime,desc";
     wx.showLoading({								//显示 loading 提示框
       title: '文章加载中',
     })
-    const page = that.data.page;
-    const size = that.data.pageSize;
-    const sort = "createTime,desc";
     wx.request({
-      url: app.globalData.baseUrl + '/content/posts?api_access_key='+app.globalData.api_access_key+'&page='+page+'&size='+size+'&sort='+sort,
+      url: app.globalData.baseUrl + '/content/posts?api_access_key='+app.globalData.api_access_key+'&page='+page+'&size='+size+'&sort='+sort1+'&sort='+sort2,
       method: 'GET',
       success: function (res) {
-        wx.hideNavigationBarLoading()
         wx.hideLoading()
-        var allPageArticleList = that.data.articleList;
-        if (that.data.page == 0) {
-          allPageArticleList = []
-        }
+        wx.hideNavigationBarLoading()
         if (res.data.status == 200) {
-          var list = res.data.data.content;
-          if (list.length < that.data.pageSize || list.length ==0) {
-            that.setData({
-              articleList: allPageArticleList.concat(list),
-              hasMoreData: false
-            })
-          } else {
-            that.setData({
-              articleList: allPageArticleList.concat(list),
-              hasMoreData: true,
-              page: that.data.page + 1
-            })
-          }
+          that.appendArticleList(res.data.data.content)
         } else {
           console.log("请求异常")
         }
@@ -215,53 +229,39 @@ Page({
       url: url,
     })
   },
+  // 切换类别
   changeTabs(tab){
-     this.data.page = 0;
-    console.log(tab)
-    wx.showNavigationBarLoading()					//在当前页面显示导航条加载动画
-    wx.showLoading({								//显示 loading 提示框
-      title: '文章加载中',
-    })
-    if(tab.detail.activeKey === 'su-top'){
+    this.initParams()
+    if(tab.detail.activeKey === this.data.latestTag){
         this.loadArticleByPage()
     }else{
       let slug = tab.detail.cell;
+      this.setData({
+        currentTab:slug
+      })
       this.loadPostsBySlug(slug);
     }
   },
+  // 分类加载
  loadPostsBySlug(slug){
   const that = this;
+  wx.showLoading({								//显示 loading 提示框
+    title: '文章加载中',
+  })
+  const page = that.data.page;
+  const size = that.data.pageSize;
   wx.request({
-    url: app.globalData.baseUrl + '/content/categories/'+slug+'/posts?api_access_key='+app.globalData.api_access_key,
+    url: app.globalData.baseUrl + '/content/categories/'+slug+'/posts?api_access_key='+app.globalData.api_access_key+'&page='+page+'&size='+size,
     method: 'GET',
     success: function (res) {
-      wx.hideNavigationBarLoading()
       wx.hideLoading()
-      console.log(res);
-      var allPageArticleList = that.data.articleList;
-        if (that.data.page == 0) {
-          allPageArticleList = []
-        }
-        if (res.data.status == 200) {
-          var list = res.data.data.content;
-          if (list.length < that.data.pageSize || list.length ==0) {
-            that.setData({
-              articleList: allPageArticleList.concat(list),
-              hasMoreData: false
-            })
-          } else {
-            that.setData({
-              articleList: allPageArticleList.concat(list),
-              hasMoreData: true,
-              page: that.data.page + 1
-            })
-          }
-        } else {
-          console.log("请求异常")
-        }
+      if (res.data.status == 200) {
+        that.appendArticleList(res.data.data.content)
+      } else {
+        console.log("请求异常")
+      }
     },
     fail: function (res) {
-      wx.hideNavigationBarLoading()
       wx.hideLoading()
       console.log("请求异常",res)
     }

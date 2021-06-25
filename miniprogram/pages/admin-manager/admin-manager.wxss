@@ -1,0 +1,21 @@
+/* miniprogram/pages/admin/admin.wxss */
+
+/*自定义字体*/
+.su-font-family{
+  font-family: 'CUSTOM_FONT_T_01'; 
+   font-weight: bolder;
+}
+.topStatistic .num{
+  font-family: 'CUSTOM_FONT_T_01'; 
+  font-weight: bolder;
+  color: rgb(105, 128, 230);
+}
+
+
+
+
+.grid .su-item .su-text{
+  /* position: absolute; */
+  /* border: 1px blue solid; */
+  color: rgb(214, 208, 208);
+}

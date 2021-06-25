@@ -1,0 +1,59 @@
+<!--miniprogram/pages/comments/comments.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+
+<!-- bar -->
+<l-capsule-bar 
+bind:linlefttap="onClickLeft"
+title="评论管理"
+home-page="/pages/index/index"
+capsule-color="white" 
+bg-color="transparent">
+  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
+</l-capsule-bar>
+
+<view style="margin-top:{{capsuleBarHeight-50}}rpx;">
+  <l-list 
+  l-class="commentTop"	 
+  title="所有评论" 
+  icon="notification"
+  badge-max-count="{{99}}" 
+  badge-count="{{totalComment}}"
+  badge-position="right"
+  />
+</view>
+
+
+<view class="comments" wx:for="{{comments}}" wx:key="index">
+  <van-cell  icon="user-o" title=""  label="评论：{{item.content}}" border="{{ true }}">
+    <view slot="title">
+      <view class="van-cell-text">
+        <van-tag plain type="primary">{{item.author}}</van-tag>
+        <view >文章：《{{item.post.title.length >= 20 ? util.substringUtil(item.post.title,20)  : item.post.title }}》</view>
+      </view>
+    </view>
+    <van-tag wx:if="{{item.status === 'PUBLISHED'}}" data-item="{{item}}" bindtap="replyComment" type="success">回复</van-tag>
+    <van-tag wx:if="{{ item.status === 'AUDITING'}}" data-item="{{item}}" bindtap="accessComment" type="warning">通过</van-tag>
+    <van-tag wx:if="{{item.status !== 'RECYCLE'}}" data-item="{{item}}" bindtap="deleteComment" type="danger">删除</van-tag>
+    <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" bindtap="recycleComment" type="primary">恢复</van-tag>
+    <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" bindtap="deleteForeverComment" type="danger">永久删除</van-tag>
+
+  </van-cell>
+</view>
+
+<l-dialog 
+  show="{{commentInputShow}}"
+  type="confirm"  
+  locked="{{true}}"
+  show-title="{{true}}"
+  title="回复"
+  bind:linconfirm="confirmCommitCommet"
+  data-input-comment="{{inputComment}}"
+>
+<l-textarea 
+    style="width:200px"	
+    auto-height="{{true}}" 
+     
+    indicator="{{true}}" 
+    bind:lininput="inputCommentOnChange"  />
+
+</l-dialog>

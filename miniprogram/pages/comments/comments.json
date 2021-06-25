@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
+    "l-grid":"../../lin-ui/dist/grid/index",
+    "l-grid-item":"../../lin-ui/dist/grid-item/index",
+    "l-list":"../../lin-ui/dist/list/index",
+    "l-dialog":"../../lin-ui/dist/dialog/index",
+    "l-textarea":"../../lin-ui/dist/textarea/index"
+  }
+}
