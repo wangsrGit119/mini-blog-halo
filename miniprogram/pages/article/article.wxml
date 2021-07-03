@@ -73,6 +73,8 @@ style="margin-top:300px;"
     <view class="article-title">
       {{articleDetail.title}}
     </view>
+    <van-image fit="cover" width="100vw" height="150" src="{{articleDetail.thumbnail}}" />
+
     <!--使用towxml-->
       <towxml nodes="{{articleDetail.content}}"/>
   </view>
