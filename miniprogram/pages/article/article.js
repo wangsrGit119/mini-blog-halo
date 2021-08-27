@@ -1,5 +1,6 @@
 // miniprogram/pages/article/article.js
 import Card from '../card';
+import Toast from '../../components/vant/components/dist/toast/toast';
 
 const app = getApp()
 
@@ -22,7 +23,8 @@ Page({
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
     comments:[],//评论
-    userInfo:app.globalData.userInfo,
+    userInfo:undefined,
+    authorInfo:undefined,
     actionSheetShow:false,
     myComment:undefined,
     email:"",
@@ -35,11 +37,13 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
-    console.log(options)
     that.setData({
       articleId:options.articleId,
       status:options.status,
-      password:options.password
+      password:options.password,
+      //初始化变量全局新的
+      userInfo:app.globalData.userInfo,
+      authorInfo:app.globalData.authorInfo
     })
     // 骨架屏显示
     setTimeout(function(){
@@ -168,20 +172,29 @@ onShareAppMessage: function (res) {
       title: '文章加载中',
     })
     wx.request({
-      url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key,
+      url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key+'&formatDisabled=false'+'&sourceDisabled = true',
       method: 'GET',
       success: function (res) {
         console.log(res)
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data));
-          let obj = app.towxml(data.originalContent,'markdown',{
+          let obj = app.towxml(data.formatContent,'html',{
             // theme:'dark',
             events:{
               tap:e => {
+                console.log(e)
                 if(e.currentTarget.dataset.data.tag === 'img'){
                     wx.previewImage({
                       urls: [e.currentTarget.dataset.data.attr.src],
                     })
+                }
+                if(e.currentTarget.dataset.data.tag === "navigator"){
+                  wx.setClipboardData({
+                    data: e.currentTarget.dataset.data.attr.href,
+                    success:(res)=>{
+                      console.log(res)
+                    }
+                  })
                 }
               },
               change:e => {
@@ -271,8 +284,7 @@ onShareAppMessage: function (res) {
       url: app.globalData.baseUrl + '/content/posts/'+postId+'/comments/tree_view?api_access_key='+app.globalData.api_access_key,
       method: 'GET',
       success: function (res) {
-        console.log("comments")
-        console.log(res)
+        console.log("comment",res)
         if(res.data.status == 200){
           that.setData({
             comments:res.data.data.content

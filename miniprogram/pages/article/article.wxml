@@ -9,8 +9,7 @@
 bind:linlefttap="onClickLeft"
 home-page="/pages/index/index"
 capsule-color="white" 
-bg-color="transparent">
-  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
+bg-color="#ffffff">
 </l-capsule-bar>
 
  <!-- 制作海报图标 -->
@@ -40,6 +39,9 @@ locked="{{true}}"
     </view>
 </l-popup>
 
+
+
+
 <!-- 私密文章密码输入比对 -->
 <van-dialog
   use-slot
@@ -56,6 +58,51 @@ locked="{{true}}"
 
 <!-- 文章和评论 -->
 
+ <!-- 文章 -->
+ <l-card wx:if="{{articleDetail.createTime}}" type="avatar" l-class="card" image="{{authorInfo.avatar}}"
+    title="{{authorInfo.nickname}}" describe="{{dateutils.dateTransfer(articleDetail.createTime)}}">
+        <!-- 此处为文章详情 -->
+        <view class="avter-content">
+              <!-- 标题 -->
+              <view class="article-title">
+                {{articleDetail.title}}
+              </view>
+              <!-- 封面 -->
+              <van-image fit="cover" width="85vw"  height="150" src="{{articleDetail.thumbnail}}" />
+               
+           <!--文章详情结束  -->
+        </view>
+        <view class="avter-share-container">
+          <view class="like-container">
+               <l-icon name="default" color="#666" size="28" />
+                   <view class="number">
+                   {{articleDetail.wordCount +' 字'}}
+                   </view>
+               </view>
+               <view class="like-container">
+                  <l-icon name="eye" color="#666" size="28" />
+                   <view class="number">{{articleDetail.visits+' 阅读'}}</view>
+               </view>
+               <view   class="like-container">
+                   <l-icon name="default" color="#666" size="28" />
+                   <view class="number">{{articleDetail.commentCount +' 评论'}}</view>
+               </view>
+        </view>
+        <l-tag  shape="circle" 
+                bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="large">
+                + 收藏
+        </l-tag>
+  </l-card>
+
+ <!-- 正文 -->
+ <view style="user-select: text;">
+    <towxml width="100vw" nodes="{{articleDetail.content}}"/>
+ </view>
+
+<!-- 评论区骨架屏 -->
 <l-skeleton
 l-class="l-cu-outer-skeleton" 
 style="margin-top:300px;"
@@ -69,23 +116,16 @@ style="margin-top:300px;"
   active="{{true}}"
 >
   <!-- 插槽内容 -->
-  <view style="user-select: text;">
-    <view class="article-title">
-      {{articleDetail.title}}
-    </view>
-    <van-image fit="cover" width="100vw" height="150" src="{{articleDetail.thumbnail}}" />
-
-    <!--使用towxml-->
-      <towxml nodes="{{articleDetail.content}}"/>
-  </view>
-
+  
   <view class="comments-line">
-    <view class="comments-tag">评论{{comments.length}}</view>
+      <view class="comments-tag">
+        <l-tag plain="{{true}}" shape="circle" height="60">{{articleDetail.commentCount}}评论</l-tag>
+      </view>
   <view class="comments-right-tag"> 
     <l-icon name="comment" bindtap="toComment"/>
  </view>
   </view>
-  <view wx:if="{{comments.length === 0}}" >
+  <view wx:if="{{articleDetail.commentCount === 0}}" >
        <!-- 空评论 -->
        <van-empty description="留下您的足迹吧^_^" image="/images/empty.png">
           
@@ -152,7 +192,8 @@ style="margin-top:300px;"
   </l-card>
   </view>
   <!-- 评论展示区结束 -->
-
+  <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
+  </l-loadmore>
 </l-skeleton>
 
 

@@ -6,7 +6,11 @@
     "l-search-bar":"../../lin-ui/dist/search-bar/index",
     "l-skeleton":"../../lin-ui/dist/skeleton/index",
     "l-popup":"../../lin-ui/dist/popup/index",
-    "l-list":"../../lin-ui/dist/list/index"
+    "l-list":"../../lin-ui/dist/list/index",
+    "l-card":"../../lin-ui/dist/card/index",
+    "l-tag":"../../lin-ui/dist/tag/index",
+    "l-icon":"../../lin-ui/dist/icon/index",
+    "l-toast":"../../lin-ui/dist/toast/index"
 
   }
 }

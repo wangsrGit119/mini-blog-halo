@@ -5,6 +5,9 @@
   "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
   "l-tab-bar":"../../lin-ui/dist/tab-bar/index",
   "l-segment":"../../lin-ui/dist/segment/index",
-  "l-segment-item":"../../lin-ui/dist/segment-item/index"
+  "l-segment-item":"../../lin-ui/dist/segment-item/index",
+  "l-card":"../../lin-ui/dist/card/index",
+  "l-tag":"../../lin-ui/dist/tag/index",
+  "l-icon":"../../lin-ui/dist/icon/index"
   }
 }

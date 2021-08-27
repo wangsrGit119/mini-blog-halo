@@ -6,7 +6,7 @@ const app = getApp()
 Page({
   data: {
     swiperIndex:0,
-    swiperHeight:170,
+    swiperHeight:130,
     postersShow:false,//海报弹窗
     imgSuccess:true,//海报制作是否成功
     userInfo: {},
@@ -182,7 +182,7 @@ onShareTimeline(){
   initParams(){
     this.setData({
       page:0,
-      pageSize:5,
+      pageSize:10,
       articleList:[],
     })
   },
@@ -207,6 +207,9 @@ onShareTimeline(){
   // load  lastest  article
   loadLastestArticles(){
     const that = this;
+    wx.showLoading({	
+      title: '加载中',
+    })
     const page = that.data.page;
     const size = that.data.pageSize;
     const sort1 = "topPriority,desc";
@@ -223,9 +226,11 @@ onShareTimeline(){
         }else{
           console.log("数据加载异常")
         }
+        wx.hideLoading()
       },
       fail: function (res) {
         console.log("请求异常",res)
+        wx.hideLoading()
       }
     })
   },
@@ -282,6 +287,4 @@ onShareTimeline(){
     }
   },
 
- 
-  
 })

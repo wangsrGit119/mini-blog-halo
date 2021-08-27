@@ -133,7 +133,6 @@ Page({
   // 文章列表追加
   appendArticleList(resList){
     let allPageArticleList = this.data.articleList;
-    console.log("reslist",resList.length)
     if (resList.length < this.data.pageSize || resList.length ==0) {
       this.setData({
         articleList: allPageArticleList.concat(resList),

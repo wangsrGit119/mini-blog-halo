@@ -9,7 +9,8 @@
     "l-toast":"../../lin-ui/dist/toast/index",
     "towxml":"../../towxml/towxml",
     "l-popup":"../../lin-ui/dist/popup/index",
-    "l-loading":"../../lin-ui/dist/loading/index"
+    "l-loading":"../../lin-ui/dist/loading/index",
+    "l-loadmore":"../../lin-ui/dist/loadmore/index"
 
 
 

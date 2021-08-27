@@ -25,93 +25,72 @@ page{
 
 }
 
-/* article list page */
-.a-com{
-  margin-left: 9rpx;
-  margin-right: 9rpx;
-  background-color: rgb(252, 252, 252) ;
-  /* border: 1px red solid; */
-  height: 200px;
-  margin-top:5px;
-  margin-bottom: 5px;
-  padding-top: 5rpx;
-  padding-bottom: 9rpx;
-  /* 阴影效果 */
-  /* box-shadow: 7px 7px 3px #c0bbbb; */
+.container-outer{
+  margin: 10px;
+  margin-bottom: 100px;
 }
 
-
-
-.a-com .article-cover{
-  margin:7px;
-  transform: scale(0.97,1);
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 145px;
+.card {
+  margin: 10rpx auto !important;
   position: relative;
 }
-.a-com .footer-summary{
-  font-size: xx-small;
-}
-.a-com .article-cover text {
-  font-size:13px;
-  position: absolute;
-  bottom: 10px;
-  left: 5px;
-  bottom: 5px;
-  color:white;
-}
-.a-com .article-cover .article-tag{
- position: absolute;
- padding-left: 3px ;
- font-size: 24rpx;
- border-top-left-radius: 15%;
- border-bottom-left-radius: 15%;
- color: white;
- top:5rpx;
- right:5rpx;
- /* background-color: rgb(41, 138, 230); */
- z-index: 999;
-}
-.a-com .article-footer{
-  margin:5px;
-  display: flex;
-  flex-direction: row;
-}
-.a-com.article-footer .footer-nk-time{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
- 
+
+.img-card {
+  height: 180rpx !important;
+  width: 220rpx !important;
+  border-radius: 12rpx !important;
 }
 
-.a-com .article-footer .footer-nk-time .footer-text{
-  font-size: 12px;
-  margin:5px;
+
+/* 图片另一侧整体 */
+.right-content{
+  position: relative;
+  padding-top: 19px;
+  height: 100%;
 }
-.a-com .article-footer .footer-nk-time .nickname{
-  color: rgb(113, 140, 163);
+
+
+/* 内容 */
+.avter-content {
+  margin-top: 10rpx;
+  color: #333;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
-.a-com .article-footer .footer-nk-time .time{
-  color: grey;
-  font-weight: lighter;
-  font-family: 'CUSTOM_FONT_T_02';
+
+/* 右上角标签 */
+.right-top-tag-container{
+  position: absolute;
+  right: 0;
+  top: 0;
 }
-.a-com .article-footer .fonter-num-count{
-  flex-grow: 1;
-  height:40px;
-  padding: 0px;
+
+
+/* 右侧文章阅读点赞标签 */
+.right-content-share{
+  position: absolute;
+  bottom: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-end;
-  font-size: 12px;
-  font-weight: lighter;
-
 }
-.a-com .article-footer .fonter-num-count .visits,.likes,.commentCount,.wordCount{
+
+
+
+.like-container{
   display: flex;
-  margin-left: 10rpx;
   flex-direction: row;
-  font-weight: lighter;
-} 
+  margin-left: 10rpx;
+  align-items: center
+}
+
+.number{
+  color: #666;
+  font-size: 24rpx;
+  margin-left: 12rpx;
+}

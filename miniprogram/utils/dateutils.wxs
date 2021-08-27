@@ -52,7 +52,9 @@ var timesString = '';
 
 if(yearDiff > 0){
   timesString = yearDiff + '年前';
-}else if (dayDiff != 0) {
+}else if (dayDiff != 0 && dayDiff >= 150) {
+    timesString =  '半年前';
+} else if (dayDiff != 0) {
     timesString = dayDiff + '天前';
 } else if (dayDiff == 0 && hours != 0) {
     timesString = hours + '小时前';

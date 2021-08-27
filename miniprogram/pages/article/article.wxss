@@ -1,5 +1,11 @@
 /* miniprogram/pages/article/article.wxss */
 
+page{
+  background-attachment: fixed;
+  background-color: #F7F7F7;
+  background-size: cover; 
+ }
+
 .l-cu-outer-skeleton{
   margin-top: 100px;
 }
@@ -13,32 +19,64 @@
   text-align: center;
 }
 
+
+.card {
+  margin: 10rpx auto !important;
+}
+
+.right-card {
+  height: 180rpx !important;
+  width: 220rpx !important;
+  border-radius: 12rpx !important;
+}
+
+
+
+.avter-content {
+  color: #333;
+  font-size: 26rpx;
+}
+
+.avter-share-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.like-container{
+  display: flex;
+  flex-direction: row;
+  margin-left: 40rpx;
+  align-items: center
+}
+
+.number{
+  color: #666;
+  font-size: 24rpx;
+  margin-left: 12rpx;
+}
+
+
 /* 评论卡片 */
 
 .comments-line{
   display: flex;
   flex-direction: row;
   position: relative;
+  background-color: #ffffff;
+  padding: 10px;
+  z-index: -999;
 }
 .comments-tag{
-  font-family: 'CUSTOM_FONT_T_01';
-  margin-top: 60rpx;
-  margin-bottom: 40rpx ;
   border-bottom: 1px rgb(238, 233, 233) solid;
-  
 }
 
 .comments-right-tag{
-  margin-top: 60rpx;
-  margin-bottom: 40rpx ;
-  font-family: 'CUSTOM_FONT_T_01';
-  position: absolute;
-  right: 40rpx;
+   position: absolute;
+   right: 40rpx;
 }
 
-/* .card{
-  border:1px blue solid;
-} */
+
 .img-card{
   border-radius: 3%;
   /* border: 1px blue solid; */

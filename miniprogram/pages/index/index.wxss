@@ -8,16 +8,16 @@
 }
 
 page{
-  /* background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/emile-seguin-R9OueKOtGGU-unsplash.jpg); */
   background-attachment: fixed;
-  background-color: #F3F5F7;
+  background-color: #F7F7F7;
   background-size: cover; 
  }
 
 .container-outer{
 
-  margin: 0rpx;
-  margin-bottom: 50px;
+  margin: 10px;
+  margin-bottom: 100px;
+  
 
 }
 
@@ -73,15 +73,9 @@ image.quiet {
   bottom:18px;
 }
 
-/* new */
-.forNew{
-  background-color: white;  
-  margin-left: 4px;
-  margin-right: 4px;
-  
+.l-list-header{
+  background-color: #ffffff;
 }
-
-
 /* 制作海报 */
 .posters{
   position: fixed;
@@ -107,112 +101,85 @@ image.quiet {
 }
 
 
-/* 简约版列表渲染 */
-.article-card {
-  background-color: white;
-  height: 120px;
-  margin-left: 7px;
-  margin-right: 7px;
-  /* border: 1px blue solid; */
-  margin-bottom: 25rpx;
-  margin-top: 10rpx;
+
+/* 重做首页 */
+
+
+.card {
+  margin: 10rpx auto !important;
   position: relative;
-  border-radius: 5px;
-  z-index: 10;
 }
-.topPriority{
-  position: absolute;
-  top: 0px;
-  right: 5px;
-}
-.left{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 102px;
-  /* border: 1px blue solid; */
-}
-.article-card .left image{
-  width: 75px;
-  height: 65px;
-  object-fit: contain;
-}
-.right{
-  height: 102px;
-  /* border: 1px rgb(255, 0, 200) solid; */
+
+.img-card {
+  height: 180rpx !important;
+  width: 220rpx !important;
+  border-radius: 12rpx !important;
 }
 
 
-.article-card  .title {
-  margin-top: 23px;
-  margin-bottom: 10px;
-  /* font-weight: bold; */
-  letter-spacing:1.5px;
-  font-size: 33rpx;
+/* 图片另一侧整体 */
+.right-content{
+  position: relative;
+  padding-top: 19px;
+  height: 100%;
+}
+
+
+/* 内容 */
+.avter-content {
+  margin-top: 10rpx;
+  color: #333;
+  font-size: 26rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1;/*想省略几行就写几*/
-  -webkit-box-orient: vertical;  
-
-}
-
-.article-card  .article-desc{
-  margin-right: 10px;
-  color: rgb(182, 180, 180);
-  font-size:24rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;/*想省略几行就写几*/
   -webkit-box-orient: vertical;
-  
+  -webkit-line-clamp: 2;
 }
-.article-card .categories{
-  background-color: gray;
-  /* color: blue; */
-}
-.article-card  .bottom-item{
-  width: 70%;
+
+/* 右上角标签 */
+.right-top-tag-container{
   position: absolute;
-  bottom: 2px;
-  left: 10px;
+  right: 0;
+  top: 0;
+}
+
+/* 左上角标签 */
+.left-top-tag-container{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* 右侧文章阅读点赞标签 */
+.right-content-share{
+  position: absolute;
+  bottom: 0;
+  right: 0;
   display: flex;
-  font-weight: lighter;
   flex-direction: row;
-  justify-content: space-between;
-  font-size: xx-small;
-  
+  justify-content: flex-end;
 }
-.article-card .a-details{
+
+/* 左侧文章阅读点赞标签 */
+.left-content-share{
   position: absolute;
-  bottom: 0px;
-  right: 10px;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
-.a-time,.visits,.likes,.commentCount,.a-details{
-  /* font-family: 'CUSTOM_FONT_T_01'; */
-  font-weight: lighter;
-  color: rgb(182, 180, 180);
+
+.like-container{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10rpx;
+  align-items: center
 }
-/*
 
-
-.article-card .middle .time {
-  width: 99%;
+.number{
+  color: #666;
   font-size: 24rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 380; 
+  margin-left: 12rpx;
 }
-
-.article-card .middle .time .visits,.likes,.commentCount,.wordCount{
- 
-  font-size: 28rpx;
-  display: flex;
-  flex-direction: row;
-}  */
-
-
