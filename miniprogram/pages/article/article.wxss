@@ -65,7 +65,7 @@ page{
   position: relative;
   background-color: #ffffff;
   padding: 10px;
-  z-index: -999;
+  /* z-index: -1; */
 }
 .comments-tag{
   border-bottom: 1px rgb(238, 233, 233) solid;

@@ -10,48 +10,7 @@ Page({
     list:app.list,// 自定义tabbar
     capsuleBarHeight:app.capsuleBarHeight,
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
-    demo:[{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-        },{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-          count: '888',
-          delCount: '666'
-        },{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-          count: '888',
-          delCount: '666'
-        },{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-          count: '888',
-          delCount: '666'
-        },{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-          count: '888',
-          delCount: '666'
-        },{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-          count: '888',
-          delCount: '666'
-        },{
-          image: 'https://www.wangsrbus.cn/wangsr-font/bg_images/photo-1543497415-75c0a27177c0.jpeg',
-          title: '显瘦中长款系带风衣',
-          describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-          count: '888',
-          delCount: '666'
-        }],
-        allImages:[],
+   allImages:[],
   },
 
   /**

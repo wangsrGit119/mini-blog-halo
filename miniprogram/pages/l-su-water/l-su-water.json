@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "l-card":"../../lin-ui/dist/card/index",
-    "l-price":"../../lin-ui/dist/price/index"
-  }
-}

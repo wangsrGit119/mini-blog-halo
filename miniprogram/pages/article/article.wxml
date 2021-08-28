@@ -73,7 +73,7 @@ locked="{{true}}"
            <!--文章详情结束  -->
         </view>
         <view class="avter-share-container">
-          <view class="like-container">
+              <view class="like-container">
                <l-icon name="default" color="#666" size="28" />
                    <view class="number">
                    {{articleDetail.wordCount +' 字'}}
@@ -92,6 +92,7 @@ locked="{{true}}"
                 bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
+                bind:lintap="saveArticle"
                 size="large">
                 + 收藏
         </l-tag>
@@ -122,7 +123,7 @@ style="margin-top:300px;"
         <l-tag plain="{{true}}" shape="circle" height="60">{{articleDetail.commentCount}}评论</l-tag>
       </view>
   <view class="comments-right-tag"> 
-    <l-icon name="comment" bindtap="toComment"/>
+    <l-tag plain="{{true}}" shape="circle" height="60" icon-size="20" icon="comment" bind:lintap="toComment"	>评论</l-tag>
  </view>
   </view>
   <view wx:if="{{articleDetail.commentCount === 0}}" >

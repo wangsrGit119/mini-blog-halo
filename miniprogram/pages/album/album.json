@@ -6,7 +6,7 @@
     "l-search-bar":"../../lin-ui/dist/search-bar/index",
     "l-skeleton":"../../lin-ui/dist/skeleton/index",
     "l-toast":"../../lin-ui/dist/toast/index",
-    "l-su-water":"../l-su-water/l-su-water",
+    "l-photo-water":"../l-photo-water/l-photo-water",
     "l-water-flow":"../../lin-ui/dist/water-flow/index"
 
   }

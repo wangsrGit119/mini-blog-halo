@@ -3,6 +3,8 @@ import Card from '../card';
 import Toast from '../../components/vant/components/dist/toast/toast';
 
 const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 
 Page({
 
@@ -421,5 +423,65 @@ onShareAppMessage: function (res) {
         wx.hideLoading()
       }
     })
-  }
+  },
+  // 收藏文章
+  saveArticle(){
+     const data = this.data.articleDetail;
+     this.queryArticleRecordFromCloud(data.id)
+    
+  },
+  //数据入库
+  collectArticle(){
+    const data = this.data.articleDetail;
+    db.collection(app.globalData.myCollectArticle).add({
+      data:{
+        date:db.serverDate(),
+        articleId:data.id,
+        formatContent:data.formatContent,
+        title: data.title,
+        thumbnail:data.thumbnail,
+        createTime:data.createTime,//文章发表时间
+        desc: null
+      }
+    }).then(res=>{
+     console.log(res)
+      Toast.success("已收藏")
+      
+    }).catch(err=>{
+      //保存异常
+      console.error(err)
+      Toast.fail("收藏失败")
+    })
+  },
+ 
+  // 获取文章根据用户信息和当前文章信息
+  queryArticleRecordFromCloud(articleId){
+      const that = this;
+      // 调用云函数获取openID
+      wx.cloud.callFunction({
+        name: 'login',
+        data: {},
+        success: res => {
+            let openID =  res.result.openid
+            db.collection(app.globalData.myCollectArticle)
+                .where({
+                  _openid: openID,
+                  articleId:articleId,
+                })
+                .get()
+                .then(res=>{
+                  console.log(res)
+                  if(res.data.length >0){
+                    Toast.fail("文章已收藏过")
+                  }else{
+                    that.collectArticle()
+                  }
+              })
+        },
+        fail: err => {
+          console.error('[云函数] [login] 调用失败', err)
+        }
+      })
+  },
+
 })

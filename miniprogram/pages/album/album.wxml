@@ -20,4 +20,4 @@ bg-color="transparent">
 />
 
 <!-- 加载成功与否提示 -->
-<l-water-flow generic:l-water-flow-item="l-su-water"/>
+<l-water-flow generic:l-water-flow-item="l-photo-water"/>

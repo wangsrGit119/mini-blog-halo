@@ -30,6 +30,8 @@ page{
   margin-bottom: 100px;
 }
 
+
+
 .card {
   margin: 10rpx auto !important;
   position: relative;

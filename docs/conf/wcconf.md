@@ -14,7 +14,10 @@
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"SUKE'S SHARE",//自定义title
       shareName:'suke的个人博客',//小程序分享名称
-      userInfo:undefined,//登录用户信息储存处
+      userInfo:undefined,//登录用户信息储存处 临时变量
+      admin_token: undefined,//临时 token undefined 临时变量
+      authorInfo:undefined,//作者信息 临时变量
+      myCollectArticle:'myCollectArticle',//云数据库 存放收藏文章
     }
 ```
    - `baseUrl`：基础的API（halo博客的）
@@ -22,13 +25,23 @@
    - `index_bg_image_url`：首页bar背景图片
    - `title` ： 首页展示的标题
    - `shareName`: 朋友圈分享的名称
-   - `userInfo`:基础用户信息，`无需配置`
+   - `userInfo`: 基础用户信息，`无需配置`
+   - `admin_token` : `无需配置`
+   - `authorInfo`: `无需配置`
+   - `myCollectArticle`: 微信小程序`云数据库中需要创建的collect`
 
+
+----
+
+# 云函数配置
+
+> **云函数总共有三个需要在云端安装** ： `login` :用于登录 , `msgseccheck`：敏感词校验 , `login-halo`：halo后台一键登录
 
 ## **云函数环境配置①**
  
  > **重要，不配置则小程序无法评论**（因为用到了云函数所以需要在开发控制台[开通云开发](https://mp.weixin.qq.com/wxamp/clouddevelopment/index)，并在app.js配置云环境ID）
  > 云端安装部署`msgseccheck` 云函数
+ > 
  
 ```
  wx.cloud.init({
