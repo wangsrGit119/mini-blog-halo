@@ -1,0 +1,8 @@
+<l-card full type="cover" style="background-color:red;" image="{{data.thumbnail}}" title="{{'#'+data.name}}" l-class="life-container" l-img-class="life-img" l-title-class="life-title" bindtap="scanImage" data-url="{{data.image}}">
+  <view class='life-product-contianer'>
+    <view class='art-content'>{{data.description}}</view>
+    <view class='price-container'>
+      <!-- <van-tag type="warning" >{{data.type}}</van-tag> -->
+    </view>
+  </view>
+</l-card>

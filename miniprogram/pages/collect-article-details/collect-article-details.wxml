@@ -1,0 +1,48 @@
+<!--miniprogram/pages/collect-article-details/collect-article-details.wxml-->
+<import src="../../components/towxml/entry.wxml"/>
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<!-- bar -->
+<l-capsule-bar 
+bind:linlefttap="onClickLeft"
+home-page="/pages/index/index"
+capsule-color="white"
+title="文章详情" 
+bg-color="#ffffff">
+</l-capsule-bar>
+
+
+<!-- 文章和评论 -->
+
+ <!-- 文章 -->
+ <l-card wx:if="{{articleDetail.createTime}}" type="avatar" l-class="card" image="{{authorInfo.avatar}}"
+    title="{{authorInfo.nickname}}" describe="{{dateutils.dateTransfer(articleDetail.createTime)}}">
+        <!-- 此处为文章详情 -->
+        <view class="avter-content">
+              <!-- 标题 -->
+              <view class="article-title">
+                {{articleDetail.title}}
+              </view>
+              <!-- 封面 -->
+              <van-image fit="cover" width="85vw"  height="150" src="{{articleDetail.thumbnail}}" />
+               
+           <!--文章详情结束  -->
+        </view>
+       
+        <l-tag  shape="circle" 
+                bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                bind:lintap="saveArticle"
+                size="large">
+                已收藏
+        </l-tag>
+  </l-card>
+
+ <!-- 正文 -->
+ <view style="user-select: text;">
+    <towxml width="100vw" nodes="{{articleDetail.content}}"/>
+ </view>
+

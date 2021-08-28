@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
+    "l-skeleton":"../../lin-ui/dist/skeleton/index",
+    "l-card":"../../lin-ui/dist/card/index",
+    "l-icon":"../../lin-ui/dist/icon/index",
+    "l-tag":"../../lin-ui/dist/tag/index",
+    "l-input":"../../lin-ui/dist/input/index",
+    "l-toast":"../../lin-ui/dist/toast/index",
+    "towxml":"../../towxml/towxml",
+    "l-popup":"../../lin-ui/dist/popup/index",
+    "l-loading":"../../lin-ui/dist/loading/index",
+    "l-loadmore":"../../lin-ui/dist/loadmore/index"
+
+  }
+}

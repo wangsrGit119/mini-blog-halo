@@ -1,0 +1,59 @@
+<!--miniprogram/pages/collection/collection.wxml-->
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+
+<!-- 轻提示 -->
+<van-toast id="van-toast" />
+<!-- bar -->
+<l-capsule-bar 
+bind:linlefttap="onClickLeft"
+home-page="/pages/index/index"
+capsule-color="white" 
+title="我的收藏"
+bg-color="#ffffff">
+</l-capsule-bar>
+
+
+ <!-- 容器开始 start -->
+ <view  class="container-outer">
+        <div  wx:for="{{collectionList}}" wx:for-item="item" wx:key="index">
+        <!-- 卡片图片位置在左 -->
+        <l-card  type="primary" 
+                l-img-class="img-card" 
+                position="left"
+                l-class="card"
+                full
+                image="{{item.thumbnail}}">
+                <!-- 封面右侧全局 -->
+                <view class="right-content">
+                    <view class="avter-content">
+                      {{item.title}}
+                    </view>
+                </view>
+                <view class="right-content-share">
+                   <view class="like-container">
+                    <l-tag 
+                      plain="{{true}}" 
+                      shape="circle" 
+                      height="40" 
+                      icon-size="20" 
+                      icon="history"
+                      data-article-id="{{item.articleId}}"
+                      bind:lintap="toCollectArticleDetail"	>查看详情</l-tag>
+                    </view>
+                    <view class="like-container">
+                    <l-tag 
+                      plain="{{true}}" 
+                      shape="circle" 
+                      height="40" 
+                      icon-size="20"
+                      font-color="red" 
+                      icon="delete"
+                      data-item="{{item}}"
+                      bind:lintap="removeFromCloudDB"	>移除</l-tag>
+                    </view>
+                 </view>
+            </l-card>
+        </div>
+</view>
+<!-- end -->
+

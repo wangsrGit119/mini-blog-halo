@@ -1,0 +1,74 @@
+/* miniprogram/pages/collection/collection.wxss */
+
+page{
+  background-attachment: fixed;
+  background-color: #F7F7F7;
+  background-size: cover; 
+ }
+
+.container-outer{
+  margin: 10px;
+  margin-bottom: 100px;
+}
+
+
+
+.card {
+  margin: 10rpx auto !important;
+  position: relative;
+}
+
+.img-card {
+  height: 160rpx !important;
+  width: 160rpx !important;
+  border-radius: 12rpx !important;
+}
+
+
+/* 图片另一侧整体 */
+.right-content{
+  position: relative;
+  padding-top: 10px;
+  height: 100%;
+}
+
+
+/* 内容 */
+.avter-content {
+  margin-top: 10rpx;
+  color: #333;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* 右上角标签 */
+.right-top-tag-container{
+  position: absolute;
+  right: 0;
+  top: 0;
+  border:1px red solid;
+}
+
+
+/* 右侧文章阅读点赞标签 */
+.right-content-share{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+
+
+.like-container{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10rpx;
+  align-items: center
+}

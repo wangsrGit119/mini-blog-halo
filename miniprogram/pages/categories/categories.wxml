@@ -1,0 +1,20 @@
+<!--miniprogram/pages/categories/categories.wxml-->
+<l-capsule-bar 
+hidden-capsule
+title="分类"
+capsule-color="white" 
+bg-color="#ffffff">
+</l-capsule-bar>
+<!-- 自定义tabbar -->
+<l-tab-bar list="{{list}}" />
+
+<van-search
+  clearable
+  value=""
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+
+<!-- 加载成功与否提示 -->
+<l-water-flow generic:l-water-flow-item="l-article-water"/>
