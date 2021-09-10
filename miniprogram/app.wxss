@@ -16,13 +16,14 @@
 }
 
 
-@font-face {
-  font-family: 'CUSTOM_FONT_T_01';
-  src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2021032601fangzhengziji_xingkaijianti.ttf');
-}
 
-@font-face {
-  font-family: 'CUSTOM_FONT_T_02';
-  src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2020032601jianghaoyingbikaishu.ttf');
-}
+/* vant-wxss */
 
+@import 'components/vant/components/dist/common/index.wxss';
+
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+}

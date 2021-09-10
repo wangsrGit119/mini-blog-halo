@@ -35,7 +35,7 @@ function dateTransfer (d) {
 
 function calculateTimeDistance(t){
 //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
-var dateBegin = getDate(t.replace("-", "/"));//将-转化为/，
+var dateBegin = getDate(t) ;//getDate(t.replace("-", "/"));//将-转化为/，
 var dateEnd = getDate();//获取当前时间
 var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
 var yearDiff =  Math.floor(dateDiff / (24 * 3600 * 1000*365));//计算相差年份

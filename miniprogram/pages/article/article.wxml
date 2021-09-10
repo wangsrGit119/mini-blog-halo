@@ -13,7 +13,12 @@ bg-color="#ffffff">
 </l-capsule-bar>
 
  <!-- 制作海报图标 -->
- <image class="posters"  bindtap="getUserProfile"	src="/images/posters.png" />
+
+<view class="action-user">
+  <l-icon name="like" bindtap="onLikeAction" data-id="{{articleDetail.id}}" color="#EA5455" size="40"/>
+  <l-icon name="comment" bindtap="toComment" color="#1D6FA3" size="40"/>
+  <l-icon name="share" bindtap="getUserProfile" color="#00EAFF"   size="40"/>
+</view>
 
 <!-- 海报弹出制作结果 -->
 <l-popup 
@@ -80,12 +85,16 @@ locked="{{true}}"
                    </view>
                </view>
                <view class="like-container">
-                  <l-icon name="eye" color="#666" size="28" />
-                   <view class="number">{{articleDetail.visits+' 阅读'}}</view>
+                  <l-icon name="default" color="#666" size="28" />
+                   <view class="number">{{articleDetail.visits+'阅读'}}</view>
+               </view>
+               <view class="like-container">
+                  <l-icon name="default" color="#666" size="28" />
+                   <view class="number">{{articleDetail.likes+'喜欢'}}</view>
                </view>
                <view   class="like-container">
                    <l-icon name="default" color="#666" size="28" />
-                   <view class="number">{{articleDetail.commentCount +' 评论'}}</view>
+                   <view class="number">{{articleDetail.commentCount+'评论'}}</view>
                </view>
         </view>
         <l-tag  shape="circle" 
@@ -142,7 +151,7 @@ style="margin-top:300px;"
         l-class="card" 
         image="{{item.avatar}}"
         title="{{item.author}}" 
-        describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}"
+        describe="{{dateutils.calculateTimeDistance((item.createTime))}}"
         >
         <!-- 内容  时间 回复 子评论  -->
         <view class="su-content">
@@ -170,7 +179,7 @@ style="margin-top:300px;"
                   full="{{true}}" 
                   image="{{child.avatar}}"
                   title="{{child.author}}" 
-                  describe="{{dateutils.calculateTimeDistance(dateutils.dateTransfer(child.createTime))}}"
+                  describe="{{dateutils.calculateTimeDistance((child.createTime))}}"
                   >
                   <view class="child-content">
                     <view class="child-content-middle" >{{child.content}}</view>

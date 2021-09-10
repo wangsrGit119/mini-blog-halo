@@ -1,13 +1,9 @@
 /* miniprogram/pages/admin/admin.wxss */
 
 /*自定义字体*/
-.su-font-family{
-  font-family: 'CUSTOM_FONT_T_01'; 
-   font-weight: bolder;
-}
+
 .topStatistic .num{
-  font-family: 'CUSTOM_FONT_T_01'; 
-  font-weight: bolder;
+  
   color: rgb(105, 128, 230);
 }
 

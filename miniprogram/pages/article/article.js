@@ -73,17 +73,6 @@ Page({
   onReady: function () {
 
   },
-//增加分享屏幕
-onShareAppMessage: function (res) {
-  if (res.from === 'button') {
-    // 来自页面内转发按钮
-    console.log(res.target)
-  }
-  return {
-    title: app.globalData.shareName,
-    path: '/pages/index/index'
-  }
-},
   /**
    * 生命周期函数--监听页面显示
    */
@@ -123,7 +112,20 @@ onShareAppMessage: function (res) {
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let articleDetail = this.data.articleDetail;
+    let path = '/pages/article/article?articleId=' + articleDetail.id+'&status='+articleDetail.status+'&password='+articleDetail.password;
+    return {
+      title: articleDetail.title,
+      path: path
+    }
+  },
+  onShareTimeline(){
+    let articleDetail = this.data.articleDetail;
+    let path = '/pages/article/article?articleId=' + articleDetail.id+'&status='+articleDetail.status+'&password='+articleDetail.password;
+    return {
+      title: articleDetail.title,
+      path: path
+    }
   },
   showMyToast(title,type){
     if(type === 'success'){
@@ -152,7 +154,6 @@ onShareAppMessage: function (res) {
   },
   // 监听密码输入
   onChangingPwd(e){
-    console.log(e)
     this.setData({
       inputPwd:e.detail.value
     })
@@ -264,7 +265,6 @@ onShareAppMessage: function (res) {
       wx.getUserProfile({
         desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: (res) => {
-          console.log(res)
           app.globalData.userInfo = res.userInfo;
           this.setData({
             avatarUrl: res.userInfo.avatarUrl,
@@ -286,7 +286,6 @@ onShareAppMessage: function (res) {
       url: app.globalData.baseUrl + '/content/posts/'+postId+'/comments/tree_view?api_access_key='+app.globalData.api_access_key,
       method: 'GET',
       success: function (res) {
-        console.log("comment",res)
         if(res.data.status == 200){
           that.setData({
             comments:res.data.data.content
@@ -295,6 +294,30 @@ onShareAppMessage: function (res) {
       },
       fail: function (res) {
         console.log("请求异常",res)
+      }
+    })
+  },
+  //点赞喜欢
+  onLikeAction(e){
+    const that = this;
+    const id = e.currentTarget.dataset.id;
+    wx.request({
+      url:  app.globalData.baseUrl + '/content/posts/'+id+'/likes?api_access_key='+app.globalData.api_access_key,
+      method:'POST',
+      success:function(res){
+        console.log(res)
+        if(res.data.status == 200){
+          wx.showToast({
+            title: '谢谢厚爱',
+            icon:'none'
+          })
+        }
+      },
+      fail:function(err){
+        wx.showToast({
+          title: '点赞失败',
+          icon:'none'
+        })
       }
     })
   },
@@ -454,7 +477,7 @@ onShareAppMessage: function (res) {
     })
   },
  
-  // 获取文章根据用户信息和当前文章信息
+  // 查询是否收藏
   queryArticleRecordFromCloud(articleId){
       const that = this;
       // 调用云函数获取openID

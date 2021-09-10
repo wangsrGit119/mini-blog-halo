@@ -1,0 +1,72 @@
+<!--miniprogram/pages/edit-journal/edit-journal.wxml-->
+<import src="../../components/towxml/entry.wxml"/>
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
+
+<l-capsule-bar 
+bind:linlefttap="onClickLeft"
+title="日志管理"
+disable-back	
+home-page="/pages/mine/mine"
+capsule-color="white" 
+bg-color="#FFFFFF">
+</l-capsule-bar>
+
+<!--日志发布弹框 -->
+<l-popup show="{{showJournalPop}}" locked="{{true}}"  animation="right" > 
+
+    <view class="pop-form-outer">
+    <view class="pop-title">随笔发布</view>
+        <l-form name="journal" l-form-btn-class="l-form-btn-class" l-form-container-class="l-form-container-class"	>
+            <l-textarea indicator="{{true}}" bind:lininput="inputJournalContent" value="{{journal.content}}" hide-label maxlength="500" auto-height="{{true}}"  placeholder="写下你的想法吧..."  />
+        
+            <view slot="submit">
+                <l-button type="success" bindtap="submitContent">发布</l-button>
+            </view>
+            <view slot="reset">
+                <l-button type="default" bindtap="cancelPub" plain>取消</l-button>
+            </view>
+        </l-form>
+    </view>
+ 
+
+</l-popup>
+
+
+<!-- 发布按钮 -->
+<image class="edit-journal"  bindtap="showEditJournalDialog"	src="/images/journal.png" />
+
+
+<!-- 列表渲染 -->
+<div wx:for="{{articleList}}" wx:key="index" >
+
+<!-- avatar -->
+<l-card type="avatar" l-class="card" image="{{authorInfo.avatar}}"
+    title="{{authorInfo.nickname}}" describe="{{dateutils.dateTransfer(item.createTime)}}">
+        <!-- 此处为content -->
+        <view class="avter-content">
+         {{item.sourceContent}}
+        </view>
+        <view class="avter-share-container">
+        <view class="like-container">
+            <l-icon name="like" color="#666" size="28" />
+            <view class="number">{{item.likes+' 喜欢'}}</view>
+        </view>
+        <view class="like-container">
+            <l-icon name="default" color="#666" size="28" />
+            <view class="number">{{item.commentCount+' 评论'}}</view>
+        </view>
+        </view>
+        <l-tag  shape="circle" 
+                bg-color="#f3f3f3" 
+                font-color="red" 
+                slot="more"
+                bindtap="deleteJournal"
+                data-item-id="{{item.id}}"
+                size="large">
+                删除
+        </l-tag>
+  </l-card>
+
+</div>
+
+ 

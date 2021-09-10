@@ -13,16 +13,16 @@ Page({
     page:0,
     pageSize:30,
     journalList:[],//所有日志
-    steps: [
-      
-    ],
+    authorInfo:{},//作者信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      authorInfo:app.globalData.authorInfo
+    })
   },
 
   /**
@@ -73,21 +73,13 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //增加分享屏幕
-  onShareAppMessage: function (res) {
-  if (res.from === 'button') {
-    // 来自页面内转发按钮
-    console.log(res.target)
-  }
-  return {
-    title: app.globalData.shareName,
-    path: '/pages/index/index'
-  }
-},
   listPageJournal(){
     const that = this;
     that.setData({
       journalList:[]
+    })
+    wx.showLoading({	
+      title: '加载中',
     })
     const page = that.data.page;
     const size = that.data.pageSize;
@@ -96,6 +88,7 @@ Page({
       url: app.globalData.baseUrl + '/content/journals?api_access_key='+app.globalData.api_access_key+'&page='+page+'&size='+size+'&sort='+sort,
       method: 'GET',
       success: function (res) {
+        wx.hideLoading()
         if (res.data.status == 200) {
           let list = res.data.data.content;
           // let temp = [];
@@ -122,8 +115,36 @@ Page({
         }
       },
       fail: function (res) {
+        wx.hideLoading()
         console.log("请求异常",res)
       }
     })
-  }
+  },
+
+  //点赞喜欢
+  onLikeAction(e){
+    const that = this;
+    console.log(e)
+    const id = e.currentTarget.dataset.id;
+    wx.request({
+      url:  app.globalData.baseUrl + '/content/journals/'+id+'/likes?api_access_key='+app.globalData.api_access_key,
+      method:'POST',
+      success:function(res){
+        console.log(res)
+        if(res.data.status == 200){
+          wx.showToast({
+            title: '谢谢厚爱',
+            icon:'none'
+          })
+          that.listPageJournal();
+        }
+      },
+      fail:function(err){
+        wx.showToast({
+          title: '点赞失败',
+          icon:'none'
+        })
+      }
+    })
+  },
 })

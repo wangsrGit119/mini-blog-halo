@@ -73,7 +73,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+      let articleDetail = this.data.articleDetail;
+      let path = '/pages/article/article?articleId=' + articleDetail.id+'&status='+articleDetail.status+'&password='+articleDetail.password;
+      return {
+        title: articleDetail.title,
+        path: path
+      }
   },
    // 获取文章根据用户信息和当前文章信息
    queryArticleRecordFromCloud(articleId){

@@ -12,7 +12,8 @@
     "pages/l-article-water/l-article-water",
     "pages/categories/categories",
     "pages/collection/collection",
-    "pages/collect-article-details/collect-article-details"
+    "pages/collect-article-details/collect-article-details",
+    "pages/edit-journal/edit-journal"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

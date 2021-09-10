@@ -18,7 +18,7 @@ bg-color="#ffffff">
 <van-dialog id="van-dialog"	 />
 
  <!-- 制作海报图标 -->
- <image class="posters"  bindtap="getUserProfile"	src="/images/GoodHealth.png" />
+ <image class="posters"  bindtap="getUserProfile"	src="/images/posters.png" />
 
 <!-- 海报弹出制作结果 -->
 <l-popup 
@@ -90,7 +90,7 @@ bg-color="#ffffff">
   <div  wx:for="{{articleList}}" wx:for-item="item" wx:key="index">
 
    <!-- 卡片图片位置在左 -->
-    <l-card wx:if="{{index % 8 == 0}}" type="primary" 
+    <l-card wx:if="{{index % 8 == 0 }}" type="primary" 
            l-img-class="img-card" 
            position="left"
            l-class="card"
@@ -98,7 +98,7 @@ bg-color="#ffffff">
            bindtap="toArticleDetail" data-article-item="{{item}}"
            image="{{item.thumbnail}}">
            <!-- 右上角标签 -->
-           <view wx:if="{{item.topPriority >0}}" class="right-top-tag-container">
+           <view wx:if="{{item.topPriority >0 }}" class="right-top-tag-container">
                     <l-tag  shape="circle"
                     bg-color="#f3f3f3" 
                     font-color="#3963BC" 
@@ -115,7 +115,7 @@ bg-color="#ffffff">
                  <view class="like-container">
                   <l-icon name="time" color="#666" size="28" />
                       <view class="number">
-                      {{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}
+                      {{dateutils.calculateTimeDistance((item.createTime))}}
                       </view>
                   </view>
                   <view class="like-container">
@@ -131,7 +131,7 @@ bg-color="#ffffff">
         </l-card>
 
     <!-- 卡片图片位置在右侧 -->
-    <l-card wx:if="{{index % 8 != 0}}" type="primary" 
+    <l-card wx:if="{{index % 8 != 0 }}" type="primary" 
            l-img-class="img-card" 
            position="right"
            l-class="card"
@@ -156,7 +156,7 @@ bg-color="#ffffff">
                 <view class="like-container">
                   <l-icon name="time" color="#666" size="28" />
                       <view class="number">
-                      {{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}
+                      {{dateutils.calculateTimeDistance((item.createTime))}}
                       </view>
                   </view>
                   <view class="like-container">
@@ -170,6 +170,8 @@ bg-color="#ffffff">
                 </view>
            </view>
         </l-card>
+
+    
 
   </div>
 

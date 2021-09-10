@@ -85,7 +85,7 @@ Page({
     //返回上一级
   onClickLeft(){
     wx.redirectTo({
-      url: 'pages/admin-manager/admin-manager',
+      url: '/pages/admin-manager/admin-manager',
     })
   },
   showMyToast(title,type){
@@ -130,22 +130,33 @@ Page({
     const that = this;
     const page = that.data.page;
     const size = that.data.pageSize;
+    wx.showLoading({		
+      title: '加载中',
+    })
     const sort1 = "createTime,desc";
     wx.request({
       url: app.globalData.baseUrl + '/admin/posts/comments?admin_token='+app.globalData.admin_token+'&page='+page+'&size='+size+'&sort='+sort1,
       method: 'GET',
       success: function (res) {
-        console.log(res)
+        wx.hideLoading()
         if(res.data.status == 200){
           that.setData({
             totalComment:res.data.data.total
           })
           that.appendArticleList(res.data.data.content)
         }else{
-          console.log("数据加载异常")
+          wx.showToast({
+            title: '数据加载异常',
+            icon:'none'
+          })
         }
       },
       fail: function (res) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '服务异常',
+          icon:'none'
+        })
         console.log("请求异常",res)
       }
     })

@@ -106,7 +106,10 @@ Page({
   },
   // 日记
   journalsManager(){
-    this.showMyToast('开发中','warn')
+    wx.navigateTo({
+      url: '/pages/edit-journal/edit-journal',
+    })
+    // this.showMyToast('开发中','warn')
   },
   // 相册
   albumManager(){
@@ -126,7 +129,6 @@ Page({
       url: app.globalData.baseUrl + '/admin/statistics/user?admin_token='+app.globalData.admin_token,
       method: 'GET',
       success: function (res) {
-        console.log(res);
         if(res.data.status == 200){
           that.setData({
             statistics:res.data.data,
