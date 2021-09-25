@@ -1,11 +1,7 @@
 /**index.wxss**/
 
 
-/*自定义字体*/
-.su-font-family{
-  font-family: 'CUSTOM_FONT_T_01'; 
-   font-weight: bolder;
-}
+
 
 page{
   background-attachment: fixed;
@@ -75,39 +71,23 @@ image.quiet {
 
 .l-list-header{
   background-color: #ffffff;
+  padding-left: 3px;
+  border-radius: 10px;
 }
-/* 制作海报 */
-.posters{
-  position: fixed;
-  margin: 0;
-  padding: 0;
-  bottom: 120px;
-  font-size: 30px;
-  right: 20px;
-  box-shadow:0px 0px 8px 4px rgb(180, 177, 177);
-  width: 30px;
-  height: 30px;
+
+.l-list-image-four{
+  padding: 5px;
+  background-color:#FFF6B7;
   border-radius: 50%;
-  z-index: 99999;
 }
 
-/* 关闭海报 */
-.closePosters{
-  padding-top: 20rpx;
-  font-size: 40rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content:space-around ;
-}
+/* 所有卡片总体样式 */
 
-
-
-/* 重做首页 */
-
-
+/* 文章 start */
 .card {
   margin: 10rpx auto !important;
   position: relative;
+  border-radius: 10px;
 }
 
 .img-card {
@@ -182,4 +162,32 @@ image.quiet {
   color: #666;
   font-size: 24rpx;
   margin-left: 12rpx;
+}
+/* 文章css  -end */
+
+
+
+
+/* 带头像卡片 */
+.avter-content {
+  margin-top: 10rpx;
+  color: #333;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 25;
+}
+
+.avter-share-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.coupons-number{
+  color: #666;
+  font-size: 24rpx;
+  margin-left: 12rpx;
+  color: #FA016D  ;
 }

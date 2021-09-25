@@ -57,3 +57,7 @@ bg-color="#ffffff">
 </view>
 <!-- end -->
 
+ <!-- ios底部留白专用 -->
+ <l-loadmore show="{{true}}" type="end" end-text="没有更多内容了哟~" loading-text="加载中~">
+           
+ </l-loadmore>

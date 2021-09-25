@@ -9,6 +9,7 @@
     "l-steps":"../../lin-ui/dist/steps/index",
     "l-step":"../../lin-ui/dist/step/index",
     "l-card":"../../lin-ui/dist/card/index",
-    "l-icon":"../../lin-ui/dist/icon/index"
+    "l-icon":"../../lin-ui/dist/icon/index",
+    "l-loadmore":"../../lin-ui/dist/loadmore/index"
   }
 }

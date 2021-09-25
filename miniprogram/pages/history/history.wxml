@@ -86,7 +86,7 @@ bg-color="#ffffff">
               <view class="like-container">
                <l-icon name="time" color="#666" size="28" />
                    <view class="number">
-                   {{dateutils.calculateTimeDistance(dateutils.dateTransfer(item.createTime))}}
+                   {{dateutils.calculateTimeDistance((item.createTime))}}
                    </view>
                </view>
                <view class="like-container">
@@ -105,7 +105,10 @@ bg-color="#ffffff">
 </view>
 <!-- end -->
 
-
+ <!-- ios底部留白专用 -->
+ <l-loadmore show="{{true}}" type="end" end-text="没有更多内容了哟~" loading-text="加载中~">
+           
+  </l-loadmore>
 
 
 

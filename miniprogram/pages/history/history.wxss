@@ -28,6 +28,7 @@ page{
 .container-outer{
   margin: 10px;
   margin-bottom: 100px;
+  
 }
 
 
@@ -35,6 +36,7 @@ page{
 .card {
   margin: 10rpx auto !important;
   position: relative;
+  border-radius: 10px;
 }
 
 .img-card {

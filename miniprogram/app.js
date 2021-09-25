@@ -16,7 +16,7 @@ App({
     },
     {
       pagePath:"/pages/journal/journal",
-      text:"日记",
+      text:"随笔",
       iconPath:"/images/journal.png",
       selectedIconPath:"/images/journal-active.png"
   },
@@ -49,14 +49,14 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        env: 'suke-blog-dev-xxx',
+        env: 'suke-blog-dev-3g5mwey7b0ffec16',
         traceUser: true,
       })
     }
 
     this.globalData = {
-      baseUrl: 'https://xxx.cn/api', //api
-      api_access_key:"xxx", //token
+      baseUrl: 'https://wangsrbus.cn/api', //api
+      api_access_key:"wangjianlong", //token
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"Hi,I'm suke",//自定义title
       shareName:'suke的个人博客',//小程序分享名称
@@ -64,6 +64,10 @@ App({
       admin_token: undefined,//临时 token undefined
       authorInfo:undefined,//作者信息
       myCollectArticle:'myCollectArticle',//云数据库 存放收藏文章
+       // 第三方
+       third_baseUrl_coupons:'https://www.ifaceai.com',//第三方优惠券接口
+       third_apikey_coupons:'615c42b2131211ecbbcb00163e02e3ed',
+       privateId_coupons:225,
     }
   }
 })

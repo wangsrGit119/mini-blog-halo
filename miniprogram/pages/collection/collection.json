@@ -10,6 +10,7 @@
     "l-card":"../../lin-ui/dist/card/index",
     "l-tag":"../../lin-ui/dist/tag/index",
     "l-icon":"../../lin-ui/dist/icon/index",
-    "l-toast":"../../lin-ui/dist/toast/index"
+    "l-toast":"../../lin-ui/dist/toast/index",
+    "l-loadmore":"../../lin-ui/dist/loadmore/index"
   }
 }

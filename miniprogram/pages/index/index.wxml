@@ -14,35 +14,10 @@ bg-color="#ffffff">
 <!-- 自定义tabbar -->
 <l-tab-bar list="{{list}}" />
 
+<!-- 弹出框 -->
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"	 />
 
- <!-- 制作海报图标 -->
- <image class="posters"  bindtap="getUserProfile"	src="/images/posters.png" />
-
-<!-- 海报弹出制作结果 -->
-<l-popup 
- locked="{{true}}"  
-   show="{{postersShow}}">
-  <painter 
-    customActionStyle="{{customActionStyle}}"
-    palette="{{paintPallette}}"
-    bind:imgOK="onImgOK" 
-    bind:touchEnd="touchEnd" 
-    action="{{action}}"
-    widthPixels="1000"
-  />
-  <!-- 加载提示 -->
-  <view hidden="{{!imgSuccess}}">
-    <van-loading   type="spinner" color="#1989fa" size="38px" /> 
-  </view>
-   <image hidden="{{imgSuccess}}" src="{{image}}" style="width: 654rpx; height: 900rpx; margin-left:40rpx;"/>
-  <!-- 关闭 -->
-   <view hidden="{{imgSuccess}}"  class="closePosters">
-     <van-icon bindtap="closePosters"	name="/images/Cartoon-Closed.png" />
-     <van-icon bindtap="saveImage"	name="/images/savePosters.png" />
-    </view>
-</l-popup>
 
 
 <!-- /* start */ -->
@@ -63,13 +38,19 @@ bg-color="#ffffff">
     </swiper>
   </view>
 
+
+  <official-account></official-account>
+
+
+
+<!-- 文章列表 -->
   <l-list 
     l-class="l-list-header"	
     title="最新文章" 
     icon="time"
-    right-desc="查看更多"	
-    link-type="switchTab"	
-    url="/pages/history/history"
+    l-class-image="l-list-image-four"
+    image="/images/article.png"
+    is-link="{{false}}"
      />
   <!-- 骨架屏 -->
 
@@ -83,7 +64,6 @@ bg-color="#ffffff">
   rows="3"
   active="{{false}}"
 >
-<!-- <official-account></official-account> -->
   
   <!-- 插槽内容 -->
 
@@ -101,7 +81,7 @@ bg-color="#ffffff">
            <view wx:if="{{item.topPriority >0 }}" class="right-top-tag-container">
                     <l-tag  shape="circle"
                     bg-color="#f3f3f3" 
-                    font-color="#3963BC" 
+                    font-color="#0396FF" 
                     size="mini">
                     置顶
                    </l-tag>
@@ -147,7 +127,7 @@ bg-color="#ffffff">
                     置顶
                    </l-tag>
               </view>
-            <!-- 封面右侧全局 -->
+            <!-- 封面左侧全局 -->
            <view class="right-content">
               <view class="avter-content">
                 {{item.title}}
@@ -171,10 +151,11 @@ bg-color="#ffffff">
            </view>
         </l-card>
 
-    
-
   </div>
-
+ <!-- ios底部留白专用 -->
+ <l-loadmore show="{{true}}" type="end" end-text="没有更多内容了哟~" loading-text="加载中~">
+           
+ </l-loadmore>
   
 </l-skeleton>
   

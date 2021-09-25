@@ -16,6 +16,7 @@ page{
 .card {
   margin: 10rpx auto !important;
   position: relative;
+  border-radius: 10px;
 }
 
 .img-card {

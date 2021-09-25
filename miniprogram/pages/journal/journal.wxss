@@ -3,10 +3,14 @@
 
 page{
   background-color: #F7F7F7;
+  padding: 10px;
 }
+
+
 
 .card {
   margin: 10rpx auto !important;
+  border-radius: 10px;
 }
 
 
