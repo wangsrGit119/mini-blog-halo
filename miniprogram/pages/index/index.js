@@ -266,37 +266,7 @@ onShareTimeline(){
     })
   },
   
-  // 跳转第三方小程序
-  to3Miniprogram(){
-   
-    const that = this;
-    let params_str = '?apiKey='+app.globalData.third_apikey_coupons+'&positionId='+app.globalData.privateId_coupons;
-    wx.request({
-      url: app.globalData.third_baseUrl_coupons+'/app/front/api/phone/bribe/v2'+params_str,
-      method:'post',
-      success:function(res){
-        console.log(res)
-        wx.navigateToMiniProgram({
-          appId:res.data.data.we_app_info.app_id,
-          path:res.data.data.we_app_info.page_path,
-          success:function (res) {
-            console.log(res);
-          },
-          fail:function (err) {
-            console.log(err);
-          }
-        })
-      },
-      fail:function(err){
-        console.error(err);
-        wx.showToast({
-          title: '获取失败',
-          icon:'none'
-        })
-      }
-    })   
-
-  },
+  
 
 
 })
