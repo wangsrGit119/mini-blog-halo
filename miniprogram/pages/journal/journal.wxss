@@ -2,8 +2,11 @@
 /* 卡片列表 */
 
 page{
-  background-color: #F7F7F7;
-  padding: 10px;
+  background-attachment: fixed;
+  background-color: #F3F5F7;
+  background-size: cover; 
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 
