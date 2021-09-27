@@ -39,7 +39,6 @@ bg-color="#ffffff">
   </view>
 
 
-  <official-account></official-account>
 
 
 
@@ -52,6 +51,8 @@ bg-color="#ffffff">
     image="/images/article.png"
     is-link="{{false}}"
      />
+   <official-account></official-account>
+
   <!-- 骨架屏 -->
 
   <l-skeleton 
