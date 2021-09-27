@@ -154,6 +154,7 @@ page{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  z-index: 9999;
 }
 
 
