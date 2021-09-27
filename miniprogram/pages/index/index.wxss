@@ -75,6 +75,7 @@ image.quiet {
   background-color: #ffffff;
   padding-left: 3px;
   border-radius: 10px;
+  margin-bottom: 2px;
 }
 
 .l-list-image-four{

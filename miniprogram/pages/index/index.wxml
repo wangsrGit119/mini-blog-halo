@@ -51,8 +51,7 @@ bg-color="#ffffff">
     image="/images/article.png"
     is-link="{{false}}"
      />
-   <official-account></official-account>
-
+     <official-account style="margin-top: 5px;"></official-account>
   <!-- 骨架屏 -->
 
   <l-skeleton 
