@@ -31,6 +31,7 @@ Page({
     myComment:undefined,
     email:"",
     currentComment:undefined,//选中的当前评论
+    gzh_qr_code:app.globalData.gzh_qr_code
 
   },
   
@@ -506,5 +507,11 @@ Page({
         }
       })
   },
+  previewImageQR(){
+    wx.previewImage({
+      current: app.globalData.gzh_qr_code, // 当前显示图片的http链接
+      urls: [app.globalData.gzh_qr_code] 
+  })
+  }
 
 })
