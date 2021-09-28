@@ -32,25 +32,17 @@
   icon="/images/myArticle.png"
   title="文章"
   url="" 
-  is-link
   value="{{statisticsInfo.postCount}}" />
 
-<!-- <van-cell
-  icon="/images/collect.png"
-  title="我的收藏"
-  url="" 
-  is-link
-  value="" /> -->
+
 
   <van-cell 
   icon="/images/comments.png"
   title="评论"
-  is-link 
   value="{{statisticsInfo.commentCount}}" />
 
   <van-cell 
   icon="/images/journals.png"
-  is-link
   title="日志"
   value="{{statisticsInfo.journalCount}}" />
   <van-cell 
