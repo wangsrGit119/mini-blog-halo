@@ -1,6 +1,7 @@
 // miniprogram/pages/article/article.js
-import Card from '../card';
+import Card from '../common/card';
 import Toast from '../../components/vant/components/dist/toast/toast';
+import MpCuConfig from '../common/mp-custom-config'
 
 const app = getApp()
 const db = wx.cloud.database()
@@ -31,7 +32,9 @@ Page({
     myComment:undefined,
     email:"",
     currentComment:undefined,//选中的当前评论
-    gzh_qr_code:app.globalData.gzh_qr_code
+    myStyle:{  //自定义mp主题
+     
+    }
 
   },
   
@@ -40,6 +43,12 @@ Page({
    */
   onLoad: function (options) {
     const that = this;
+
+     //mp主题
+     this.setData({
+      myStyle:new MpCuConfig("default").defaultConfig().myStyle
+    })
+
     that.setData({
       articleId:options.articleId,
       status:options.status,
@@ -179,34 +188,8 @@ Page({
       url: app.globalData.baseUrl + '/content/posts/'+articleId+'?api_access_key='+app.globalData.api_access_key+'&formatDisabled=false'+'&sourceDisabled = true',
       method: 'GET',
       success: function (res) {
-        console.log(res)
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data));
-          let obj = app.towxml(data.formatContent,'html',{
-            // theme:'dark',
-            events:{
-              tap:e => {
-                console.log(e)
-                if(e.currentTarget.dataset.data.tag === 'img'){
-                    wx.previewImage({
-                      urls: [e.currentTarget.dataset.data.attr.src],
-                    })
-                }
-                if(e.currentTarget.dataset.data.tag === "navigator"){
-                  wx.setClipboardData({
-                    data: e.currentTarget.dataset.data.attr.href,
-                    success:(res)=>{
-                      console.log(res)
-                    }
-                  })
-                }
-              },
-              change:e => {
-                console.log('todo',e);
-              }
-            }
-          });
-          data.content = obj;
           wx.hideLoading()
           that.setData({
             articleDetail:data,

@@ -109,8 +109,14 @@ locked="{{true}}"
 
  <!-- 正文 -->
  <view style="user-select: text;">
-    <towxml width="100vw" nodes="{{articleDetail.content}}"/>
-
+    <mp-html 
+          lazy-load
+          scroll-table="{{true}}"
+          selectable="{{true}}"
+          markdown="{{true}}" 
+          tag-style="{{myStyle.tagStyle}}"
+          container-style="{{myStyle.containStyle}}"
+          content="{{articleDetail.formatContent}}" />
  </view>
 
 <!-- 评论区骨架屏 -->

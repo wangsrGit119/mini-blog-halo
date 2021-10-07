@@ -43,7 +43,9 @@
     "van-image": "components/vant/components/dist/image/index",
     "van-dialog": "components/vant/components/dist/dialog/index",
     "van-search": "components/vant/components/dist/search/index",
-    "painter": "components/painter/painter"
+    "painter": "components/painter/painter",
+    "mp-html": "components/mp-html/dist/mp-weixin/index"
+
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {

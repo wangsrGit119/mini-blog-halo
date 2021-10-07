@@ -1,5 +1,5 @@
 //index.js
-import Card from '../card';
+import Card from '../common/card';
 
 const app = getApp()
 

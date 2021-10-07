@@ -1,5 +1,6 @@
 // miniprogram/pages/edit-journal/edit-journal.js
 const app = getApp()
+import MpCuConfig from '../common/mp-custom-config'
 
 Page({
 
@@ -18,6 +19,9 @@ Page({
       content:undefined,//日志内容
     },
     showJournalPop:false,//展示弹框
+    myStyle:{  //自定义mp主题
+     
+    }
   },
 
   /**
@@ -27,8 +31,10 @@ Page({
     console.log("token",app.globalData.admin_token)
     this.loadAllJournals();
     this.setData({
-      authorInfo:app.globalData.authorInfo
+      authorInfo:app.globalData.authorInfo,
+      myStyle:new MpCuConfig("default").defaultConfig().myStyle
     })
+  
   },
 
   /**

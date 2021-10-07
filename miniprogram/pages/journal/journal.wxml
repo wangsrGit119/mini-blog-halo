@@ -34,7 +34,14 @@ bg-color="transparent">
     title="{{authorInfo.nickname}}" describe="{{dateutils.dateTransfer(item.createTime)}}">
         <!-- 此处为content -->
         <view class="avter-content">
-         {{item.sourceContent}}
+          <mp-html 
+            lazy-load
+            scroll-table="{{true}}"
+            selectable="{{true}}"
+            markdown="{{true}}" 
+            tag-style="{{myStyle.tagStyle}}"
+            container-style="{{myStyle.containStyle}}"
+            content="{{item.sourceContent}}" />
         </view>
         <view class="avter-share-container">
         <view class="like-container" bindtap="onLikeAction" data-id="{{item.id}}"  >

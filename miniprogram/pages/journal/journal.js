@@ -1,6 +1,8 @@
 // miniprogram/pages/journal/journal.js
 const app = getApp()
 import {formatTimes} from '../../utils/util'
+import MpCuConfig from '../common/mp-custom-config'
+
 Page({
 
   /**
@@ -14,6 +16,9 @@ Page({
     pageSize:30,
     journalList:[],//所有日志
     authorInfo:{},//作者信息
+    myStyle:{  //自定义mp主题
+     
+    }
   },
 
   /**
@@ -21,7 +26,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      authorInfo:app.globalData.authorInfo
+      authorInfo:app.globalData.authorInfo,
+      myStyle:new MpCuConfig("default").defaultConfig().myStyle
     })
   },
 
