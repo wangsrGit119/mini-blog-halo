@@ -11,5 +11,6 @@
     "l-card":"../../lin-ui/dist/card/index",
     "l-icon":"../../lin-ui/dist/icon/index",
     "l-loadmore":"../../lin-ui/dist/loadmore/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

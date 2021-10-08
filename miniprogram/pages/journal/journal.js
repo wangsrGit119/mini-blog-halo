@@ -3,6 +3,7 @@ const app = getApp()
 import {formatTimes} from '../../utils/util'
 import MpCuConfig from '../common/mp-custom-config'
 
+
 Page({
 
   /**
@@ -15,10 +16,11 @@ Page({
     page:0,
     pageSize:30,
     journalList:[],//所有日志
+    hasMoreData:true,
     authorInfo:{},//作者信息
-    myStyle:{  //自定义mp主题
-     
-    }
+    myStyle:{ //自定义mp主题
+
+    },
   },
 
   /**
@@ -27,8 +29,9 @@ Page({
   onLoad: function (options) {
     this.setData({
       authorInfo:app.globalData.authorInfo,
-      myStyle:new MpCuConfig("default").defaultConfig().myStyle
+      myStyle:new MpCuConfig("journal").defaultConfig().myStyle
     })
+    this.listPageJournal()
   },
 
   /**
@@ -42,7 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.listPageJournal()
+    
   },
 
   /**
@@ -63,14 +66,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.initParams()
+    this.listPageJournal()
+    wx.stopPullDownRefresh() 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.hasMoreData) {
+      this.listPageJournal();
+    } else {
+      wx.showToast({
+        title: '没有更多内容了...',
+        icon:'none',
+        duration: 2000
+      })
+    }
   },
 
   /**
@@ -79,11 +92,33 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  // 初始化参数
+  initParams(){
+    this.setData({
+      page:0,
+      pageSize:15,
+      journalList:[],
+    })
+  },
+  // journal列表追加
+  appendArticleList(resList){
+    let allPageArticleList = this.data.journalList;
+    if (resList.length < this.data.pageSize || resList.length ==0) {
+      this.setData({
+        journalList: allPageArticleList.concat(resList),
+        hasMoreData: false
+      })
+    } else {
+      this.setData({
+        journalList: allPageArticleList.concat(resList),
+        hasMoreData: true,
+        page: this.data.page + 1
+      })
+    }
+  },
   listPageJournal(){
     const that = this;
-    that.setData({
-      journalList:[]
-    })
     wx.showLoading({	
       title: '加载中',
     })
@@ -96,26 +131,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         if (res.data.status == 200) {
-          let list = res.data.data.content;
-          // let temp = [];
-          // list.forEach(e=>{
-          //   let obj = app.towxml(e.content,'markdown',{
-          //     // theme:'dark',
-          //     events:{
-          //       tap:e => {
-          //         console.log('tap',e);
-          //       },
-          //       change:e => {
-          //         console.log('todo',e);
-          //       }
-          //     }
-          //   });
-          //   e.wxsource = obj;
-          //   temp.push(e)
-          // })
-          that.setData({
-            journalList:list
-          })
+          that.appendArticleList(res.data.data.content)
         } else {
           console.log("请求异常")
         }
@@ -152,5 +168,8 @@ Page({
         })
       }
     })
+  },
+  readyAA(e){
+    var ctx = this.selectComponent('#article')
   },
 })

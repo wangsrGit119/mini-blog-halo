@@ -27,22 +27,23 @@ bg-color="transparent">
  </van-empty>
 
 
- <div wx:if="{{journalList.length > 0}}"  class="conrainer-outer" wx:for="{{journalList}}" wx:key="index" >
-
+ <view style="margin-bottom:50px"  >
+ <div   wx:if="{{journalList.length > 0}}" wx:for="{{journalList}}" wx:key="index">
 <!-- avatar -->
 <l-card type="avatar" full l-class="card" image="{{authorInfo.avatar}}"
     title="{{authorInfo.nickname}}" describe="{{dateutils.dateTransfer(item.createTime)}}">
         <!-- 此处为content -->
-        <view class="avter-content">
-          <mp-html 
-            lazy-load
-            scroll-table="{{true}}"
-            selectable="{{true}}"
-            markdown="{{true}}" 
-            tag-style="{{myStyle.tagStyle}}"
-            container-style="{{myStyle.containStyle}}"
-            content="{{item.sourceContent}}" />
+        <view class="avter-content" style="user-select: text;">
+         <mp-html 
+          lazy-load
+          scroll-table="{{true}}"
+          selectable="{{true}}"
+          markdown="{{true}}" 
+          tag-style="{{myStyle.tagStyle}}"
+          container-style="{{myStyle.containStyle}}"
+          content="{{item.sourceContent}}" />
         </view>
+       
         <view class="avter-share-container">
         <view class="like-container" bindtap="onLikeAction" data-id="{{item.id}}"  >
             <l-icon name="like"  color="red" size="28" />
@@ -54,9 +55,9 @@ bg-color="transparent">
         </view>
         </view>
   </l-card>
-
 </div>
  <!-- ios底部留白专用 -->
  <l-loadmore show="{{true}}" type="end" end-text="没有更多内容了哟~" loading-text="加载中~">
            
-  </l-loadmore>
+ </l-loadmore>
+</view>

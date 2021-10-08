@@ -32,7 +32,7 @@ Page({
     this.loadAllJournals();
     this.setData({
       authorInfo:app.globalData.authorInfo,
-      myStyle:new MpCuConfig("default").defaultConfig().myStyle
+      myStyle:new MpCuConfig("journal").defaultConfig().myStyle
     })
   
   },
