@@ -2,6 +2,8 @@
 const app = getApp()
 const db = wx.cloud.database()
 const _ = db.command
+import MpCuConfig from '../common/mp-custom-config'
+
 Page({
 
   /**
@@ -23,6 +25,10 @@ Page({
       //初始化变量全局新的
       userInfo:app.globalData.userInfo,
       authorInfo:app.globalData.authorInfo
+    })
+    //mp主题
+    this.setData({
+      myStyle:new MpCuConfig("default").defaultConfig().myStyle
     })
     that.queryArticleRecordFromCloud(options.articleId)
   },
@@ -101,31 +107,7 @@ Page({
               .then(articleRes=>{
                 wx.hideLoading()
                 let data = articleRes.data[0];
-                let obj = app.towxml(data.formatContent,'html',{
-                  // theme:'dark',
-                  events:{
-                    tap:e => {
-                      console.log(e)
-                      if(e.currentTarget.dataset.data.tag === 'img'){
-                          wx.previewImage({
-                            urls: [e.currentTarget.dataset.data.attr.src],
-                          })
-                      }
-                      if(e.currentTarget.dataset.data.tag === "navigator"){
-                        wx.setClipboardData({
-                          data: e.currentTarget.dataset.data.attr.href,
-                          success:(res)=>{
-                            console.log(res)
-                          }
-                        })
-                      }
-                    },
-                    change:e => {
-                      console.log('todo',e);
-                    }
-                  }
-                });
-                data.content = obj;
+
                 that.setData({
                   articleDetail:data,
                 })
