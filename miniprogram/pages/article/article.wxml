@@ -111,6 +111,7 @@ locked="{{true}}"
  <view style="user-select: text;">
     <mp-html 
           lazy-load
+          loading-img="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/Loading.gif"
           scroll-table="{{true}}"
           selectable="{{true}}"
           markdown="{{true}}" 
