@@ -22,7 +22,6 @@ Page({
     pageSize: 5,									//每页数据条数
     hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
-    list:app.list,// 自定义tabbar
     capsuleBarHeight:app.capsuleBarHeight,
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
     title:app.globalData.title,//自定义title,
@@ -46,10 +45,7 @@ onShareTimeline(){
   }
 },
   onShow: function(){
-    // 初始化查询参数
-    this.initParams()
-    // 获取文章列表（最新）
-    this.loadLastestArticles();
+    
   },
   onReady: function(){
   
@@ -81,6 +77,10 @@ onShareTimeline(){
     }
     //文章加载（阅读量最高）
     this.loadTopArticles();
+    // 初始化查询参数
+    this.initParams()
+    // 获取文章列表（最新）
+    this.loadLastestArticles();
    
   },
   // 轮播组件监听
@@ -89,60 +89,7 @@ onShareTimeline(){
          swiperIndex: e.detail.current
     })
    },
-  //  获取用户信息并制作海报
-  getUserProfile() {
-    
-    if(app.globalData.userInfo && app.globalData != undefined){
-      this.markPosters();
-    }else{
-      wx.getUserProfile({
-        desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        success: (res) => {
-          console.log(res)
-          app.globalData.userInfo = res.userInfo;
-          this.setData({
-            avatarUrl: res.userInfo.avatarUrl,
-            userInfo: res.userInfo,
-            hasUserInfo: true,
-          })
-          this.markPosters();
-        },
-        fail:(err)=>{
-          console.log(err)
-        }
-      })
-
-    }
-  },
-
-  onGetUserInfo: function(e) {
-    if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true,
-      })
-    }
-  },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-       
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      
-      }
-    })
-  },
-
+ 
   //load  top  article
   loadTopArticles(){
     const that = this;
@@ -164,6 +111,16 @@ onShareTimeline(){
       }
     })
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    // 初始化查询参数
+    this.initParams()
+    // 获取文章列表（最新）
+    this.loadLastestArticles();
+   wx.stopPullDownRefresh() 
+ },
   /**
    * 页面上拉触底事件的处理函数
    */

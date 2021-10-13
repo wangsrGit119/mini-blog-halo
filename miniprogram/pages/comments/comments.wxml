@@ -1,6 +1,6 @@
 <!--miniprogram/pages/comments/comments.wxml-->
 <wxs src="../../utils/util.wxs" module="util" />
-
+<wxs src="../../utils/dateutils.wxs" module="dateutils" />
 <!-- bar -->
 <l-capsule-bar 
 bind:linlefttap="onClickLeft"
@@ -24,11 +24,14 @@ bg-color="transparent">
 
 
 <view class="comments" wx:for="{{comments}}" wx:key="index">
-  <van-cell  icon="user-o" title=""  label="评论：{{item.content}}" border="{{ true }}">
+  <van-cell size="large" label="评论：{{item.content}}" border="{{ true }}">
     <view slot="title">
       <view class="van-cell-text">
-        <van-tag plain type="primary">{{item.author}}</van-tag>
+        <van-tag plain wx:if="{{!item.isAdmin}}" type="primary">{{item.author}} </van-tag>
+        <van-tag plain wx:if="{{item.isAdmin}}" type="warning">{{'博主：'+item.author}}</van-tag>
+
         <view >文章：《{{item.post.title.length >= 20 ? util.substringUtil(item.post.title,20)  : item.post.title }}》</view>
+       
       </view>
     </view>
     <van-tag wx:if="{{item.status === 'PUBLISHED'}}" data-item="{{item}}" bindtap="replyComment" type="success">回复</van-tag>
@@ -38,6 +41,8 @@ bg-color="transparent">
     <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" bindtap="deleteForeverComment" type="danger">永久删除</van-tag>
 
   </van-cell>
+  <van-divider contentPosition="right">{{'评论时间 '+dateutils.dateTransfer(item.createTime)}}</van-divider>
+
 </view>
 
 <l-dialog 

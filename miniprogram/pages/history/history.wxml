@@ -1,6 +1,6 @@
 <!--miniprogram/pages/history/history.wxml-->
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
-<wxs src="../../utils/util.wxs" module="commonUtil" />
+<wxs src="../../utils/util.wxs" module="commonutil" />
 
 <l-capsule-bar 
 hidden-capsule
@@ -10,8 +10,6 @@ capsule-color="white"
 bg-color="#ffffff">
 </l-capsule-bar>
 
-<!-- 自定义tabbar -->
-<l-tab-bar list="{{list}}" />
 
 <van-toast id="van-toast" />
 
@@ -67,7 +65,7 @@ bg-color="#ffffff">
         l-class="card"
         full
         bindtap="toArticleDetail" data-article-item="{{item}}"
-        image="{{item.thumbnail}}">
+        image="{{commonutil.urlValidateUtil(item.thumbnail) ? item.thumbnail : globalData.domain+item.thumbnail }}">
         <!-- 右上角标签 -->
         <view wx:if="{{item.topPriority >0}}" class="right-top-tag-container">
                  <l-tag  shape="circle"

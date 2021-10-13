@@ -10,7 +10,7 @@ Page({
   data: {
     authorInfo:{},
     statisticsInfo:{},
-    list:app.list,// 自定义tabbar
+    globalData:app.globalData,
     adminQ:false,//管理入口提问弹窗
     keyInputShow:false,//密钥输入框弹窗
     inputSecretKey:null,//输入的密钥
@@ -230,6 +230,32 @@ Page({
       keyInputShow:true
     })
 
+  },
+  /**
+   * 获取openID 点击头像
+   */
+  onGetOpenid: function() {
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+       
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      
+      }
+    })
+  },
+  doCopyDomain(){
+    wx.setClipboardData({
+      data: app.globalData.domain,
+      success: function (res) {
+       console.log("复制内容",app.globalData.domain)
+      }
+    })
   },
 
 })

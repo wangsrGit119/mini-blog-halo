@@ -23,7 +23,7 @@ page{
 
 .img-card {
   height: 160rpx !important;
-  width: 160rpx !important;
+  width: 190rpx !important;
   border-radius: 12rpx !important;
 }
 

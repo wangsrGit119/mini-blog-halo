@@ -5,39 +5,7 @@ App({
 
   //自定义bar height
   capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
-  // 自定义tabbar
-  list:[
-    {
-        pagePath:"/pages/index/index",
-        text:"首页",
-        iconPath:"/images/home.png",
-        selectedIconPath:"/images/home-active.png"
-    },
-    {
-      pagePath:"/pages/journal/journal",
-      text:"随笔",
-      iconPath:"/images/journal.png",
-      selectedIconPath:"/images/journal-active.png"
-  },
-    {
-      pagePath:"/pages/history/history",
-      text:"分类",
-      "iconPath": "/images/history_record.png",
-      "selectedIconPath": "/images/history_record-active.png"
-    },
-    {
-      pagePath:"/pages/album/album",
-      text:"相册",
-      "iconPath": "/images/album.png",
-      "selectedIconPath": "/images/album-active.png"
-    },
-    {
-    pagePath:"/pages/mine/mine",
-    text:"我的",
-    "iconPath": "/images/footer-icon-04.png",
-    "selectedIconPath": "/images/footer-icon-04-active.png"
-    },
-  ],
+  
  
   onLaunch: function () {
     if (!wx.cloud) {
@@ -48,14 +16,15 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        env: 'suke-blog-dev-xxxxxxxxxxxx',
+        env: 'suke-blog-dev-xxx',
         traceUser: true,
       })
     }
 
     this.globalData = {
-      baseUrl: 'https://xx.cn/api', //api
-      api_access_key:"xxx", //token
+      domain:'https://wangsrbus.cn',
+      baseUrl: 'https://xxx.cn/api', //api
+      api_access_key:"xx", //token
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"Hi,I'm suke",//自定义title
       shareName:'suke的个人博客',//小程序分享名称
@@ -63,6 +32,7 @@ App({
       admin_token: undefined,//临时 token undefined
       authorInfo:undefined,//作者信息
       myCollectArticle:'myCollectArticle',//云数据库 存放收藏文章
+      openComment:true,//是否开启评论 true为开启 false为关闭
     }
   }
 })

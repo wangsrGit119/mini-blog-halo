@@ -53,7 +53,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      allImages:[],
+    })
+    this.loadImagesInfo()
   },
 
   /**
@@ -85,10 +88,14 @@ onShareAppMessage: function (res) {
     that.setData({
       allImages:[]
     })
+    wx.showLoading({				
+      title: '加载中...',
+    })
     wx.request({
       url: app.globalData.baseUrl + '/content/photos/latest?api_access_key='+app.globalData.api_access_key,
       method: 'GET',
       success: function (res) {
+        wx.hideLoading()
         if(res.data.status == 200){
           let images = res.data.data;
           if(images.length ==0){
@@ -113,6 +120,7 @@ onShareAppMessage: function (res) {
         }
       },
       fail: function (res) {
+        wx.hideLoading()
         console.log("请求异常",res)
       }
     })

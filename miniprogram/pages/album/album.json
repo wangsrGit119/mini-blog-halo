@@ -9,5 +9,7 @@
     "l-photo-water":"../l-photo-water/l-photo-water",
     "l-water-flow":"../../lin-ui/dist/water-flow/index"
 
-  }
+  },
+  "enablePullDownRefresh": true
+
 }

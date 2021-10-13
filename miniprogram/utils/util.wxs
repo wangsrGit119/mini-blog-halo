@@ -10,8 +10,21 @@ function  substringUtil(str,size){
   }
 }
 
+function urlValidateUtil(url){
+  if(url){
+    if(url.indexOf('http://') != -1 || url.indexOf('https://') != -1){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  return false;
+}
+
+
 
 module.exports = {
 
-  substringUtil:substringUtil
+  substringUtil:substringUtil,
+  urlValidateUtil:urlValidateUtil,
 }

@@ -35,8 +35,9 @@ export default class MpCuConfig {
           strong:'font-weight: 700;color: rgb(248, 57, 41);',
           video: 'width: 100%'
         },
-        containStyle:'font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;margin: 10px;padding:10px;font-size: 16px;color: #353535;word-spacing: 0.8px;letter-spacing: 0.8px;border-radius: 16px;background-color:#FFFFFF;'
-        
+        containStyle:'font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;margin: 10px;padding:10px;font-size: 16px;color: #353535;word-spacing: 0.8px;letter-spacing: 0.8px;border-radius: 16px;background-color:#FFFFFF;',
+        loadingGif:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/Loading.gif",
+        emptyGif:'https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/empty-img-gift-2021101002.gif',
       }
     }
 
@@ -72,8 +73,9 @@ export default class MpCuConfig {
           video: 'width: 100%',
           img:'width:190rpx;height:130rpx;border-radius: 12rpx !important;margin:10rpx;'
         },
-        containStyle:'font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;margin: 0px;padding:5px;font-size: 16px;color: #353535;word-spacing: 0.8px;letter-spacing: 0.8px;border-radius: 16px;background-color:#FFFFFF;'
-        
+        containStyle:'font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;margin: 0px;padding:5px;font-size: 16px;color: #353535;word-spacing: 0.8px;letter-spacing: 0.8px;border-radius: 16px;background-color:#FFFFFF;',
+        loadingGif:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/Loading.gif",
+        emptyGif:'https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/empty_gif_02.gif',
       }
     }
     return config;

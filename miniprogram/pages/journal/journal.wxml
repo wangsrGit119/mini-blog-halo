@@ -9,8 +9,7 @@ capsule-color="white"
 bg-color="transparent">
   <image class="capsule-bar-bg" style="height:{{capsuleBarHeight}}rpx;" src="{{index_bg_image_url}}" />
 </l-capsule-bar>
-<!-- 自定义tabbar -->
-<l-tab-bar list="{{list}}" />
+
 
 <van-search
   clearable
@@ -22,9 +21,15 @@ bg-color="transparent">
 />
 
 <!-- 空状态 -->
-<van-empty wx:if="{{journalList.length == 0}}" description="空空如也" image="/images/noneData.png">
-          
- </van-empty>
+<view>
+ <van-empty 
+    wx:if="{{journalList.length == 0}}" 
+    class="custom-image-empty" 
+    description="随笔，记录当下" 
+   >
+    <van-image slot="image" fit="cover" width="400"  height="250" src="{{myStyle.emptyGif}}" />
+</van-empty>
+</view>
 
 
  <view style="margin-bottom:50px"  >
@@ -36,6 +41,7 @@ bg-color="transparent">
         <view class="avter-content" style="user-select: text;">
          <mp-html 
           lazy-load
+          loading-img="{{myStyle.loadingGif}}"
           scroll-table="{{true}}"
           selectable="{{true}}"
           markdown="{{true}}" 

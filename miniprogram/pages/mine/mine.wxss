@@ -20,19 +20,34 @@
   color: rgb(95, 97, 212);
 }
 
-
 .my-info  {
   width: 100%;
   height: 25vh;
   padding-top: 10vh;
-  text-align: center;
   background-image: url(http://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/bg-wechat-photo-1544716278-ca5e3f4abd8c.jfif);
   opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
  }
- .my-info image {
+ .my-info .avatar-img {
    margin-top:25px;
    width: 50px;
    height: 50px;
    border: 1px solid rgb(201, 79, 150);
-   border-radius: 50px;
+   border-radius: 50%;
  }
+
+ .domian-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* text-decoration: underline */
+
+ }
+
+ .domain-describe {
+  font-size: 28rpx;
+  margin-left:10rpx;
+}

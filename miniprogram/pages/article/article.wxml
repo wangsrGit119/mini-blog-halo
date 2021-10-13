@@ -1,5 +1,4 @@
 <!--miniprogram/pages/article/article.wxml-->
-<import src="../../components/towxml/entry.wxml"/>
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
 
 <!-- 轻提示 -->
@@ -12,11 +11,11 @@ capsule-color="white"
 bg-color="#ffffff">
 </l-capsule-bar>
 
- <!-- 制作海报图标 -->
+ <!-- 制作海报等的图标 -->
 
 <view class="action-user">
   <l-icon name="like" bindtap="onLikeAction" data-id="{{articleDetail.id}}" color="#EA5455" size="40"/>
-  <l-icon name="comment" bindtap="toComment" color="#1D6FA3" size="40"/>
+  <l-icon wx:if="{{openComment}}" name="comment" bindtap="toComment" color="#1D6FA3" size="40"/>
   <l-icon name="share" bindtap="getUserProfile" color="#00EAFF"   size="40"/>
 </view>
 
@@ -39,8 +38,8 @@ locked="{{true}}"
    <image hidden="{{imgSuccess}}" src="{{image}}" style="width: 654rpx; height: 900rpx; margin-left:40rpx;"/>
   <!-- 关闭 -->
    <view hidden="{{imgSuccess}}"  class="closePosters">
-     <van-icon bindtap="closePosters"	name="/images/Cartoon-Closed.png" />
-     <van-icon bindtap="saveImage"	name="/images/savePosters.png" />
+     <van-button bindtap="closePosters" round size="small" color="#FFCCCC">关闭</van-button>
+     <van-button bindtap="saveImage" round size="small" color="#CCCCFF">保存</van-button>
     </view>
 </l-popup>
 
@@ -63,10 +62,9 @@ locked="{{true}}"
 
 <!-- 文章和评论 -->
 
- <!-- 文章 -->
+ <!-- 文章 头部描述-->
  <l-card wx:if="{{articleDetail.createTime}}" type="avatar" l-class="card" image="{{authorInfo.avatar}}"
     title="{{authorInfo.nickname}}" describe="{{dateutils.dateTransfer(articleDetail.createTime)}}">
-        <!-- 此处为文章详情 -->
         <view class="avter-content">
               <!-- 标题 -->
               <view class="article-title">
@@ -74,8 +72,6 @@ locked="{{true}}"
               </view>
               <!-- 封面 -->
               <van-image fit="cover" width="85vw"  height="150" src="{{articleDetail.thumbnail}}" />
-               
-           <!--文章详情结束  -->
         </view>
         <view class="avter-share-container">
               <view class="like-container">
@@ -110,20 +106,27 @@ locked="{{true}}"
  <!-- 正文 -->
  <view style="user-select: text;">
     <mp-html 
-          lazy-load
-          loading-img="https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/Loading.gif"
-          scroll-table="{{true}}"
-          selectable="{{true}}"
-          markdown="{{true}}" 
-          tag-style="{{myStyle.tagStyle}}"
-          container-style="{{myStyle.containStyle}}"
-          content="{{articleDetail.formatContent}}" />
+    lazy-load
+    loading-img="{{myStyle.loadingGif}}"
+    scroll-table="{{true}}"
+    selectable="{{true}}"
+    tag-style="{{myStyle.tagStyle}}"
+    container-style="{{myStyle.containStyle}}"
+     content="{{articleDetail.formatContent}}" />
+
  </view>
+
+<!-- 关闭评论显示 -->
+<view wx:if="{{!openComment}}" >
+  <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
+  </l-loadmore> 
+</view>
 
 <!-- 评论区骨架屏 -->
 <l-skeleton
-l-class="l-cu-outer-skeleton" 
-style="margin-top:300px;"
+  wx:if="{{openComment}}"
+  l-class="l-cu-outer-skeleton" 
+  style="margin-top:300px;"
   loading="{{showSkeleton}}"
   paragraph="{{true}}"
   title="{{true}}"
@@ -145,7 +148,7 @@ style="margin-top:300px;"
   </view>
   <view wx:if="{{articleDetail.commentCount === 0}}" >
        <!-- 空评论 -->
-       <van-empty description="留下您的足迹吧^_^" image="/images/empty.png">
+       <van-empty class="custom-image-empty" description="还没有人评论呢，快来占楼吧^_^" image="{{myStyle.emptyGif}}">
           
         </van-empty>
   </view>

@@ -24,6 +24,7 @@ Page({
     passwordDialog:false,//密码输入框
     inputPwd:"",//用户输入的密码(私密文章)
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
+    openComment:app.globalData.openComment === undefined ? true : app.globalData.openComment,//是否开启评论
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
     comments:[],//评论
     userInfo:undefined,
@@ -208,7 +209,7 @@ Page({
     let tempArticle = this.data.articleDetail;
     this.setData({
       paintPallette: new Card(
-        '/images/bg-image002.jpeg',
+        '/images/bg-image004.jpg',
       tempArticle.thumbnail,
       tempArticle.title,
       tempArticle.summary,

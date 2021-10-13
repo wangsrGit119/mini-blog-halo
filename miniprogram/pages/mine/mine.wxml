@@ -1,17 +1,22 @@
 <!--miniprogram/pages/mine/mine.wxml-->
 <wxs src="../../utils/dateutils.wxs" module="dateutils" />
 
-<!-- 自定义tabbar -->
-<l-tab-bar list="{{list}}" />
 
 <!-- vant 弹出框 -->
 <van-dialog id="van-dialog" />
 
 <view class="my-info">
-  <image src="{{authorInfo.avatar}}"></image>
+  <image bindtap="onGetOpenid" class="avatar-img" src="{{authorInfo.avatar}}"></image>
   <van-row>{{authorInfo.nickname}}</van-row>
-</view>
 
+  <l-button wx:if="{{authorInfo.description}}" special="{{true}}" bindtap="doCopyDomain" >
+    <view class="domian-container" >
+      <van-icon  size="20" name="gem" color="" />
+      <text class="domain-describe">{{authorInfo.description}}</text>
+    </view>
+  </l-button>
+
+</view>
 <!-- lin-ui message -->
 <l-message />
 

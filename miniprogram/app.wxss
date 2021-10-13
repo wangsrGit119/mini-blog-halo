@@ -15,7 +15,12 @@
   opacity: 0.5;
 }
 
+.custom-image-empty .van-empty__image{
 
+  width:400px ;
+  height: 300px;
+
+}
 
 /* vant-wxss */
 

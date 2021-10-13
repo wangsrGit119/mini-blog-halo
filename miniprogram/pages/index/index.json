@@ -13,5 +13,7 @@
     "l-toast":"../../lin-ui/dist/toast/index",
     "l-loadmore":"../../lin-ui/dist/loadmore/index"
 
-  }
+  },
+  "enablePullDownRefresh": true
+
 }
