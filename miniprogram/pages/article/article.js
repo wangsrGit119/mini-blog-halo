@@ -237,7 +237,6 @@ Page({
           })
           console.log(data.metas)
           that.caculateMask(data)
-
         }else{
           wx.hideLoading()
         }
@@ -267,6 +266,7 @@ Page({
           })
         }
       }
+
       //maxShowHeight
       if(e.key==='maxShowHeight'){
         if(e.value && that.data.cuAd == 'showAd'){
