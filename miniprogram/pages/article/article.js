@@ -86,15 +86,15 @@ Page({
 
 
     // 创建激励视频广告实例
-    // if (app.globalData.openAd && wx.createRewardedVideoAd) {
-    //   console.log("创建激励视频广告实例")
-    //   videoAd = wx.createRewardedVideoAd({
-    //     adUnitId: 'adunit-daf156fc94de2fc4'
-    //   })
-    //   videoAd.onLoad(() => {})
-    //   videoAd.onError((err) => {})
-    //   videoAd.onClose((res) => {})
-    // }
+    if (app.globalData.openAd && wx.createRewardedVideoAd) {
+      console.log("创建激励视频广告实例")
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: app.globalData.unitId2
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {})
+      videoAd.onClose((res) => {})
+    }
 
 
   },
@@ -566,10 +566,7 @@ Page({
   // 阅读更多
   readMoreInfo() {
     const that = this;
-    that.setData({
-      cuAd:'noAd',
-      maxShowHeight:100000
-    })
+
     if (videoAd) {
       videoAd.show().catch(() => {
         // 失败重试
@@ -582,7 +579,7 @@ Page({
       setTimeout(()=>{
         that.setData({
           cuAd:'noAd',
-          maxShowHeight:that.data.maxShowHeightTemp
+          maxShowHeight:100000
         })
       },3000)
     }
