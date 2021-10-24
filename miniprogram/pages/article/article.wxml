@@ -104,19 +104,32 @@ locked="{{true}}"
   </l-card>
 
  <!-- 正文 -->
- <view style="user-select: text;">
-    <mp-html 
-    lazy-load
-    loading-img="{{myStyle.loadingGif}}"
-    scroll-table="{{true}}"
-    selectable="{{true}}"
-    tag-style="{{myStyle.tagStyle}}"
-    container-style="{{myStyle.containStyle}}"
-     content="{{articleDetail.formatContent}}" />
+ <view  >
+       
+    <view  id="content-outer" style="max-height: {{maxShowHeight+'px'}};" class='content-outer {{cuAd}}'>
+        <view id="content-detail">
+          <mp-html 
+          lazy-load
+          loading-img="{{myStyle.loadingGif}}"
+          scroll-table="{{true}}"
+          selectable="{{true}}"
+          tag-style="{{myStyle.tagStyle}}"
+          container-style="{{myStyle.containStyle}}"
+          content="{{articleDetail.formatContent}}" />
+        </view>
+    </view>
+    <view class="ad-readmore-mask" wx:if="{{cuAd === 'showAd'}}">
+      <view class="ad-btn" bindtap="readMoreInfo" >点击观看视频，阅读更多...</view>
+    </view>
+    <view class="ad-style" wx:if="{{ globalData.openAd && globalData.unitId}}" >
+      <ad-custom  style="width: 97%;"  unit-id="{{globalData.unitId}}"></ad-custom>
+    </view>
+  
+	</view>
 
- </view>
+  
 
-<!-- 关闭评论显示 -->
+<!-- 关闭评论加载显示 -->
 <view wx:if="{{!openComment}}" >
   <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
   </l-loadmore> 

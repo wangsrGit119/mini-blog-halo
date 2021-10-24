@@ -32,3 +32,15 @@ page {
     Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
     sans-serif;
 }
+
+/**广告卡片**/
+.ad-style{
+  width: 100%;
+  border-radius: 10px;
+  margin: 10rpx auto !important;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

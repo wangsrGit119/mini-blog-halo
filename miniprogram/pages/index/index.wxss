@@ -116,8 +116,7 @@ image.quiet {
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   color: #333;
-  height: 32px;
-  font-size: 26rpx;
+  font-size: 24rpx;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -176,26 +175,3 @@ image.quiet {
 
 
 
-/* 带头像卡片 */
-.avter-content {
-  margin-top: 10rpx;
-  color: #333;
-  font-size: 26rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 25;
-}
-
-.avter-share-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-.coupons-number{
-  color: #666;
-  font-size: 24rpx;
-  margin-left: 12rpx;
-  color: #FA016D  ;
-}

@@ -5,8 +5,8 @@ App({
 
   //自定义bar height
   capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
-  
- 
+
+
   onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -23,8 +23,8 @@ App({
 
     this.globalData = {
       domain:'https://wangsrbus.cn',
-      baseUrl: 'https://xxx.cn/api', //api
-      api_access_key:"xx", //token
+      baseUrl: 'https://wangsrbus.cn/api', //api
+      api_access_key:"wangjianlong", //token
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"Hi,I'm suke",//自定义title
       shareName:'suke的个人博客',//小程序分享名称
@@ -33,6 +33,9 @@ App({
       authorInfo:undefined,//作者信息
       myCollectArticle:'myCollectArticle',//云数据库 存放收藏文章
       openComment:true,//是否开启评论 true为开启 false为关闭
+      openAd:false,//流量主开通则打开
+      unitId:'adunit-xxx',//原生模板广告ID  自定义的时候子集可以选择样式
+      unitId2:'adunit-xxx',//视频激励广告--用于文章设置观看视频阅读更多功能
     }
   }
 })

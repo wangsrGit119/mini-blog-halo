@@ -4,7 +4,7 @@
 
 <l-capsule-bar 
 hidden-capsule
-title="{{title}}"
+title="{{globalData.title}}"
 capsule-color="white" 
 bg-color="#ffffff">
 </l-capsule-bar>
@@ -64,8 +64,11 @@ bg-color="#ffffff">
 >
   
   <!-- 插槽内容 -->
-
   <div  wx:for="{{articleList}}" wx:for-item="item" wx:key="index">
+  
+    <view class="ad-style" wx:if="{{ globalData.openAd && globalData.unitId && index % 5 == 4 }}" >
+      <ad-custom  style="width: 97%;"  unit-id="{{globalData.unitId}}"></ad-custom>
+    </view>
 
    <!-- 卡片图片位置在左 -->
     <l-card wx:if="{{index % 8 == 0 }}" type="primary" 

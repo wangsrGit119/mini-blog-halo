@@ -176,3 +176,67 @@ page{
   /* width: 600px; */
   /* height: 300px; */
 }
+
+
+
+
+
+
+
+.content-outer {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-overflow: -o-ellipsis-lastline;
+  -webkit-line-clamp: 100;
+  line-clamp: 100;
+  -webkit-box-orient: vertical;
+
+
+}
+.noAd {
+  display: block;
+  text-overflow: unset;
+  -webkit-line-clamp: unset;
+  max-height: unset;
+}
+
+.ad-readmore-mask {
+  z-index: 99;
+  height: 200rpx;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-left: 5px 10px 5px 10px ;
+  background-image: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/jess-bailey-q10VITrVYUM-unsplash.jpg');
+  /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.ad-btn{
+  width: 100vw;
+  height: 64rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  color: #2f80ed;
+  position:relative;
+ 
+}
+
+.ad-btn::after {
+  content: "";
+  display: inline-block;
+  border: solid #2f80ed;
+  border-width: 0 0 2px 2px;
+  padding: 3px;
+  position: absolute;
+  right: 50%;
+  bottom: 6rpx;
+  transform: translateX(4px) rotate(-45deg);
+  opacity: 0.6;
+}

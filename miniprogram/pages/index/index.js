@@ -24,7 +24,7 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false,
     capsuleBarHeight:app.capsuleBarHeight,
     index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
-    title:app.globalData.title,//自定义title,
+    globalData:app.globalData,
     index_skeleton_show:true,//首页骨架屏
   },
 //增加分享屏幕

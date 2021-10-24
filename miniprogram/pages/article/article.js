@@ -1,7 +1,10 @@
 // miniprogram/pages/article/article.js
+
 import Card from '../common/card';
 import Toast from '../../components/vant/components/dist/toast/toast';
 import MpCuConfig from '../common/mp-custom-config'
+let videoAd = null;
+
 
 const app = getApp()
 const db = wx.cloud.database()
@@ -23,7 +26,7 @@ Page({
     showSkeleton:true,//骨架屏
     passwordDialog:false,//密码输入框
     inputPwd:"",//用户输入的密码(私密文章)
-    index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
+    globalData:app.globalData,
     openComment:app.globalData.openComment === undefined ? true : app.globalData.openComment,//是否开启评论
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
     comments:[],//评论
@@ -35,8 +38,10 @@ Page({
     currentComment:undefined,//选中的当前评论
     myStyle:{  //自定义mp主题
      
-    }
-
+    },
+    maxShowHeight: 1024, // 最大默认显示高度
+    cuAd:'noAd',//默认无广告激励
+    showLine:50,//有广告激励时默认展示文本行数
   },
   
   /**
@@ -49,15 +54,17 @@ Page({
      this.setData({
       myStyle:new MpCuConfig("default").defaultConfig().myStyle
     })
-
+   //初始化变量
     that.setData({
       articleId:options.articleId,
       status:options.status,
       password:options.password,
-      //初始化变量全局新的
       userInfo:app.globalData.userInfo,
-      authorInfo:app.globalData.authorInfo
     })
+
+    //加载作者信息
+    this.loadUserInfo();
+
     // 骨架屏显示
     setTimeout(function(){
       that.setData({
@@ -75,14 +82,28 @@ Page({
       })
     }else if(options.status === 'PUBLISHED'){
       this.initArticle(options.articleId)
-    }    
+    }  
+
+
+    // 创建激励视频广告实例
+    if (app.globalData.openAd && wx.createRewardedVideoAd) {
+      console.log("创建激励视频广告实例")
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-daf156fc94de2fc4'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {})
+      videoAd.onClose((res) => {})
+    }
+    
+    
   },
   
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
   /**
    * 生命周期函数--监听页面显示
@@ -95,7 +116,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("hidden")
   },
 
   /**
@@ -151,6 +172,25 @@ Page({
       })
     }
   },
+  //user info 
+  loadUserInfo(){
+    const that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/content/users/profile?api_access_key='+app.globalData.api_access_key,
+      method: 'GET',
+      success: function (res) {
+        if(res.data.status == 200){
+          app.globalData.authorInfo  = res.data.data;
+          that.setData({
+            authorInfo:res.data.data,
+          })
+        }
+      },
+      fail: function (res) {
+        console.log("请求异常",res)
+      }
+    })
+  },
   // 私密文章密码输入比对
   onValidatePwd(){
     if(this.data.password === this.data.inputPwd){
@@ -195,6 +235,9 @@ Page({
           that.setData({
             articleDetail:data,
           })
+          console.log(data.metas)
+          that.caculateMask(data)
+          
         }else{
           wx.hideLoading()
         }
@@ -202,6 +245,49 @@ Page({
       fail: function (res) {
         wx.hideLoading()
         console.log("请求异常",res)
+      }
+    })
+  },
+  /**
+   * 计算 maxheight 
+   */
+  caculateMask(data){
+    const that = this;
+    var query = wx.createSelectorQuery();
+    query.select('#content-detail').boundingClientRect();
+    query.select('#content-outer').boundingClientRect();
+    query.exec(function (res) {
+      if (res[0] && res[0].height) {
+        that.setData({
+          maxShowHeight:res[0].height,
+          maxShowHeightTemp:res[0].height 
+        })
+        if(!app.globalData.openAd){
+            return;
+        }
+        data.metas.forEach(e =>{
+          //showAd
+          if(e.key === 'showAd'){
+            if(e.value && e.value === 'true'){
+              that.setData({
+                cuAd: 'showAd',
+                maxShowHeight:1524,
+              })
+            }else{
+              that.setData({
+                cuAd: 'noAd',
+              })
+            }
+          }
+          //maxShowHeight
+          if(e.key==='maxShowHeight'){
+            if(e.value && that.data.cuAd == 'showAd'){
+              that.setData({
+                maxShowHeight:parseInt(e.value),
+              })
+            }
+          }
+        })
       }
     })
   },
@@ -491,11 +577,25 @@ Page({
         }
       })
   },
-  previewImageQR(){
-    wx.previewImage({
-      current: app.globalData.gzh_qr_code, // 当前显示图片的http链接
-      urls: [app.globalData.gzh_qr_code] 
-  })
+   // 阅读更多
+   readMoreInfo() {
+    const that = this;  
+    if (videoAd) {
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show())
+          .catch(err => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+     setTimeout(()=>{
+      that.setData({
+        cuAd:'noAd',
+        maxShowHeight:that.data.maxShowHeightTemp
+      })
+     },3000)
+    }
   }
 
 })
