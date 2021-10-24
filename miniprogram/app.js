@@ -24,7 +24,7 @@ App({
     this.globalData = {
       domain:'https://wangsrbus.cn',
       baseUrl: 'https://wangsrbus.cn/api', //api
-      api_access_key:"wangjianlong", //token
+      api_access_key:"xxxx", //token
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"Hi,I'm suke",//自定义title
       shareName:'suke的个人博客',//小程序分享名称
