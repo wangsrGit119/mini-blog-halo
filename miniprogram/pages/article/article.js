@@ -37,24 +37,24 @@ Page({
     email:"",
     currentComment:undefined,//选中的当前评论
     myStyle:{  //自定义mp主题
-     
+
     },
     maxShowHeight: 1024, // 最大默认显示高度
     cuAd:'noAd',//默认无广告激励
     showLine:50,//有广告激励时默认展示文本行数
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const that = this;
 
-     //mp主题
-     this.setData({
+    //mp主题
+    this.setData({
       myStyle:new MpCuConfig("default").defaultConfig().myStyle
     })
-   //初始化变量
+    //初始化变量
     that.setData({
       articleId:options.articleId,
       status:options.status,
@@ -82,28 +82,28 @@ Page({
       })
     }else if(options.status === 'PUBLISHED'){
       this.initArticle(options.articleId)
-    }  
+    }
 
 
     // 创建激励视频广告实例
-    if (app.globalData.openAd && wx.createRewardedVideoAd) {
-      console.log("创建激励视频广告实例")
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-daf156fc94de2fc4'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {})
-      videoAd.onClose((res) => {})
-    }
-    
-    
+    // if (app.globalData.openAd && wx.createRewardedVideoAd) {
+    //   console.log("创建激励视频广告实例")
+    //   videoAd = wx.createRewardedVideoAd({
+    //     adUnitId: 'adunit-daf156fc94de2fc4'
+    //   })
+    //   videoAd.onLoad(() => {})
+    //   videoAd.onError((err) => {})
+    //   videoAd.onClose((res) => {})
+    // }
+
+
   },
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-   
+
   },
   /**
    * 生命周期函数--监听页面显示
@@ -172,7 +172,7 @@ Page({
       })
     }
   },
-  //user info 
+  //user info
   loadUserInfo(){
     const that = this;
     wx.request({
@@ -212,7 +212,7 @@ Page({
   //初始化文章页面
   initArticle(articleId){
     this.loadArticleDetail(articleId);
-    this.loadComments(articleId) 
+    this.loadComments(articleId)
   },
   //返回上一级
   onClickLeft(){
@@ -237,7 +237,7 @@ Page({
           })
           console.log(data.metas)
           that.caculateMask(data)
-          
+
         }else{
           wx.hideLoading()
         }
@@ -249,45 +249,31 @@ Page({
     })
   },
   /**
-   * 计算 maxheight 
+   * 计算 maxheight
    */
   caculateMask(data){
     const that = this;
-    var query = wx.createSelectorQuery();
-    query.select('#content-detail').boundingClientRect();
-    query.select('#content-outer').boundingClientRect();
-    query.exec(function (res) {
-      if (res[0] && res[0].height) {
-        that.setData({
-          maxShowHeight:res[0].height,
-          maxShowHeightTemp:res[0].height 
-        })
-        if(!app.globalData.openAd){
-            return;
+    data.metas.forEach(e =>{
+      //showAd
+      if(e.key === 'showAd'){
+        if(e.value && e.value === 'true'){
+          that.setData({
+            cuAd: 'showAd',
+            maxShowHeight:1524,
+          })
+        }else{
+          that.setData({
+            cuAd: 'noAd',
+          })
         }
-        data.metas.forEach(e =>{
-          //showAd
-          if(e.key === 'showAd'){
-            if(e.value && e.value === 'true'){
-              that.setData({
-                cuAd: 'showAd',
-                maxShowHeight:1524,
-              })
-            }else{
-              that.setData({
-                cuAd: 'noAd',
-              })
-            }
-          }
-          //maxShowHeight
-          if(e.key==='maxShowHeight'){
-            if(e.value && that.data.cuAd == 'showAd'){
-              that.setData({
-                maxShowHeight:parseInt(e.value),
-              })
-            }
-          }
-        })
+      }
+      //maxShowHeight
+      if(e.key==='maxShowHeight'){
+        if(e.value && that.data.cuAd == 'showAd'){
+          that.setData({
+            maxShowHeight:parseInt(e.value),
+          })
+        }
       }
     })
   },
@@ -295,14 +281,14 @@ Page({
     let tempArticle = this.data.articleDetail;
     this.setData({
       paintPallette: new Card(
-        '/images/bg-image004.jpg',
-      tempArticle.thumbnail,
-      tempArticle.title,
-      tempArticle.summary,
-      app.globalData.userInfo.nickName).palette(),
+          '/images/bg-image004.jpg',
+          tempArticle.thumbnail,
+          tempArticle.title,
+          tempArticle.summary,
+          app.globalData.userInfo.nickName).palette(),
       postersShow:true
     });
-    
+
   },
   closePosters(){
     this.setData({
@@ -409,28 +395,28 @@ Page({
         success(res) {
           if (res.confirm) {
             wx.getUserProfile({
-            desc: "获取你的昵称、头像、地区及性别",
-            success: res => {
-              console.log(res)
-              app.globalData.userInfo = res.userInfo;
-              that.setData({
-                actionSheetShow:true,
-                userInfo:res.userInfo
-              })
+              desc: "获取你的昵称、头像、地区及性别",
+              success: res => {
+                console.log(res)
+                app.globalData.userInfo = res.userInfo;
+                that.setData({
+                  actionSheetShow:true,
+                  userInfo:res.userInfo
+                })
 
-            },
-            fail: res => {
-              //拒绝授权
-              return;
-            }
-          })} else if (res.cancel) {
+              },
+              fail: res => {
+                //拒绝授权
+                return;
+              }
+            })} else if (res.cancel) {
             //拒绝授权 showErrorModal是自定义的提示
             return;
           }
         }
       })
     }
-    
+
   },
   onClickHide(e){
     this.setData({actionSheetShow : false});
@@ -438,32 +424,32 @@ Page({
   // 提交评论
   saveEvent(e){
     const that = this;
-    if(that.data.myComment !== undefined 
-      && that.data.email !== undefined
-      && that.data.myComment.trim() !== ""){
-        wx.showLoading({							
-          title: '内容校验中...',
-        })
-        wx.cloud.callFunction({
-          name: 'msgseccheck',
-          data: {
-            content:that.data.myComment
-          },
-          success:(res)=>{
-            console.log(res)
-            if(res.result.errCode!=0){
-                this.showMyToast('非法内容','fail')
-                that.setData({
-                  myComment:""
-                })
-            }else if(res.result.errCode==0){
-              that.doComments();
-            }
-          },
-          fail:err=>{
-            console.log(err)
+    if(that.data.myComment !== undefined
+        && that.data.email !== undefined
+        && that.data.myComment.trim() !== ""){
+      wx.showLoading({
+        title: '内容校验中...',
+      })
+      wx.cloud.callFunction({
+        name: 'msgseccheck',
+        data: {
+          content:that.data.myComment
+        },
+        success:(res)=>{
+          console.log(res)
+          if(res.result.errCode!=0){
+            this.showMyToast('非法内容','fail')
+            that.setData({
+              myComment:""
+            })
+          }else if(res.result.errCode==0){
+            that.doComments();
           }
-        })
+        },
+        fail:err=>{
+          console.log(err)
+        }
+      })
     }else{
       this.showMyToast('内容不能为空','fail')
     }
@@ -480,10 +466,10 @@ Page({
     let str = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
     if (str.test(email)) {
       return true
-      } else {
+    } else {
       this.showMyToast('非法邮箱','fail')
-      return false 
-     }  
+      return false
+    }
   },
   doComments(){
     const that = this;
@@ -504,7 +490,7 @@ Page({
       success: function (res) {
         wx.hideLoading()
         if(res.data.status == 200){
-          that.loadComments(that.data.articleId)   
+          that.loadComments(that.data.articleId)
           that.setData({actionSheetShow : false});
           that.showMyToast('评论成功','success');
         }else{
@@ -520,9 +506,9 @@ Page({
   },
   // 收藏文章
   saveArticle(){
-     const data = this.data.articleDetail;
-     this.queryArticleRecordFromCloud(data.id)
-    
+    const data = this.data.articleDetail;
+    this.queryArticleRecordFromCloud(data.id)
+
   },
   //数据入库
   collectArticle(){
@@ -538,63 +524,67 @@ Page({
         desc: null
       }
     }).then(res=>{
-     console.log(res)
+      console.log(res)
       Toast.success("已收藏")
-      
+
     }).catch(err=>{
       //保存异常
       console.error(err)
       Toast.fail("收藏失败")
     })
   },
- 
+
   // 查询是否收藏
   queryArticleRecordFromCloud(articleId){
-      const that = this;
-      // 调用云函数获取openID
-      wx.cloud.callFunction({
-        name: 'login',
-        data: {},
-        success: res => {
-            let openID =  res.result.openid
-            db.collection(app.globalData.myCollectArticle)
-                .where({
-                  _openid: openID,
-                  articleId:articleId,
-                })
-                .get()
-                .then(res=>{
-                  console.log(res)
-                  if(res.data.length >0){
-                    Toast.fail("文章已收藏过")
-                  }else{
-                    that.collectArticle()
-                  }
-              })
-        },
-        fail: err => {
-          console.error('[云函数] [login] 调用失败', err)
-        }
-      })
+    const that = this;
+    // 调用云函数获取openID
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        let openID =  res.result.openid
+        db.collection(app.globalData.myCollectArticle)
+            .where({
+              _openid: openID,
+              articleId:articleId,
+            })
+            .get()
+            .then(res=>{
+              console.log(res)
+              if(res.data.length >0){
+                Toast.fail("文章已收藏过")
+              }else{
+                that.collectArticle()
+              }
+            })
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
   },
-   // 阅读更多
-   readMoreInfo() {
-    const that = this;  
+  // 阅读更多
+  readMoreInfo() {
+    const that = this;
+    that.setData({
+      cuAd:'noAd',
+      maxShowHeight:100000
+    })
     if (videoAd) {
       videoAd.show().catch(() => {
         // 失败重试
         videoAd.load()
-          .then(() => videoAd.show())
-          .catch(err => {
-            console.log('激励视频 广告显示失败')
-          })
+            .then(() => videoAd.show())
+            .catch(err => {
+              console.log('激励视频 广告显示失败')
+            })
       })
-     setTimeout(()=>{
-      that.setData({
-        cuAd:'noAd',
-        maxShowHeight:that.data.maxShowHeightTemp
-      })
-     },3000)
+      setTimeout(()=>{
+        that.setData({
+          cuAd:'noAd',
+          maxShowHeight:that.data.maxShowHeightTemp
+        })
+      },3000)
     }
   }
 
