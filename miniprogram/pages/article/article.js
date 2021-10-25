@@ -93,7 +93,25 @@ Page({
       })
       videoAd.onLoad(() => {})
       videoAd.onError((err) => {})
-      videoAd.onClose((res) => {})
+      videoAd.onClose((res) => {
+        if(res.isEnded){
+          wx.showToast({
+            title: '您已观看完视频，继续阅读吧',
+            icon:'none'
+          })
+          that.setData({
+            cuAd:'noAd',
+            maxShowHeight:100000
+          })
+        }else{
+          wx.showModal({
+            title: '温馨提示',
+            content: '您当前未观看完视频，无法继续阅读',
+            showCancel: true,//是否显示取消按钮
+            confirmText: '确定',
+          })
+        }
+      })
     }
 
 
@@ -576,12 +594,7 @@ Page({
               console.log('激励视频 广告显示失败')
             })
       })
-      setTimeout(()=>{
-        that.setData({
-          cuAd:'noAd',
-          maxShowHeight:100000
-        })
-      },3000)
+
     }
   }
 
