@@ -2,7 +2,7 @@
 
 page{
   background-attachment: fixed;
-  background-color: #F7F7F7;
+  background-color: #FFFFFF;
   background-size: cover; 
  }
 
@@ -22,6 +22,7 @@ page{
 
 .card {
   margin: 10rpx auto !important;
+  border-radius: 10px !important;
 }
 
 .right-card {
@@ -57,7 +58,7 @@ page{
 }
 
 
-/* 评论卡片 */
+/* 评论区 */
 
 .comments-line{
   display: flex;
@@ -77,85 +78,8 @@ page{
 }
 
 
-.img-card{
-  border-radius: 3%;
-  /* border: 1px blue solid; */
-}
-.su-content{
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  font-size: 24rpx;
-  margin-left: 90rpx;
-
-}
-
-.su-content .su-content-middle {
-  margin-top: 10rpx;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  
-}
-.su-content .su-content-footer{
- display: flex;
- flex-direction: row;
- position: relative;
- margin-top: 20rpx;
- height: 18px; 
- border-bottom: 1px rgb(231, 227, 227) solid;
-}
-
-.su-content-footer .su-footer-time{
-  font-weight: lighter;
-  position: absolute;
-  left: 0;
- 
-}
-
- .su-content-footer .su-footer-replyicon{
-  font-weight: lighter;
-  position: absolute;
-  font-size: larger;
-  right: 0;
- 
-}
-
-/* 子评论 */
-.child-content{
-  margin-left: 90rpx;
-  display: flex;
-  flex-direction: column;
-  border-bottom: 1px rgb(231, 227, 227) solid;
-  position: relative;
-
-}
 
 
-
-.child-content .child-time{
-  font-weight: lighter;
-  margin-top:20rpx;
-  display: flex;
-  flex-direction: row;
-}
-
-.child-time .child-childs{
-  margin-left: 20px;
-  position: absolute;
-  right: 5px;
-}
-
-.action-user{
-  /* border: 1px solid red; */
-  height: 110px;
-  position: fixed;
-  bottom: 230px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  z-index: 9999;
-}
 
 
 
@@ -191,9 +115,43 @@ page{
   -webkit-line-clamp: 100;
   line-clamp: 100;
   -webkit-box-orient: vertical;
+}
 
+.content-base-topic{
+  background-color: #F2F4F5;
+  margin: 3px 15px 5px 15px ;
+  padding: 10px;
+  border-radius: 10px;
+  /* border: 1px red solid; */
+  display: flex;
+  flex-direction: column;
+}
+
+.content-base-topic .title{
+  color: #666;
+  font-size: 28rpx;
+  margin: 5px;
 
 }
+
+.content-base-topic .tags{
+  color: #576BA3;
+  font-size: 26rpx;
+  display: flex;
+  flex-direction: row;
+}
+.content-base-topic .tags .tags-ele{
+  color: #576BA3;
+  margin-left: 5px;
+}
+
+.origin-address-gzh{
+  color: #666;
+  padding: 10px 10px 0px 10px;
+
+}
+
+
 .noAd {
   display: block;
   text-overflow: unset;
@@ -239,4 +197,98 @@ page{
   bottom: 6rpx;
   transform: translateX(4px) rotate(-45deg);
   opacity: 0.6;
+}
+
+
+/**
+ * 弧形菜单
+ **/
+
+ .circular-menu {
+  position: fixed;
+  bottom:2em;
+  right: 1em;
+}
+
+.circular-menu .floating-btn {
+  display: block;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  color: hsl(0, 0%, 100%);
+  text-align: center;
+  line-height: 2.0;
+  outline: 0;
+}
+
+
+.circular-menu .floating-btn .icon {
+  transition: transform .2s;  
+}
+
+.circular-menu.active .floating-btn .icon {
+  transform: rotate(-45deg);
+}
+
+.circular-menu:after {
+  display: block;
+  content: ' ';
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -2;
+  background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+    transition: all .3s ease;
+}
+
+.circular-menu.active:after {
+  transform: scale3d(4.5, 4.5, 1);
+  transition-timing-function: cubic-bezier(.68, 1.55, .265, 1);
+}
+
+.circular-menu .items-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+.circular-menu .menu-item {
+  position: absolute;
+  top: 0.2em;
+  right: 0.25em;
+  z-index: -1;
+  display: block;
+  text-decoration: none;
+  color: hsl(0, 0%, 100%);
+  font-size: 1em;
+  width: 2.0em;
+  height: 2.0em;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1;
+  transition: transform .3s ease, background .2s ease;
+}
+
+
+
+.circular-menu.active .menu-item {
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.circular-menu.active .menu-item:nth-child(1) {
+  transform: translate3d(0.3em,-3.5em,0);
+}
+
+.circular-menu.active .menu-item:nth-child(2) {
+  transform: translate3d(-2.5em,-1.9em,-0);
+}
+
+.circular-menu.active .menu-item:nth-child(3) {
+  transform: translate3d(-3.5em,1.0em,0);
+}
+
+.circular-menu.active .menu-item:nth-child(4) {
+  transform: translate3d(-3.5em,1.5em,0);
 }

@@ -1,0 +1,45 @@
+<wxs src="./util/dateutils.wxs" module="dateUtils" />
+<view class="wrapper">
+  <view class="comment-parent" wx:for="{{initTreeData}}" wx:for-item="item" wx:key="index">
+     <view class="comment-p-header">
+        <image class="comment-parent-image" src="{{item.avatar}}"></image>
+        <view class="comment-p-header-desc">
+          <view class="comment-p-title"><text wx:if="{{item.isAdmin}}" class="author-main" >作者</text>{{item.author}}</view>
+          <view class="comment-p-desc">{{dateUtils.calculateTimeDistance(item.createTime)}}</view>
+        </view>
+     </view>
+     <view class="comment-p-middle">
+       <view class="comment-p-middle-content {{item.status === 'PUBLISHED' ? '':' text-hidden-private'}}">
+       <rich-text nodes="{{item.content}}"></rich-text>
+       </view>
+       <view class="comment-p-middle-footer">
+        <view >发表于：{{dateUtils.dateTransfer(item.createTime)}}</view>
+        <view bindtap="onComment" data-comment-item="{{item}}" >
+          <image style="height: 20px;width: 20px;" src="./images/comment.png"></image>
+        </view>
+       </view>
+     </view>
+    
+      <view class="comment-children"  wx:for="{{item.childrenWithParent}}" wx:for-item="itemchild" wx:key="index">
+        <view class="comment-children-author">
+          <image class="comment-children-author-image" src="{{itemchild.avatar}}"></image>
+          <view class="comment-children-author-desc">
+            <view class="comment-children-author-desc-top"><text wx:if="{{itemchild.isAdmin}}" class="author-main" >作者</text>{{itemchild.author}}</view>
+            <view class="comment-children-author-desc-bottom">{{dateUtils.calculateTimeDistance(itemchild.createTime)}}</view>
+          </view>
+         </view>
+        <view class="comment-children-content {{item.status === 'PUBLISHED' ? '':' text-hidden-private'}}">
+          <text class="comment-children-content-pAuthor">@{{itemchild.pAuthor}}</text>
+          <text class="comment-children-content-content"> 
+          <rich-text nodes="{{itemchild.content}}"></rich-text>
+          </text>
+        </view>
+        <view class="comment-children-footer">
+          <view >#{{itemchild.id}}：{{dateUtils.dateTransfer(itemchild.createTime)}}</view>
+          <view bindtap="onComment" data-comment-item="{{itemchild}}" >
+            <image style="height: 20px;width: 20px;" src="./images/comment.png"></image>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>

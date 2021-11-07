@@ -16,14 +16,14 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        env: 'suke-blog-dev-xxx',
+        env: 'suke-blog-dev-xxxxxxxx',
         traceUser: true,
       })
     }
 
     this.globalData = {
-      domain:'https://wangsrbus.cn',
-      baseUrl: 'https://wangsrbus.cn/api', //api
+      domain:'https://xxxxxxxx.cn',
+      baseUrl: 'https://xxxxxxx.cn/api', //api
       api_access_key:"xxxx", //token
       index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
       title:"Hi,I'm suke",//自定义title
@@ -34,8 +34,8 @@ App({
       myCollectArticle:'myCollectArticle',//云数据库 存放收藏文章
       openComment:true,//是否开启评论 true为开启 false为关闭
       openAd:false,//流量主开通则打开
-      unitId:'adunit-xxx',//原生模板广告ID  自定义的时候子集可以选择样式
-      unitId2:'adunit-xxx',//视频激励广告--用于文章设置观看视频阅读更多功能
+      unitId:'adunit-xxxxxxx',//原生模板广告ID  自定义的时候子集可以选择样式
+      unitId2:'adunit-xxxxxxxxxxx',//视频激励广告--用于文章设置观看视频阅读更多功能
     }
   }
 })

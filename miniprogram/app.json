@@ -13,7 +13,8 @@
     "pages/categories/categories",
     "pages/collection/collection",
     "pages/collect-article-details/collect-article-details",
-    "pages/edit-journal/edit-journal"
+    "pages/edit-journal/edit-journal",
+    "pages/webview-common/webview-common"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -44,7 +45,8 @@
     "van-dialog": "components/vant/components/dist/dialog/index",
     "van-search": "components/vant/components/dist/search/index",
     "painter": "components/painter/painter",
-    "mp-html": "components/mp-html/dist/mp-weixin/index"
+    "mp-html": "components/mp-html/dist/mp-weixin/index",
+    "blog-comment-tag": "components/blog-comment-tag/blog-comment-tag"
 
   },
   "sitemapLocation": "sitemap.json",

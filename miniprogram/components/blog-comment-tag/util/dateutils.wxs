@@ -1,0 +1,69 @@
+function dateTransfer (d) {
+  var da = getDate(d);
+  var Year = da.getFullYear(); //ie火狐下都可以
+  var Month = da.getMonth() + 1;
+  var Day = da.getDate();
+  var Hours = da.getHours();
+  var Minutes = da.getMinutes();
+  var Seconds = da.getSeconds();
+  var CurrentDate = "";
+  CurrentDate += Year + "-";
+  if (Month >= 10) {
+    CurrentDate += Month + "-";
+  }
+  else {
+    CurrentDate += "0" + Month + "-";
+  }
+  if (Day >= 10) {
+    CurrentDate += Day;
+  }
+  else {
+    CurrentDate += "0" + Day;
+  }
+  if (Hours < 10) {
+    Hours = "0" + Hours;
+  }
+  if (Minutes < 10) {
+    Minutes = "0" + Minutes;
+  }
+  if (Seconds < 10) {
+    Seconds = "0" + Seconds;
+  }
+  return CurrentDate + " " + Hours + ":" + Minutes + ":" + Seconds;
+}
+
+function calculateTimeDistance(t){
+//如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+var dateBegin = getDate(t) ;//getDate(t.replace("-", "/"));//将-转化为/，
+var dateEnd = getDate();//获取当前时间
+var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+var yearDiff =  Math.floor(dateDiff / (24 * 3600 * 1000*365));//计算相差年份
+var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+var leave1 = dateDiff % (24 * 3600 * 1000)    //计算天数后剩余的毫秒数
+var hours = Math.floor(leave1 / (3600 * 1000))//计算出小时数
+//计算相差分钟数
+var leave2 = leave1 % (3600 * 1000)    //计算小时数后剩余的毫秒数
+var minutes = Math.floor(leave2 / (60 * 1000))//计算相差分钟数
+//计算相差秒数
+var leave3 = leave2 % (60 * 1000)      //计算分钟数后剩余的毫秒数
+var seconds = Math.round(leave3 / 1000);
+var timesString = '';
+
+if(yearDiff > 0){
+  timesString = yearDiff + '年前';
+}else if (dayDiff != 0 && dayDiff >= 150) {
+    timesString =  '半年前';
+} else if (dayDiff != 0) {
+    timesString = dayDiff + '天前';
+} else if (dayDiff == 0 && hours != 0) {
+    timesString = hours + '小时前';
+} else if (dayDiff == 0 && hours == 0) {
+    timesString = minutes + '分钟前';
+}
+  return timesString;
+}
+
+module.exports = {
+  dateTransfer: dateTransfer,
+  calculateTimeDistance:calculateTimeDistance
+};
