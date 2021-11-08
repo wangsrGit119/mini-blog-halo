@@ -10,7 +10,7 @@
      </view>
      <view class="comment-p-middle">
        <view class="comment-p-middle-content {{item.status === 'PUBLISHED' ? '':' text-hidden-private'}}">
-       <rich-text nodes="{{item.content}}"></rich-text>
+        {{item.content}}
        </view>
        <view class="comment-p-middle-footer">
         <view >发表于：{{dateUtils.dateTransfer(item.createTime)}}</view>
@@ -19,7 +19,7 @@
         </view>
        </view>
      </view>
-    
+
       <view class="comment-children"  wx:for="{{item.childrenWithParent}}" wx:for-item="itemchild" wx:key="index">
         <view class="comment-children-author">
           <image class="comment-children-author-image" src="{{itemchild.avatar}}"></image>
@@ -30,9 +30,7 @@
          </view>
         <view class="comment-children-content {{item.status === 'PUBLISHED' ? '':' text-hidden-private'}}">
           <text class="comment-children-content-pAuthor">@{{itemchild.pAuthor}}</text>
-          <text class="comment-children-content-content"> 
-          <rich-text nodes="{{itemchild.content}}"></rich-text>
-          </text>
+          <text class="comment-children-content-content">{{itemchild.content}}</text>
         </view>
         <view class="comment-children-footer">
           <view >#{{itemchild.id}}：{{dateUtils.dateTransfer(itemchild.createTime)}}</view>
