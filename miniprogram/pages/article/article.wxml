@@ -4,30 +4,30 @@
 <!-- 轻提示 -->
 <van-toast id="van-toast" />
 <!-- bar -->
-<l-capsule-bar 
+<l-capsule-bar
 bind:linlefttap="onClickLeft"
 home-page="/pages/index/index"
-capsule-color="white" 
+capsule-color="white"
 bg-color="#ffffff">
 </l-capsule-bar>
 
 
 
 <!-- 海报弹出制作结果 -->
-<l-popup 
+<l-popup
 locked="{{true}}"
    show="{{postersShow}}">
-  <painter 
+  <painter
     customActionStyle="{{customActionStyle}}"
     palette="{{paintPallette}}"
-    bind:imgOK="onImgOK" 
-    bind:touchEnd="touchEnd" 
+    bind:imgOK="onImgOK"
+    bind:touchEnd="touchEnd"
     action="{{action}}"
     widthPixels="1000"
   />
   <!-- 加载提示 -->
   <view hidden="{{!imgSuccess}}">
-    <van-loading   type="spinner" color="#1989fa" size="38px" /> 
+    <van-loading   type="spinner" color="#1989fa" size="38px" />
   </view>
    <image hidden="{{imgSuccess}}" src="{{image}}" style="width: 654rpx; height: 900rpx; margin-left:40rpx;"/>
   <!-- 关闭 -->
@@ -44,7 +44,7 @@ locked="{{true}}"
 <van-dialog
   use-slot
   show="{{ passwordDialog }}"
-  show-confirm-button="{{false}}"	
+  show-confirm-button="{{false}}"
 >
   <l-input label="访问密码"  label-layout="left" bind:lininput="onChangingPwd" value="{{inputPwd}}"  placeholder="请输入访问密码" >
 	<image slot="right" bindtap="onValidatePwd" src="/images/validatePwd.png" style="height:45rpx;width:45rpx;" />
@@ -87,9 +87,9 @@ locked="{{true}}"
                    <view class="number">{{articleDetail.commentCount+'评论'}}</view>
                </view>
         </view>
-        <l-tag  shape="circle" 
-                bg-color="#f3f3f3" 
-                font-color="#3963BC" 
+        <l-tag  shape="circle"
+                bg-color="#f3f3f3"
+                font-color="#3963BC"
                 slot="more"
                 bind:lintap="saveArticle"
                 size="large">
@@ -99,8 +99,8 @@ locked="{{true}}"
 
  <!-- 正文 -->
  <view  >
-       
-   
+
+
 
 
 
@@ -113,11 +113,11 @@ locked="{{true}}"
          <view class="tags" >
            <view class="tags-ele" wx:for="{{articleDetail.categories}}"> #{{' '+item.name}} </view>
          </view>
-      
+
         </view>
         <van-cell
         wx:if="{{gzhURL}}"
-          custom-class="origin-address-gzh"	
+          custom-class="origin-address-gzh"
               is-link
               title="文章首发地址"
               icon="/images/gzhicon.png"
@@ -126,11 +126,11 @@ locked="{{true}}"
               border="{{true}}"
               url="/pages/webview-common/webview-common?url={{gzhURL}}&nav={{globalData.title}}"
             />
-       
-          
+
+
 
         <view id="content-detail">
-          <mp-html 
+          <mp-html
           lazy-load
           loading-img="{{myStyle.loadingGif}}"
           scroll-table="{{true}}"
@@ -141,26 +141,26 @@ locked="{{true}}"
         </view>
     </view>
     <view class="ad-readmore-mask" wx:if="{{cuAd === 'showAd'}}">
-      <view class="ad-btn" bindtap="readMoreInfo" >点击观看视频，阅读更多...</view>
+      <view class="ad-btn" bindtap="readMoreInfo" >点击观看视频，阅读更多</view>
     </view>
     <view class="ad-style" wx:if="{{ globalData.openAd && globalData.unitId}}" >
       <ad-custom  style="width: 97%;"  unit-id="{{globalData.unitId}}"></ad-custom>
     </view>
-  
+
 	</view>
 
-  
+
 
 <!-- 关闭评论加载显示 -->
 <view wx:if="{{!openComment}}" >
   <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
-  </l-loadmore> 
+  </l-loadmore>
 </view>
 
 <!-- 评论区骨架屏 -->
 <l-skeleton
   wx:if="{{openComment}}"
-  l-class="l-cu-outer-skeleton" 
+  l-class="l-cu-outer-skeleton"
   style="margin-top:300px;"
   loading="{{showSkeleton}}"
   paragraph="{{true}}"
@@ -172,34 +172,34 @@ locked="{{true}}"
   active="{{true}}"
 >
   <!-- 插槽内容 -->
-  
+
   <view class="comments-line">
       <view class="comments-tag">
         <l-tag plain="{{true}}" shape="circle" height="60">{{articleDetail.commentCount}}评论</l-tag>
       </view>
-  <view class="comments-right-tag"> 
+  <view class="comments-right-tag">
     <l-tag plain="{{true}}" shape="circle" height="60" icon-size="20" icon="comment" bind:lintap="toComment"	>评论</l-tag>
  </view>
   </view>
   <view wx:if="{{articleDetail.commentCount === 0}}" >
        <!-- 空评论 -->
        <van-empty class="custom-image-empty" description="还没有人评论呢，快来占楼吧^_^" image="{{myStyle.emptyGif}}">
-          
+
         </van-empty>
   </view>
    <!-- 评论展示区 -->
-   <blog-comment-tag data-post-id="{{10}}" bind:comment="toComment" comments="{{comments}}">
+   <blog-comment-tag  bind:comment="toComment" comments="{{comments}}">
     </blog-comment-tag>
-  <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
+   <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
   </l-loadmore>
 </l-skeleton>
 
 
 
 <!-- 弹出框 -->
-<van-action-sheet 
-  show="{{ actionSheetShow }}" 
-  title="{{userInfo.nickName}}评论" 
+<van-action-sheet
+  show="{{ actionSheetShow }}"
+  title="{{userInfo.nickName}}评论"
   cancel-text="保存"
   data-userInfo="{{userInfo}}"
   bind:cancel="saveEvent"
@@ -231,13 +231,13 @@ locked="{{true}}"
  <!-- 点赞 制作海报 分享等的图标 -->
 
 <div class="circular-menu {{unfolding === 'active' ? 'active':'' }}">
-	
+
   <view class="floating-btn" data-active-mask="{{unfolding}}" bindtap="unfolding">
     <van-icon class="icon"  size="40" name="/images/menu.png"/>
   </view>
 
   <menu class="items-wrapper ">
-  
+
    <l-icon class=" menu-item icon" name="like" bindtap="onLikeAction" data-id="{{articleDetail.id}}" color="#FD6585" size="60"/>
   <l-icon class=" menu-item icon" wx:if="{{openComment}}" name="comment" bindtap="toComment" color="#FD6585" size="60"/>
   <l-icon class=" menu-item icon" name="share" bindtap="getUserProfile" color="#FD6585"   size="60"/>

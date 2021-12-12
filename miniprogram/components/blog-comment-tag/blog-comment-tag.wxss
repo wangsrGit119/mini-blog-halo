@@ -5,19 +5,21 @@
     sans-serif;
   background-attachment: fixed;
   background-color: #F3F5F7;
-  background-size: cover; 
+  background-size: cover;
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
+  display: inline-block;
+  width: 100%;
 }
 .comment-parent {
-  padding: 5px 2px 5px 9px;
+  padding: 5px 7px 5px 9px;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   font-size: 24rpx;
   background-color: #ffffff;
   border-radius: 20rpx;
-  margin: 7px 10px 7px 10px;
+  margin: 4px 3px 4px 3px;
 }
 
 .comment-p-header{
@@ -90,7 +92,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 26rpx;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   word-break: normal;
   color: #666;
 }
@@ -162,9 +164,9 @@
 .comment-children-content-content{
   color: #666;
   font-size: 24rpx;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   word-break: normal;
-  
+
 }
 
 .comment-children-content-pAuthor{
