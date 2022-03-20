@@ -10,5 +10,6 @@
   "l-tag":"../../lin-ui/dist/tag/index",
   "l-icon":"../../lin-ui/dist/icon/index",
   "l-loadmore":"../../lin-ui/dist/loadmore/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

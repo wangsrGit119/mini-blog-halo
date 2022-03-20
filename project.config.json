@@ -35,7 +35,8 @@
     "minifyWXSS": true,
     "disableUseStrict": false,
     "showES6CompileOption": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "minifyWXML": true
   },
   "appid": "wx98e9bd4331328790",
   "projectname": "suke-blog-halo",

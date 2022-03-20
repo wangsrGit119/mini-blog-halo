@@ -26,6 +26,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      authorInfo:app.globalData.authorInfo
+    })
+    // 当前页面显示导航条加载动画
+    wx.showNavigationBarLoading()
+    // 加载最新文章
+    this.loadArticleByPage();
+    // 初始化参数
+    this.initParams();
+    // 获取所有分类
+    this.loadCategories()
   },
 
   /**
@@ -39,17 +50,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      authorInfo:app.globalData.authorInfo
-    })
-    // 当前页面显示导航条加载动画
-    wx.showNavigationBarLoading()
-    // 加载最新文章
-    this.loadArticleByPage();
-    // 初始化参数
-    this.initParams();
-    // 获取所有分类
-    this.loadCategories()
+   
     
   },
 
@@ -71,9 +72,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log("下拉刷新")
-    // this.initParams()
-    // this.loadArticleByPage();
+      // 初始化查询参数
+      this.initParams()
+      // 获取文章列表（最新）
+      this.loadArticleByPage();
+      wx.stopPullDownRefresh() 
   },
 
   /**

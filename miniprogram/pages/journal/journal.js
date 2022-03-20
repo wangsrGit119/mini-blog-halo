@@ -146,7 +146,6 @@ Page({
   //点赞喜欢
   onLikeAction(e){
     const that = this;
-    console.log(e)
     const id = e.currentTarget.dataset.id;
     wx.request({
       url:  app.globalData.baseUrl + '/content/journals/'+id+'/likes?api_access_key='+app.globalData.api_access_key,
@@ -158,7 +157,7 @@ Page({
             title: '谢谢厚爱',
             icon:'none'
           })
-          that.listPageJournal();
+          // that.listPageJournal();
         }
       },
       fail:function(err){
