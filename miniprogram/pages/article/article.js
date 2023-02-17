@@ -7,8 +7,7 @@ let videoAd = null;
 
 
 const app = getApp()
-const db = wx.cloud.database()
-const _ = db.command
+
 
 Page({
 
@@ -27,7 +26,6 @@ Page({
     passwordDialog:false,//密码输入框
     inputPwd:"",//用户输入的密码(私密文章)
     globalData:app.globalData,
-    openComment:app.globalData.openComment === undefined ? true : app.globalData.openComment,//是否开启评论
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
     comments:[],//评论
     userInfo:undefined,
@@ -115,7 +113,7 @@ Page({
       })
     }
 
-
+	console.log("openComment",app.globalData.openComment)
   },
 
   /**
@@ -128,7 +126,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+	this.setData({
+        globalData:app.globalData
+    })
   },
 
   /**
@@ -239,6 +239,7 @@ Page({
       delta: 1
     })
   },
+
   loadArticleDetail(articleId){
     const that = this;
     wx.showLoading({								//显示 loading 提示框
@@ -250,7 +251,6 @@ Page({
       success: function (res) {
         if(res.data.status == 200){
           let data = JSON.parse(JSON.stringify(res.data.data));
-          wx.hideLoading()
           that.setData({
             articleDetail:data,
           })
@@ -265,6 +265,10 @@ Page({
         console.log("请求异常",res)
       }
     })
+  },
+  loadover(){
+    console.log("渲染完成")
+    wx.hideLoading()
   },
   /**
    *  meta data
@@ -458,29 +462,9 @@ Page({
         && that.data.email !== undefined
         && that.data.myComment.trim() !== ""){
       wx.showLoading({
-        title: '内容校验中...',
+        title: '评论审核通过后可展示',
       })
-      wx.cloud.callFunction({
-        name: 'msgseccheck',
-        data: {
-          content:that.data.myComment
-        },
-        success:(res)=>{
-          console.log(res)
-          if(res.result.errCode!=0){
-            this.showMyToast('非法内容','fail')
-            that.setData({
-              myComment:""
-            })
-          }else if(res.result.errCode==0){
-            wx.hideLoading()
-            that.doComments();
-          }
-        },
-        fail:err=>{
-          console.log(err)
-        }
-      })
+      that.doComments();
     }else{
       this.showMyToast('内容不能为空','fail')
     }
@@ -535,65 +519,7 @@ Page({
       }
     })
   },
-  // 收藏文章
-  saveArticle(){
-    const data = this.data.articleDetail;
-    this.queryArticleRecordFromCloud(data.id)
-
-  },
-  //数据入库
-  collectArticle(){
-    const data = this.data.articleDetail;
-    db.collection(app.globalData.myCollectArticle).add({
-      data:{
-        date:db.serverDate(),
-        articleId:data.id,
-        formatContent:data.formatContent,
-        title: data.title,
-        thumbnail:data.thumbnail,
-        createTime:data.createTime,//文章发表时间
-        desc: null
-      }
-    }).then(res=>{
-      console.log(res)
-      Toast.success("已收藏")
-
-    }).catch(err=>{
-      //保存异常
-      console.error(err)
-      Toast.fail("收藏失败")
-    })
-  },
-
-  // 查询是否收藏
-  queryArticleRecordFromCloud(articleId){
-    const that = this;
-    // 调用云函数获取openID
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        let openID =  res.result.openid
-        db.collection(app.globalData.myCollectArticle)
-            .where({
-              _openid: openID,
-              articleId:articleId,
-            })
-            .get()
-            .then(res=>{
-              console.log(res)
-              if(res.data.length >0){
-                Toast.fail("文章已收藏过")
-              }else{
-                that.collectArticle()
-              }
-            })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-  },
+  
   // 阅读更多
   readMoreInfo() {
     if (videoAd) {

@@ -1,0 +1,52 @@
+<!--pages/message-board/message-board.wxml-->
+<l-capsule-bar 
+bind:linlefttap="onClickLeft"
+home-page="/pages/index/index"
+title="留言反馈处"
+capsule-color="white" 
+bg-color="#ffffff">
+</l-capsule-bar>
+<view wx:if="{{globalData.openComment}}" class="textarea-all">
+      <l-textarea l-class="lin-su-textarea" bind:lininput="onTextareaInput" value="{{myComment}}" placeholder="有什么问题请在这里反馈哟..." indicator="{{true}}" maxlength="200" />
+      <l-button bindtap="toComment" shape="circle" class="su-message-buttom" type="default">反馈</l-button>
+</view>
+<view wx:if="{{comments.length === 0}}" >
+       <!-- 空评论 -->
+       <van-empty class="custom-image-empty" description="还没有人评论呢，快来占楼吧^_^" image="{{globalData.empty_img}}">
+          
+        </van-empty>
+  </view>
+   <!-- 评论展示区 -->
+   <blog-comment-tag wx:if="{{globalData.openComment}}" class="su-blog-comment-class" bind:comment="toComment" comments="{{comments}}">
+    </blog-comment-tag>
+
+
+<!-- 弹出框 -->
+<van-action-sheet 
+  show="{{ actionSheetShow }}" 
+  title="{{userInfo.nickName}}评论" 
+  cancel-text="保存"
+  data-userInfo="{{userInfo}}"
+  bind:cancel="saveEvent"
+  bind:close="onClickHide">
+  <view class="block">
+   <van-cell-group>
+          <van-field
+          clearable
+            model:value="{{ email }}"
+            label="邮箱"
+            required
+            bind:blur="validateEmail"
+            border="{{ true }}"
+          />
+          <van-field
+          clearable
+            model:value="{{ myComment }}"
+            label="评论"
+            type="textarea"
+            autosize
+            border="{{ true }}"
+          />
+</van-cell-group>
+    </view>
+</van-action-sheet>

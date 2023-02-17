@@ -142,50 +142,32 @@ Page({
       // on close
     });
   },
+  inputUserNameKeyOnChange(e){
+    app.globalData.adminUsername = e.detail.value
+  },
   // 监听输入的key
-  inputKeyOnChange(e){
-    this.setData({
-      inputSecretKey:e.detail.value
-    })
+  inputPasswordKeyOnChange(e){
+    app.globalData.adminSecret = e.detail.value
   },
   // 手动输入密钥校验
   validateAccessOK(e){
-    this.setData({
-      loading:true
-    })
-    let key = e.currentTarget.dataset.inputSecretKey
-    this.getLoginInfo(2,key);
+    this.getToken()
   },
-  getLoginInfo(type,key){
+
+  getToken(){
     const that = this;
-    wx.cloud.callFunction({
-      name: 'login-halo',
-      data:{
-        key:key,
-        type:type,
-      },
-      success:(res)=>{
-        console.log(res)
-        let haloRes = res.result.haloRes
-        if(haloRes.status === 200){
-          that.getToken(haloRes.params)
-        }else{
-          that.showMyToast(haloRes.message,'fail')
-        }
-        that.setData({
-          loading:false
-        })
-      },
-      fail:err=>{
-        console.log(err)
-      }
-    })
-  },
-  getToken(params){
-    const that = this;
+	if(app.globalData.admin_token){
+		wx.navigateTo({
+		  url: '/pages/admin-manager/admin-manager',
+		})
+		return
+	}
     wx.request({
       url: app.globalData.baseUrl + '/admin/login',
-      data:params,
+      data:{
+        username:app.globalData.adminUsername,
+        password:app.globalData.adminSecret
+      },
       method: 'POST',
       header: {ContentType: 'application/json'},
       success:(res)=>{
@@ -213,23 +195,16 @@ Page({
   },
   // 管理入口提问
   showDoorForAdmin(){
-   this.setData({
-     adminQ:true
-   })
-  },
-  // 是管理员
-  adminQConfirm(){
     this.setData({
-      loading:true
+      keyInputShow:true
     })
-    this.getLoginInfo(1,null)
   },
+  
   // 非管理员
   adminQCancel(){
     this.setData({
       keyInputShow:true
     })
-
   },
   /**
    * 获取openID 点击头像

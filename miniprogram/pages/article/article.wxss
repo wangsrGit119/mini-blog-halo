@@ -257,7 +257,7 @@ page{
 
 .circular-menu .menu-item {
   position: absolute;
-  top: 0.2em;
+  top: 0.25em;
   right: 0.25em;
   z-index: -1;
   display: block;

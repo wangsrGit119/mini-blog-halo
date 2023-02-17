@@ -8,21 +8,22 @@ Page({
   data: {
     userInfo:app.globalData.userInfo,
     capsuleBarHeight:app.capsuleBarHeight,//顶部高度
-    index_bg_image_url:app.globalData.index_bg_image_url,//首页背景
     page:0, //页号
-    pageSize:15,//数量
+    pageSize:10,//数量
     comments:[],//评论集合
     totalComment:0,//评论总数
     inputComment:"",//输入的评论回复
     commentInputShow:false,//评论输入框展示
     currentComment:{},//当前评论
+    currentItem:'one',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.initParams()
+    this.loadLastesComments()
   },
 
   /**
@@ -36,8 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.initParams()
-    this.loadLastesComments()
+    
   },
 
   /**
@@ -66,7 +66,11 @@ Page({
    */
   onReachBottom: function () {
     if (this.data.hasMoreData) {
-      this.loadLastesComments();
+      if(this.data.currentItem === 'one'){
+        this.loadLastesComments();
+      }else if(this.data.currentItem === 'two'){
+        this.loadSheetComment()
+      }
     } else {
       wx.showToast({
         title: '没有更多数据',
@@ -183,30 +187,15 @@ Page({
       return
     }
     wx.showLoading({							
-      title: '内容校验中...',
+      title: '回复中'
     })
-    wx.cloud.callFunction({
-      name: 'msgseccheck',
-      data: {
-        content:that.data.inputComment
-      },
-      success:(res)=>{
-        console.log(res)
-        if(res.result.errCode!=0){
-            this.showMyToast('非法内容','fail')
-            that.setData({
-              inputComment:""
-            })
-        }else if(res.result.errCode==0){
-          that.doComments();
-        }
-      },
-      fail:err=>{
-        console.log(err)
-      }
-    })
+    if(that.data.currentItem === 'one'){
+      that.doPostComments();
+    }else if(that.data.currentItem === 'two'){
+      that.doSheetComments()
+    }
   },
-  doComments(){
+  doPostComments(){
     const that = this;
 
     let params = {
@@ -240,25 +229,7 @@ Page({
       }
     })
   },
-  // 审核通过评论
-  accessComment(e){
-    let commentId = e.currentTarget.dataset.item.id;
-    let status = 'PUBLISHED';
-    this.updateComment(commentId,status)
-  },
-  // 删除评论（到回收站）
-  deleteComment(e){
-    console.log(e)
-    let commentId = e.currentTarget.dataset.item.id;
-    let status = 'RECYCLE';
-    this.updateComment(commentId,status)
-  },
-  // 还原评论
-  recycleComment(e){
-    let commentId = e.currentTarget.dataset.item.id;
-    let status = 'PUBLISHED';
-    this.updateComment(commentId,status)
-  },
+
   // 永久删除
   deleteForeverComment(e){
     const that = this;
@@ -279,8 +250,11 @@ Page({
       }
     })
   },
-  updateComment(commentId,status){
+  // 更改评论状态
+  updatePostComment(e){
     const that = this;
+    let commentId = e.currentTarget.dataset.item.id;
+    let status = e.currentTarget.dataset.status;
     wx.request({
       url: app.globalData.baseUrl + '/admin/posts/comments/'+commentId+'/status/'+status+'?admin_token='+app.globalData.admin_token,
       method: 'PUT',
@@ -298,5 +272,145 @@ Page({
         that.showMyToast("请求异常",'fail')
       }
     })
-  }
+  },
+  /**
+   * 切换选项卡
+   */
+  onSwitchItem(e){
+    this.setData({
+      currentItem:e.detail.activeKey
+    })
+    if(e.detail.activeKey === 'one'){
+      this.initParams()
+      this.loadLastesComments()
+    }else if(e.detail.activeKey === 'two'){
+      this.initParams()
+      this.loadSheetComment()
+    }
+  },
+  /**
+   * 页面评论
+   */
+  loadSheetComment(){
+    const that = this;
+    const page = that.data.page;
+    const size = that.data.pageSize;
+    wx.showLoading({		
+      title: '加载中',
+    })
+    const sort1 = "createTime,desc";
+    wx.request({
+      url: app.globalData.baseUrl + '/admin/sheets/comments?admin_token='+app.globalData.admin_token+'&page='+page+'&size='+size+'&sort='+sort1,
+      method: 'GET',
+      success: function (res) {
+        wx.hideLoading()
+        if(res.data.status == 200){
+          that.setData({
+            totalComment:res.data.data.total
+          })
+          that.appendArticleList(res.data.data.content)
+        }else{
+          wx.showToast({
+            title: '数据加载异常',
+            icon:'none'
+          })
+        }
+      },
+      fail: function (res) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '服务异常',
+          icon:'none'
+        })
+        console.log("请求异常",res)
+      }
+    })
+  },
+  doSheetComments(){
+    const that = this;
+
+    let params = {
+      "content": that.data.inputComment,
+      "parentId": that.data.currentComment.id,
+      "postId": that.data.currentComment.sheet.id
+    }
+    wx.request({
+      url: app.globalData.baseUrl + '/admin/sheets/comments?admin_token='+app.globalData.admin_token,
+      data:params,
+      method: 'POST',
+      header: {ContentType: 'application/json'},
+      success: function (res) {
+        wx.hideLoading()
+        if(res.data.status == 200){
+          that.showMyToast('评论成功','success');
+           // 加载列表
+           that.initParams()
+           that.loadSheetComment()   
+           that.setData({
+             commentInputShow : false,
+             inputComment:""
+            });
+        }else{
+          that.showMyToast('评论失败','fail');
+        }
+      },
+      fail: function (res) {
+        that.showMyToast('请求异常','fail');
+        wx.hideLoading()
+      }
+    })
+  },
+  /**
+   * 页面评论状态更新
+   * @param {*} e 
+   */
+  updateSheetComment(e){
+    const that = this;
+    console.log(e)
+    let item = e.currentTarget.dataset.item;
+    let commentId = item.id;
+    let status = e.currentTarget.dataset.status;
+    let index = e.currentTarget.dataset.index+1;
+    console.log(that.data.comments)
+    item.status = status;
+    console.log(that.data.comments[index])
+    console.log(that.data.comments)
+
+    wx.request({
+      url: app.globalData.baseUrl + '/admin/sheets/comments/'+commentId+'/status/'+status+'?admin_token='+app.globalData.admin_token,
+      method: 'PUT',
+      success: function (res) {
+        if(res.data.status === 200){
+          that.initParams()
+          that.loadSheetComment()
+        }else{
+          that.showMyToast("状态更改失败",'fail')
+        }
+      },
+      fail: function (res) {
+        console.log("请求异常",res)
+        that.showMyToast("请求异常",'fail')
+      }
+    })
+  },
+  // 永久删除
+  deleteForeverSheetComment(e){
+    const that = this;
+    let commentId = e.currentTarget.dataset.item.id;
+    wx.request({
+      url: app.globalData.baseUrl + '/admin/sheets/comments/'+commentId+'?admin_token='+app.globalData.admin_token,
+      method: 'DELETE',
+      success: function (res) {
+        console.log(res)
+        if(res.data.status === 200){
+          that.showMyToast("已永久删除",'success')
+          that.initParams()
+          that.loadSheetComment()
+        }
+      },
+      fail: function (res) {
+        console.log("请求异常",res)
+      }
+    })
+  },
 })

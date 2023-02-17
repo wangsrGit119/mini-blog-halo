@@ -7,94 +7,64 @@
 
 > `项目路径` -> `app.js `文件中
 
-```
-    this.globalData = {
-      baseUrl: 'https://cxxxxxxxxx.cn/api', //api
-      api_access_key:"cxxxxxxxxx", //token
-      index_bg_image_url:"https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/photo-1507738978512-35798112892c.jfif",//首页背景
-      title:"SUKE'S SHARE",//自定义title
-      shareName:'suke的个人博客',//小程序分享名称
-      userInfo:undefined,//登录用户信息储存处 临时变量
-      admin_token: undefined,//临时 token undefined 临时变量
-      authorInfo:undefined,//作者信息 临时变量
-      myCollectArticle:'myCollectArticle',//云数据库 存放收藏文章
-    }
-```
-   - `baseUrl`：基础的API（halo博客的）
-   - `api_access_key` ：博客后台开启api后设置的token
-   - `index_bg_image_url`：首页bar背景图片
-   - `title` ： 首页展示的标题
-   - `shareName`: 朋友圈分享的名称
-   - `userInfo`: 基础用户信息，`无需配置`
-   - `admin_token` : `无需配置`
-   - `authorInfo`: `无需配置`
-   - `myCollectArticle`: 微信小程序`云数据库中需要创建的collect`
-
+ - `domain`:'https://blog.wangsrbus.cn',//博客地址
+ - `baseUrl`: 'https://blog.wangsrbus.cn/api', //博客api地址
+ - `api_access_key`:"xxx", //token
+ - `loading_img`:"",加载中gift
+ - `empty_img`:"",//空白gift
+ - `title`:"Hi,I'm suke",//自定义title
+ - `shareName`:'suke’s share',//小程序分享名称
+ - `openComment`:true,//是否开启评论 true为开启 false为关闭 -----------  云端控制请到halo后台配置系统变量 key:suke_wechat_comment value:show/noshow
+ -  `index_art_style`:'card01', //首页最新文章样式 内置：card01/card02
+ - `openAd`:true,//流量主开通则打开
+ - `unitId`:'xxxxxxxxx',//原生模板广告ID  自定义的时候自己可以选择样式
+ - `unitId2`:'xxxxxxxxx',//视频激励广告--用于文章设置观看视频阅读更多功能
+ - `customSlug_one_title`:'科技动态',//分类自定义标题 【小程序展示title】
+ - `customSlug_one`:'新闻',//分类 【halo文章的分类名称】
+  
+ - `sheetId`:34,留言板ID----需要数据库去查询或者F12查看网页端留言页面的id或者去后台管理找到页面F12 然后查看network 还不会的话请联系博主帮助
 
 ----
 
-# 云函数配置
-
-> **云函数总共有三个需要在云端安装** ： `login` :用于登录 , `msgseccheck`：敏感词校验 , `login-halo`：halo后台一键登录
-
-## **云函数环境配置①**
- 
- > **重要，不配置则小程序无法评论**（因为用到了云函数所以需要在开发控制台[开通云开发](https://mp.weixin.qq.com/wxamp/clouddevelopment/index)，并在app.js配置云环境ID）
- > 云端安装部署`msgseccheck` 云函数
- > 
- 
-```
- wx.cloud.init({
-        // env 参数说明：
-        //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
-        //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
-        //   如不填则使用默认环境（第一个创建的环境）
-        env: 'ssssssssssssssssss',
-        traceUser: true,
-      })
-```
-## **云函数环境配置②**
-
-> **重要：用于配置一键登录管理后台的功能**
->  - 在前面的基础上，云端安装部署`login-halo`云函数
->  - 小程序工具打开云开发控制台->云函数->选择login-halo云函数->打开右边`版本与配置`->列表中打开最新版本的`配置`->点开高级配置->设置三个变量如下：
-
-![云函数](../images/docwxcloud_20210624154515.png)
-![云函数](../images/docwxcloud_20210624154715.png)
-
->参数说明`pwd_halo`:halo的后台密码，`username_halo` halo的后台登录账号,`openId_me` 个人`openID`（每个微信用户特有的，这个地方在交给微信审核前可以配置任意字符串(**审核时必须将上述随机输入的字符串在备注也填上，用于审核人员登录**)，审核完成后，在上述配置的地方改为自己的openId）
-> **因为上述账号密码以及openID储存在微信云函数配置中，因此是动态的，后续账号密码换掉了，直接在云开发工具按照上述步骤更改即可。**
-
-## 云数据库配置
-
-> 用于储存收藏的文章
-
-1. 打开云控制台
-2. 点击  `数据库` - > '集合名称右侧的小加号' 创建集合 集合名字为：`myCollectArticle`
-
-![云函数](../images/docwxcloud_20210828123644.png)
 
 
+## 跳转公众号文章配置
 
-##  字体配置(app.wxss)
-> **可选操作，默认即可**
+发表文章时在halo后台配置`元数据`：key为 `gzhURL` value为：`公众号文章链接`
 
-> 自定义字体显示**只有一部分特定的中文字体，所有英文，数字**
+![元数据配置](../images/docwxcloud_20211107164810.png)
 
-> 使用过程中如果有**想要单独使用字体**的，后续我可以**添加到字体文件中，然乎发布新的字体链接版本**
 
-```
-@font-face {
-  font-family: 'CUSTOM_FONT_T_01';
-  src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2021032601fangzhengziji_xingkaijianti.ttf');
-}
-
-@font-face {
-  font-family: 'CUSTOM_FONT_T_02';
-  src: url('https://cdn.jsdelivr.net/gh/wangsrGit119/wangsr-image-bucket/img-article/2020032601jianghaoyingbikaishu.ttf');
-}
-
-```
 ## 海报生成的二维码配置
 
 > `项目下路径` > `images` > `wechat-q-code.jpg`替换成自己的二维码   
+
+## 流量主配置
+
+ - 登录后台，开通流量主
+ - 按照下面创建`原生模板广告`和`激励式广告`
+
+> `原生模板广告`,注意修改样式 保证和文章列表渲染匹配
+ 
+ ![1](../images/adunit-1.png)
+ ![2](../images/adunit-2.png)
+ ![3](../images/adunit-3.png)
+
+> **激励式广告，这个和halo文章设置元数据有关，因为需要您在发布文章的时候指定参数如下**
+
+- 微信后台创建广告
+![4](../images/adunit-4.png)
+  
+- halo后台创建元数据
+  
+  - `showAd`: `true/false`  是否展示激励广告
+  - `maxShowHeight` `number类型的数字`  对应文章在展示激励广告时可见内容高度  `不设置默认在1500`
+  ![4](../images/article-adunit-set.png)
+
+ - 复制对应的广告id填写到app.js配置文件中
+ 
+```javascript
+     openAd:true,//流量主开通则打开
+      unitId:'adunit-11111',//原生模板广告ID  自定义的时候子集可以选择样式
+      unitId2:'adunit-22222222',//视频激励广告--用于文章设置观看视频阅读更多功能
+```

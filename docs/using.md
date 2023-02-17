@@ -45,6 +45,13 @@
 
 </div>
 
+<div style="width:200px;height: 200px;margin-left: 10px; ">
+
+![luobetou](./images/qrcode_user/luobetou.jpg)
+
+
+</div>
+
 </div>
 
 

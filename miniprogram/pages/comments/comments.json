@@ -5,6 +5,8 @@
     "l-grid-item":"../../lin-ui/dist/grid-item/index",
     "l-list":"../../lin-ui/dist/list/index",
     "l-dialog":"../../lin-ui/dist/dialog/index",
-    "l-textarea":"../../lin-ui/dist/textarea/index"
+    "l-textarea":"../../lin-ui/dist/textarea/index",
+    "l-segment":"../../lin-ui/dist/segment/index",
+    "l-segment-item":"../../lin-ui/dist/segment-item/index"
   }
 }

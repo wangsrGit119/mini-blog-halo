@@ -3,8 +3,7 @@
 import Toast from '../../components/vant/components/dist/toast/toast';
 
 const app = getApp()
-const db = wx.cloud.database()
-const _ = db.command
+
 
 Page({
 
@@ -73,64 +72,5 @@ Page({
   onShareAppMessage: function () {
 
   },
-  // 获取所有收藏文章
-  queryALLArticlesRecordFromCloud(){
-    const that = this;
-    wx.showLoading({					
-      title: '加载中',
-    })
-    // 调用云函数获取openID
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-          let openID =  res.result.openid
-          db.collection(app.globalData.myCollectArticle)
-              .where({
-                _openid: openID,
-              })
-              .orderBy("date","desc")
-              .get()
-              .then(res=>{
-                wx.hideLoading()
-                that.setData({
-                  collectionList:res.data
-                })
-            })
-      },
-      fail: err => {
-        wx.hideLoading()
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-  },
-  toCollectArticleDetail(data){
-    let articleId = data.currentTarget.dataset.articleId;
-    let url = '/pages/collect-article-details/collect-article-details?articleId=' + articleId;
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  removeFromCloudDB(data){
-    const that = this;
-    let id = data.currentTarget.dataset.item._id;
-    if(!id){
-      return;
-    }
-    db.collection(app.globalData.myCollectArticle).doc(id).remove({
-      success: res => {
-        wx.showToast({
-          title: '删除成功',
-        })
-        that.queryALLArticlesRecordFromCloud()
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '删除失败',
-        })
-        console.error('[数据库] [删除记录] 失败：', err)
-      }
-    })
-  },
+  
 })

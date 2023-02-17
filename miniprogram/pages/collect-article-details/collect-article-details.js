@@ -1,7 +1,6 @@
 // miniprogram/pages/collect-article-details/collect-article-details.js
 const app = getApp()
-const db = wx.cloud.database()
-const _ = db.command
+
 import MpCuConfig from '../common/mp-custom-config'
 
 Page({
@@ -30,7 +29,6 @@ Page({
     this.setData({
       myStyle:new MpCuConfig("default").defaultConfig().myStyle
     })
-    that.queryArticleRecordFromCloud(options.articleId)
   },
 
   /**
@@ -86,37 +84,5 @@ Page({
         path: path
       }
   },
-   // 获取文章根据用户信息和当前文章信息
-   queryArticleRecordFromCloud(articleId){
-    const that = this;
-    wx.showLoading({					
-      title: '加载中',
-    })
-    // 调用云函数获取openID
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-          let openID =  res.result.openid
-          db.collection("myCollectArticle")
-              .where({
-                _openid: openID,
-                articleId:parseInt(articleId),
-              })
-              .get()
-              .then(articleRes=>{
-                wx.hideLoading()
-                let data = articleRes.data[0];
 
-                that.setData({
-                  articleDetail:data,
-                })
-            })
-      },
-      fail: err => {
-        wx.hideLoading()
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-},
 })

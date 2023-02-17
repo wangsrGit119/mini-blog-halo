@@ -14,7 +14,8 @@
     "pages/collection/collection",
     "pages/collect-article-details/collect-article-details",
     "pages/edit-journal/edit-journal",
-    "pages/webview-common/webview-common"
+    "pages/webview-common/webview-common",
+    "pages/message-board/message-board"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

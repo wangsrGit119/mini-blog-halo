@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "l-capsule-bar":"../../lin-ui/dist/capsule-bar/index",
+    "l-loading":"../../lin-ui/dist/loading/index",
+    "l-loadmore":"../../lin-ui/dist/loadmore/index",
+    "l-textarea":"../../lin-ui/dist/textarea/index",
+    "l-button":"../../lin-ui/dist/button/index",
+    "l-toast":"../../lin-ui/dist/toast/index",
+    "l-popup":"../../lin-ui/dist/popup/index"
+  }
+}

@@ -7,23 +7,25 @@ bind:linlefttap="onClickLeft"
 title="评论管理"
 home-page="/pages/index/index"
 capsule-color="white" 
-bg-color="transparent">
-  <image class="capsule-bar-bg" style="height:{{capsuleBarHeight+100}}rpx;" src="{{index_bg_image_url}}" />
+bg-color="#FFFFFF">
 </l-capsule-bar>
+<l-segment active-key="one" bind:linchange="onSwitchItem" >
+    <l-segment-item tab="文章评论" key="one" dot-badge="{{true}}" >
+    </l-segment-item>
+    <l-segment-item tab="其他页面评论" key="two"  dot-badge="{{true}}">
+    </l-segment-item>
+</l-segment>
+<van-search
+  clearable
+  bind:clear="onClear"	
+  value="{{searchKey}}"
+  bind:search="onSearch"	
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
 
-<view style="margin-top:{{capsuleBarHeight-50}}rpx;">
-  <l-list 
-  l-class="commentTop"	 
-  title="所有评论" 
-  icon="notification"
-  badge-max-count="{{99}}" 
-  badge-count="{{totalComment}}"
-  badge-position="right"
-  />
-</view>
-
-
-<view class="comments" wx:for="{{comments}}" wx:key="index">
+<view  wx:if="{{currentItem === 'one'}}" class="comments-post" wx:for="{{comments}}" wx:key="index">
   <van-cell size="large" label="评论：{{item.content}}" border="{{ true }}">
     <view slot="title">
       <view class="van-cell-text">
@@ -34,16 +36,43 @@ bg-color="transparent">
        
       </view>
     </view>
-    <van-tag wx:if="{{item.status === 'PUBLISHED'}}" data-item="{{item}}" bindtap="replyComment" type="success">回复</van-tag>
-    <van-tag wx:if="{{ item.status === 'AUDITING'}}" data-item="{{item}}" bindtap="accessComment" type="warning">通过</van-tag>
-    <van-tag wx:if="{{item.status !== 'RECYCLE'}}" data-item="{{item}}" bindtap="deleteComment" type="danger">删除</van-tag>
-    <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" bindtap="recycleComment" type="primary">恢复</van-tag>
+    <van-tag wx:if="{{item.status === 'PUBLISHED'}}" data-item="{{item}}"  bindtap="replyComment" type="success">回复</van-tag>
+    <van-tag wx:if="{{ item.status === 'AUDITING'}}" data-item="{{item}}" data-status="PUBLISHED" bindtap="updatePostComment" type="warning">通过</van-tag>
+    <van-tag wx:if="{{item.status !== 'RECYCLE'}}" data-item="{{item}}" data-status="RECYCLE"  bindtap="updatePostComment" type="danger">删除</van-tag>
+    <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" data-status="PUBLISHED"  bindtap="updatePostComment" type="primary">恢复</van-tag>
     <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" bindtap="deleteForeverComment" type="danger">永久删除</van-tag>
 
   </van-cell>
   <van-divider contentPosition="right">{{'评论时间 '+dateutils.dateTransfer(item.createTime)}}</van-divider>
 
 </view>
+
+
+<view   wx:if="{{currentItem === 'two'}}"class="comments-sheet" wx:for="{{comments}}" wx:key="index">
+  <van-cell size="large" label="评论：{{item.content}}" border="{{ true }}">
+    <view slot="title">
+      <view class="van-cell-text">
+        <van-tag plain wx:if="{{!item.isAdmin}}" type="primary">{{item.author}} </van-tag>
+        <van-tag plain wx:if="{{item.isAdmin}}" type="warning">{{'博主：'+item.author}}</van-tag>
+        <view> {{'页面：《'+ item.sheet.title + '》'}}  </view>
+       
+      </view>
+    </view>
+    <van-tag wx:if="{{item.status === 'PUBLISHED'}}" data-item="{{item}}" bindtap="replyComment" type="success">回复</van-tag>
+    <van-tag wx:if="{{ item.status === 'AUDITING'}}" data-item="{{item}}" data-index="{{index}}" data-status="PUBLISHED" bindtap="updateSheetComment" type="warning">通过</van-tag>
+    <van-tag wx:if="{{item.status !== 'RECYCLE'}}"   data-item="{{item}}"   data-index="{{index}}" data-status="RECYCLE" bindtap="updateSheetComment" type="danger">删除</van-tag>
+    <van-tag wx:if="{{item.status === 'RECYCLE'}}"   data-item="{{item}}" data-index="{{index}}" data-status="PUBLISHED" bindtap="updateSheetComment" type="primary">恢复</van-tag>
+    <van-tag wx:if="{{item.status === 'RECYCLE'}}" data-item="{{item}}" data-status="" bindtap="deleteForeverSheetComment" type="danger">永久删除</van-tag>
+
+  </van-cell>
+  <van-divider contentPosition="right">{{'评论时间 '+dateutils.dateTransfer(item.createTime)}}</van-divider>
+
+</view>
+
+
+
+
+
 
 <l-dialog 
   show="{{commentInputShow}}"

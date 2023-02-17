@@ -1,0 +1,23 @@
+/* pages/message-board/message-board.wxss */
+
+.textarea-all{
+  /* border: 1px red solid; */
+  margin: 10px;
+  position: relative;
+}
+
+
+.lin-su-textarea{
+  border-radius: 10px !important;
+  /* border: 1px blue solid !important; */
+ 
+}
+.su-message-buttom{
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.su-blog-comment-class{
+  color: red;
+}

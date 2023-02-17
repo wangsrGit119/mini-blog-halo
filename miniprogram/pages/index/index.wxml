@@ -10,24 +10,27 @@ bg-color="#ffffff">
 </l-capsule-bar>
 
 
-
-
 <!-- 弹出框 -->
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog"	 />
 
 
 
-<!-- /* start */ -->
+<!--  start  -->
 <view class="container-outer">
-  
-  
+  <van-search
+  clearable
+  bind:tap="toAllArticleList"		
+  shape="round"
+  background="white"
+  placeholder="请输入搜索关键词"
+/>
+<!--热门文章轮播图-->
 <view class="sw-top-article">
-  <!--轮播图-->
-     <swiper class='swiperClass' autoplay indicator-color="#a39f99" indicator-active-color="#f49641" indicator-dots  interval="5000" duration="5000" previous-margin="30px" next-margin="30px" circular bindchange="bindchange" style='height: {{swiperHeight}}px'>
+     <swiper class='swiperTopClass'  interval="5000" duration="5000" indicator-color="#a39f99" indicator-active-color="#f49641" indicator-dots  previous-margin="30px" next-margin="30px" circular bindchange="bindchange" style='height: {{swiperHeight}}px'>
       <block wx:for="{{articleTopList}}" wx:key="index">
       <swiper-item class="ws-top-article-item" data-article-item="{{item}}" bindtap="toArticleDetail">
-        <image src="{{commonutil.urlValidateUtil(item.thumbnail) ? item.thumbnail : globalData.domain+item.thumbnail }}" class="slide-image {{swiperIndex == index ? 'active' : 'quiet'}}" mode='aspectFill'>
+        <image  src="{{commonutil.urlValidateUtil(item.thumbnail) ? item.thumbnail : globalData.domain+item.thumbnail }}" class="slide-image {{swiperIndex == index ? 'active' : 'quiet'}}"   mode='aspectFill'>
           <text>{{item.title}}</text>
           <image  class="article-hot-icon" src="../../images/hot.png"></image>
       </image>
@@ -37,19 +40,107 @@ bg-color="#ffffff">
   </view>
 
 
+<!-- 快捷导航 -->
+<l-tag class="su-title-tag" wx:if="{{globalData.openComment}}" height="60" shape="circle" bg-color="#333333" plain="true">快捷导航</l-tag>
+
+<view wx:if="{{globalData.openComment}}" class="su-fast-tools">
+   <!-- item 1 -->
+  <view class="su-fast-tools-item" bindtap="toMessageBoardPage">
+     <van-icon size="22px" class="su-fast-tools-item-icon" name="/images/message.png" />
+      <view class="su-fast-tools-item-content">
+        留言反馈
+      </view>
+  </view>
+
+ </view>
+   <!-- 公众号 -->
+   <!-- <official-account></official-account> -->
+  <!-- slug one -->
+ 
+  <l-tag height="60" wx:if="{{customeSlugListOne.length > 0}}" shape="circle" bg-color="black" plain="true">{{globalData.customSlug_one_title}}</l-tag>
+  
+  <!-- 自定义轮播内容 --sulg one -->
+  <view class="sw-top-article" wx:if="{{customeSlugListOne.length > 0}}">
+     <swiper class="swiper-custom" previous-margin="0px"	next-margin="5px"	autoplay interval="10000" duration="10000"	 display-multiple-items="{{customeSlugListOne.length > 1 ? 2:1}}" easing-function="linear"   circular  >
+      <block wx:for="{{customeSlugListOne}}" wx:key="index">
+      <swiper-item class="swiper-item-custom" data-article-item="{{item}}" bindtap="toArticleDetail">
+        <l-card type="avatar" full l-class="swiper-card-custom-slug-one"  image="{{commonutil.urlValidateUtil(item.thumbnail) ?  item.thumbnail : globalData.domain+item.thumbnail }}"
+             describe="{{dateutils.calculateTimeDistance((item.createTime))+' '+item.visits+' 阅读'}}">
+                <view class="swiper-avter-content-slug-one">
+                  {{item.title}}
+                </view>
+          </l-card>
+      </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  
+<!-- 历史上的今天 -->
+
+<!-- 提示框 -->
+<l-dialog 
+  show="{{openHisDialog}}"
+  type="alert"     
+  title="历史上的今天"
+  confirm-text="关闭"
+   >
+  <scroll-view slot="content" scroll-y="true" style="height: 250px;"> 
+    <l-steps dot="{{true}}" direction="column" wx:for="{{historyDayInfo.dayInfoItems}}" wx:key="index">
+        <l-step title="{{item.year}}" describe="{{item.title}}"></l-step>
+    </l-steps>
+  </scroll-view>
+  </l-dialog>
+<l-collapse disable="{{true}}" expand-item-id="{{['1']}}" type="accordion">
+  <l-collapse-item item-id="1"	l-title-class="l-title-class" 	 customTitle="{{true}}">
+  <view slot="title" >
+    <l-tag height="60" shape="circle" bg-color="black" plain="true">历史上的今天</l-tag>
+  </view>
+  <!-- 历史上的今天骨架 -->
+  <l-skeleton 
+  loading="{{index_skeleton_show_history}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="60rpx"
+  avatar-shape="square"
+  rows="3"
+  active="{{false}}"
+>
+  <l-card type="primary" 
+            l-class="card"
+            image-mode="aspectFill"
+            full
+            position="left"
+            l-img-class="img-card"
+            image="{{historyDayInfo.dayInfoCover.picCover}}">
+        <!-- 此处为content -->
+              <view class="right-content">
+              <view class="avter-content">
+                {{historyDayInfo.dayInfoCover.year +'年 '}}{{historyDayInfo.dayInfoCover.title}}
+              </view>
+              <view class="right-content-share">
+                 <view class="like-container">
+                  <l-icon name="none" color="#666" size="28" />
+                      <view  style="color: #FA742B" class="number">
+                      {{historyDayInfo.month+'/'+historyDayInfo.day}}
+                      </view>
+                  </view>
+                  <view wx:if="{{historyDayInfo.dayInfoCover.festival}}" class="like-container">
+                      <l-icon name="none" color="#666" size="28" />
+                      <view style="color: #FA742B" class="number">{{historyDayInfo.dayInfoCover.festival}}</view>
+                  </view>
+                  <l-tag class="like-container" size="super-mini" bg-color="#FA742B" font-color="#FFFFFF"  bindtap="openHistoryDialog"  shape="circle">更多</l-tag>
+                </view>
+           </view>
+    </l-card>
+  </l-skeleton>
+
+  </l-collapse-item>
+</l-collapse>
 
 
-
-<!-- 文章列表 -->
-  <l-list 
-    l-class="l-list-header"	
-    title="最新文章" 
-    icon="time"
-    l-class-image="l-list-image-four"
-    image="/images/article.png"
-    is-link="{{false}}"
-     />
-     <official-account style="margin-top: 5px;"></official-account>
+<l-tag height="60"  shape="circle" bg-color="black" plain="true">最新文章</l-tag>
   <!-- 骨架屏 -->
 
   <l-skeleton 
@@ -64,8 +155,32 @@ bg-color="#ffffff">
 >
   
   <!-- 插槽内容 -->
-  <div  wx:for="{{articleList}}" wx:for-item="item" wx:key="index">
+
+<!-- 文章列表 样式1 -->
+<view wx:if="{{globalData.index_art_style==='card01'}}" class="container  su-list" >
+		<view  class="list-item" wx:for="{{articleList}}" wx:key="index" bindtap="toArticleDetail" data-article-item="{{item}}">
+			<image src="{{item.thumbnail}}" mode="aspectFill"></image>
+			<view class="su-list-title">{{item.title}}</view>
+			<view class="su-list-text">{{item.summary}}</view>
+      <view class="su-list-bottom" >
+        <view class="su-list-money"><l-icon name='eye' size="25" />{{' '+item.visits}}</view>
+        <view class="su-list-money">{{dateutils.calculateTimeDistance((item.createTime))}}</view>
+        <!-- <view class="su-list-money"><l-icon name='like' size="25" /> {{' '+item.likes}} </view> -->
+        <!-- <l-tag  bindtap="generateShortUri"  data-order-url="{{item.orderUrl}}" shape="circle" 
+                bg-color="#FD6E6A" 
+                font-color="#FFFFFF" 
+                bindtap="toArticleDetail" data-article-item="{{item}}"
+                size="super-mini">
+               查看详情
+        </l-tag> -->
+      </view>
+		</view>
+	</view>
+
   
+  <!-- 文章列表 样式2 -->
+  <div wx:if="{{globalData.index_art_style ==='card02'}}" wx:for="{{articleList}}" wx:for-item="item" wx:key="index">
+
     <view class="ad-style" wx:if="{{ globalData.openAd && globalData.unitId && index % 5 == 4 }}" >
       <ad-custom  style="width: 97%;"  unit-id="{{globalData.unitId}}"></ad-custom>
     </view>
@@ -75,9 +190,10 @@ bg-color="#ffffff">
            l-img-class="img-card" 
            position="left"
            l-class="card"
+           image-mode="aspectFill"
            full
            bindtap="toArticleDetail" data-article-item="{{item}}"
-           image="{{commonutil.urlValidateUtil(item.thumbnail) ? item.thumbnail : globalData.domain+item.thumbnail }}">
+           image="{{commonutil.urlValidateUtil(item.thumbnail) ?  item.thumbnail : globalData.domain+item.thumbnail }}">
            <!-- 右上角标签 -->
            <view wx:if="{{item.topPriority >0 }}" class="right-top-tag-container">
                     <l-tag  shape="circle"
@@ -116,14 +232,15 @@ bg-color="#ffffff">
            l-img-class="img-card" 
            position="right"
            l-class="card"
+           image-mode="aspectFill"
            full
            bindtap="toArticleDetail" data-article-item="{{item}}"
-           image="{{commonutil.urlValidateUtil(item.thumbnail) ? item.thumbnail : globalData.domain+item.thumbnail }}">
+           image="{{commonutil.urlValidateUtil(item.thumbnail) ?  item.thumbnail : globalData.domain+item.thumbnail }}">
            <!-- 右上角标签 -->
            <view wx:if="{{item.topPriority >0}}" class="left-top-tag-container">
                     <l-tag  shape="circle"
                     bg-color="#f3f3f3" 
-                    font-color="#3963BC" 
+                    font-color="#0396FF" 
                     size="mini">
                     置顶
                    </l-tag>
@@ -151,14 +268,13 @@ bg-color="#ffffff">
                 </view>
            </view>
         </l-card>
-
   </div>
- <!-- ios底部留白专用 -->
- <l-loadmore show="{{true}}" type="end" end-text="没有更多内容了哟~" loading-text="加载中~">
+
+   <!-- ios底部留白专用 -->
+   <l-loadmore show="{{true}}" type="end" end-text="没有更多内容了哟~" loading-text="加载中~">
            
- </l-loadmore>
-  
-</l-skeleton>
+   </l-loadmore>
+  </l-skeleton>
   
 </view>
 
@@ -174,34 +290,3 @@ bg-color="#ffffff">
 
 
 
-  <!-- 用户 openid -->
-  <!-- <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}" calss="userinfo-opendata">
-      <view class="userinfo-block-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button 
-        wx:if="{{canIUseGetUserProfile}}" 
-        bindtap="getUserProfile"
-        class="userinfo-avatar"
-        style="background-image: url({{avatarUrl}})"
-        size="default"
-      ></button>
-      <button
-        wx:else
-        open-type="getUserInfo" 
-        bindgetuserinfo="onGetUserInfo"
-        class="userinfo-avatar"
-        style="background-image: url({{avatarUrl}})"
-        size="default"
-      ></button>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-block-avatar" src="{{avatarUrl}}" mode="cover"></image>
-    </block>
-    <view class="userinfo-nickname-wrapper">
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
-    </view>
-  </view> -->

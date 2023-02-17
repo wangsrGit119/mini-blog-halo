@@ -46,7 +46,7 @@
   title="评论"
   value="{{statisticsInfo.commentCount}}" />
 
-  <van-cell 
+  <!-- <van-cell 
   icon="/images/journals.png"
   title="日志"
   value="{{statisticsInfo.journalCount}}" />
@@ -55,7 +55,7 @@
   is-link
   url="/pages/collection/collection"
   title="收藏"
-  value="查看收藏文章" />
+  value="查看收藏文章" /> -->
 
 <van-cell title="客服" icon="/images/contact.png" >
   <van-button  open-type="contact" show-message-card="{{true}}" type="primary" size="mini">联系客服</van-button>
@@ -90,7 +90,8 @@
   bind:linconfirm="validateAccessOK"
   data-input-secret-key="{{inputSecretKey}}"
 >
-<l-input placeholder="请输入" type="password" bind:lininput="inputKeyOnChange" value="{{inputSecretKey}}" label="密钥" clear="{{true}}" required="{{true}}" />
+<l-input placeholder="请输入"  bind:lininput="inputUserNameKeyOnChange" value="{{inputSecretKey}}" label="账户" clear="{{true}}" required="{{true}}" />
+<l-input placeholder="请输入" type="password" bind:lininput="inputPasswordKeyOnChange" value="{{inputSecretKey}}" label="密码" clear="{{true}}" required="{{true}}" />
 
 </l-dialog>
 

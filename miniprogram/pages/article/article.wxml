@@ -87,14 +87,14 @@ locked="{{true}}"
                    <view class="number">{{articleDetail.commentCount+'评论'}}</view>
                </view>
         </view>
-        <l-tag  shape="circle"
+        <!-- <l-tag  shape="circle"
                 bg-color="#f3f3f3"
                 font-color="#3963BC"
                 slot="more"
                 bind:lintap="saveArticle"
                 size="large">
                 + 收藏
-        </l-tag>
+        </l-tag> -->
   </l-card>
 
  <!-- 正文 -->
@@ -132,9 +132,11 @@ locked="{{true}}"
         <view id="content-detail">
           <mp-html
           lazy-load
+          error-img="{{myStyle.loadingGif}}"
           loading-img="{{myStyle.loadingGif}}"
           scroll-table="{{true}}"
           selectable="{{true}}"
+          bindload="loadover"
           tag-style="{{myStyle.tagStyle}}"
           container-style="{{myStyle.containStyle}}"
           content="{{articleDetail.formatContent}}" />
@@ -152,14 +154,15 @@ locked="{{true}}"
 
 
 <!-- 关闭评论加载显示 -->
-<view wx:if="{{!openComment}}" >
+<!-- <view wx:if="{{!openComment}}" >
   <l-loadmore show="{{true}}" type="loading" loading-text="已经到底了~">
   </l-loadmore>
-</view>
+</view> -->
 
 <!-- 评论区骨架屏 -->
+<view wx:if="{{globalData.openComment}}" >
+
 <l-skeleton
-  wx:if="{{openComment}}"
   l-class="l-cu-outer-skeleton"
   style="margin-top:300px;"
   loading="{{showSkeleton}}"
@@ -195,6 +198,7 @@ locked="{{true}}"
 </l-skeleton>
 
 
+</view>
 
 <!-- 弹出框 -->
 <van-action-sheet
@@ -238,9 +242,9 @@ locked="{{true}}"
 
   <menu class="items-wrapper ">
 
-   <l-icon class=" menu-item icon" name="like" bindtap="onLikeAction" data-id="{{articleDetail.id}}" color="#FD6585" size="60"/>
-  <l-icon class=" menu-item icon" wx:if="{{openComment}}" name="comment" bindtap="toComment" color="#FD6585" size="60"/>
-  <l-icon class=" menu-item icon" name="share" bindtap="getUserProfile" color="#FD6585"   size="60"/>
+   <l-icon class=" menu-item icon" name="like" bindtap="onLikeAction" data-id="{{articleDetail.id}}" color="#FD6585" size="40"/>
+  <l-icon class=" menu-item icon" wx:if="{{openComment}}" name="comment" bindtap="toComment" color="#FD6585" size="40"/>
+  <l-icon class=" menu-item icon" name="share" bindtap="getUserProfile" color="#FD6585"   size="40"/>
 
   </menu>
 
