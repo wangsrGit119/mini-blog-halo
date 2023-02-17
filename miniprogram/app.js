@@ -31,11 +31,11 @@ App({
       empty_img:"https://blog.wangsrbus.cn/upload/2021/10/empty-img-gift-2021101002-32b4e4acc7774c658093571a8846f498.gif",
       title:"Hi,I'm suke",//自定义title
       shareName:'suke’s share',//小程序分享名称
-      openComment:false,//是否开启评论 true为开启 false为关闭 -----------  云端控制请到halo后台配置系统变量 key:suke_wechat_comment value:show/noshow
+      openComment:true,//是否开启评论 true为开启 false为关闭 -----------  云端控制请到halo后台配置系统变量 key:suke_wechat_comment value:show/noshow
       index_art_style:'card01', //首页最新文章样式 内置：card01/card02
       openAd:true,//流量主开通则打开
-      unitId:'adunit-5d99f79277c3f856',//原生模板广告ID  自定义的时候自己可以选择样式
-      unitId2:'adunit-daf156fc94de2fc4',//视频激励广告--用于文章设置观看视频阅读更多功能
+      unitId:'adunit-x',//原生模板广告ID  自定义的时候自己可以选择样式
+      unitId2:'adunit-x',//视频激励广告--用于文章设置观看视频阅读更多功能
       customSlug_one_title:'科技动态',//分类自定义标题 【小程序展示title】
       customSlug_one:'新闻',//分类 【halo文章的分类名称】
       //留言板ID----需要数据库去查询或者F12查看网页端留言页面的id或者去后台管理找到页面F12 然后查看network 还不会的话请联系博主帮助
