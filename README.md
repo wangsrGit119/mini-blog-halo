@@ -9,8 +9,9 @@
 ![](https://img.shields.io/badge/%E5%BE%AE%E4%BF%A1-sucfufufu620119-brightgreen)
 
 ## 小程序
-
-![技术源share](./images/1001.png)
+<div>
+<img src="./images/1001.png" width="100px" height="200px" />
+</div>
 
 -----
 
