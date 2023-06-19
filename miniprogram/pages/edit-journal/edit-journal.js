@@ -205,36 +205,7 @@ Page({
       })
       return
     };
-    wx.showLoading({							
-      title: '内容校验中...',
-    })
-    wx.cloud.callFunction({
-      name: 'msgseccheck',
-      data: {
-        content:content
-      },
-      success:(res)=>{
-        wx.hideLoading()
-        console.log(res)
-        if(res.result.errCode!=0){
-            wx.showToast({
-              title: '非法内容',
-              icon:'none'
-            })
-        }else if(res.result.errCode==0){
-          that.saveJournal(content);
-        }
-      },
-      fail:err=>{
-        wx.hideLoading()
-        console.log(err)
-        wx.showToast({
-          title: '云函数调用出错',
-          icon:'none'
-        })
-      }
-    })
-
+    that.saveJournal(content);
   },
   cancelPub(){
     this.setData({
