@@ -1,6 +1,6 @@
 # 简介须知
 
-此微信小程序是基于开源博客Halo提供的API开发，使用的前提是自己已经部署有自己的Halo博客网站。
+此微信小程序是基于开源博客Halo 1.5提供的API开发，使用的前提是自己已经部署有自己的Halo博客网站。
 - 文档地址：[http://mbhdoc.wangsrbus.cn](http://mbhdoc.wangsrbus.cn/#/)
 - 微信小程序使用api必须是https，因此需要自己的博客网站配置ssl证书。
 - 下载后直接微信小程序开发工具打开即可。
